@@ -15,7 +15,6 @@ class halamanUserController extends Controller
 {
     public function halaman_user()
     {
-        
         $query = DB::table('users')->select('users.*')
         ->orderBy('users.created_at','desc')
         ->get();

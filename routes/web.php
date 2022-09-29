@@ -29,9 +29,7 @@ Route::get('/tes', function () {
 });
 
 
-//sistem register dan login
-Route::get('/register', [App\Http\Controllers\SistemLoginController::class, 'register_akun'])->name('register.akun');
-Route::post('/proses_register', [App\Http\Controllers\SistemLoginController::class, 'proses_register'])->name('proses.register');
+//sistem login
 Route::get('/admin/login', [App\Http\Controllers\SistemLoginController::class, 'login'])->name('login');
 Route::post('/login_verifikasi', [App\Http\Controllers\SistemLoginController::class, 'verifikasiLogin'])->name('login.verifikasi');
 Route::get('/logout', [App\Http\Controllers\SistemLoginController::class, 'logout'])->name('logout');
@@ -97,7 +95,9 @@ Route::group(['middleware' => ['auth', 'cekrole:Admin,Operator,Peserta']], funct
 
 //Route untuk peserta
 
-//sistem login
+//sistem register dan login
+Route::get('/register', [App\Http\Controllers\SistemLoginPesertaController::class, 'register_akun'])->name('register.akun');
+Route::post('/proses_register', [App\Http\Controllers\SistemLoginPesertaController::class, 'proses_register'])->name('proses.register');
 Route::get('/login', [App\Http\Controllers\SistemLoginPesertaController::class, 'halaman_login'])->name('login.peserta');
 Route::post('/verifikasilogin', [App\Http\Controllers\SistemLoginPesertaController::class, 'loginVerifikasi'])->name('verifikasi.login');
 Route::get('/log_out', [App\Http\Controllers\SistemLoginPesertaController::class, 'log_out'])->name('logout.peserta');

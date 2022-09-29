@@ -56,10 +56,6 @@ class SistemLoginController extends Controller
     	return redirect('/admin/login');
     }
 
-    public function register_akun()
-    {
-        return view('register');
-    }
 
 
 }

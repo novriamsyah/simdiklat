@@ -63,6 +63,11 @@
                                         {{Session::get('message')}}
                                     </div>
                                 @endif
+                                @if (Session::has('berhasil_masuk'))
+                                    <div class="alert alert-success">
+                                       <p style="color: #000000">Berhasil mendaftar pada website simdiklat, silahkan login !</p>
+                                    </div>
+                                @endif
                                 
                                 <div class="text-center w-75 m-auto">
                                     <h4 class="text-dark-50 text-center pb-0 fw-bold" style="font-weight: bold; color:#000000">Login</h4>
@@ -135,6 +140,26 @@
 <script type="text/javascript">
     @if ($message = Session::get('gagal_login'))
     toastr.warning("{{ $message }}","Peringatan !", {
+        timeOut:5e3,
+        closeButton:!0,
+        debug:!1,
+        newestOnTop:!0,
+        progressBar:!0,
+        positionClass:"toast-top-right",
+        preventDuplicates:!0,
+        onclick:null,
+        showDuration:"300",
+        hideDuration:"1000",
+        extendedTimeOut:"1000",
+        showEasing:"swing",
+        hideEasing:"linear",
+        showMethod:"fadeIn",
+        hideMethod:"fadeOut",
+        tapToDismiss:!1
+    });
+    @endif
+    @if ($message = Session::get('berhasil'))
+    toastr.success("{{ $message }}","Selamat", {
         timeOut:5e3,
         closeButton:!0,
         debug:!1,

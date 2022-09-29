@@ -27,6 +27,7 @@
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="light-style">
         <link href="{{asset('assets/css/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="dark-style">
+        <link rel="stylesheet" href="{{asset('assets/vendor/toastr/css/toastr.min.css')}}">
         @yield('css')
 
     </head>
@@ -136,10 +137,10 @@
                                         <img src="{{asset('assets/images/users/useri.png')}}" alt="user-image" class="rounded-circle">
                                     </span>
                                     <span>
-                                        {{-- <span class="account-user-name">{{auth()->user()->nama}}</span>
-                                        <span class="account-position">{{auth()->user()->role}}</span> --}}
-                                        <span class="account-user-name">nama</span>
-                                        <span class="account-position">role</span>
+                                        @php
+                                            $nama_peserta = Session::get('nama_lengkap');
+                                        @endphp
+                                        <span class="account-user-name">{{$nama_peserta}}</span>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
@@ -248,7 +249,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6">
-                                <script>document.write(new Date().getFullYear())</script> © Hyper - Coderthemes.com
+                                <script>document.write(new Date().getFullYear())</script> © credential
                             </div>
                            
                         </div>
@@ -352,6 +353,7 @@
 
         <!-- demo app -->
         <script src="{{asset('assets/js/pages/demo.dashboard.js')}}"></script>
+        <script src="{{asset('assets/vendor/toastr/js/toastr.min.js')}}"></script>
         <!-- end demo js-->
         @yield('script')
     </body>
