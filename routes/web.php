@@ -91,7 +91,20 @@ Route::group(['middleware' => ['auth', 'cekrole:Admin,Operator,Peserta']], funct
     Route::post('/ubah_jenis_diklat/{id}', [App\Http\Controllers\halamanJenisDiklatController::class, 'ubah_jenis_diklat']);
     Route::post('/hapus_jenis_diklat/{id}', [App\Http\Controllers\halamanJenisDiklatController::class, 'hapus_jenis_diklat']);
 
+    Route::get('/halaman_diklat', [App\Http\Controllers\halamanDiklatController::class, 'halaman_diklat']);
+    Route::get('/lihat_diklat/{id}', [App\Http\Controllers\halamanDiklatController::class, 'lihat_diklat']);
+    Route::get('/halaman_tambah_diklat', [App\Http\Controllers\halamanDiklatController::class, 'halaman_tambah_diklat']);
+    Route::post('/simpan_diklat', [App\Http\Controllers\halamanDiklatController::class, 'simpan_diklat']);
+    Route::get('/edit_diklat/{id}', [App\Http\Controllers\halamanDiklatController::class, 'edit_diklat']);
+    Route::post('/ubah_diklat/{id}', [App\Http\Controllers\halamanDiklatController::class, 'ubah_diklat']);
+    Route::post('/hapus_diklat/{id}', [App\Http\Controllers\halamanDiklatController::class, 'hapus_diklat']);
+
+    Route::get('/halaman_riwayat_diklat', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'halaman_riwayat_diklat']);
+
+    Route::get('/halaman_pengajuan_diklat', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'halaman_pengajuan_diklat']);
+
 });
+
 
 //Route untuk peserta
 
@@ -104,3 +117,32 @@ Route::get('/log_out', [App\Http\Controllers\SistemLoginPesertaController::class
 
 //dashboard
 Route::get('/', [App\Http\Controllers\halamanDashboardController::class, 'index'])->name('dash.peserta');
+Route::get('/dashboard_list_diklat/{id}', [App\Http\Controllers\halamanDashboardController::class, 'dashboard_list_diklat']);
+Route::get('/tambah_diklat_baru/{id}', [App\Http\Controllers\halamanDashboardController::class, 'tambah_diklat_baru']);
+
+//list Diklat
+Route::get('/halaman_list_diklat', [App\Http\Controllers\Peserta\halamanListDiklatController::class, 'halaman_list_diklat']);
+Route::get('/lihat_list_diklat/{id}', [App\Http\Controllers\Peserta\halamanListDiklatController::class, 'lihat_list_diklat']);
+
+
+//daftar diklat
+Route::get('/halaman_daftar_diklat', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'halaman_daftar_diklat']);
+Route::get('/lihat_daftar_diklat/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'lihat_daftar_diklat']);
+Route::get('/tambah_daftar_diklat', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'tambah_daftar_diklat']);
+Route::post('/simpan_daftar_diklat', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'simpan_daftar_diklat']);
+Route::post('/hapus_daftar_diklat/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'hapus_daftar_diklat']);
+
+//pengajuan Diklat
+Route::get('/halaman_pengajuan_diklat', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'halaman_pengajuan_diklat']);
+Route::get('/lihat_pengajuan_diklat/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'lihat_pengajuan_diklat']);
+Route::get('/detail_pengajuan_diklat/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'detail_pengajuan_diklat']);
+Route::get('/tambah_pengajuan_diklat', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'tambah_pengajuan_diklat']);
+Route::post('/simpan_pengajuan_diklat', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'simpan_pengajuan_diklat']);
+Route::post('/hapus_pengajuan_diklat/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'hapus_pengajuan_diklat']);
+
+//profil
+Route::get('/profil_saya', [App\Http\Controllers\Peserta\halamanProfilController::class, 'profil_saya']);
+Route::get('/halaman_tambah_profil', [App\Http\Controllers\Peserta\halamanProfilController::class, 'halaman_tambah_profil']);
+Route::post('/simpan_profil', [App\Http\Controllers\Peserta\halamanProfilController::class, 'simpan_profil']);
+Route::get('/edit_profil/{email}', [App\Http\Controllers\Peserta\halamanProfilController::class, 'edit_profil']);
+Route::post('/ubah_profil/{email}', [App\Http\Controllers\Peserta\halamanProfilController::class, 'ubah_profil']);

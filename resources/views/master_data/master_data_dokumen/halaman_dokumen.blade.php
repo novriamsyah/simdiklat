@@ -188,7 +188,6 @@
             method: "GET",
             success:function(response) {
                 var linkUrl = response.file_dokumen;
-              console.log(linkUrl);
             // var linkUrl = encodeURIComponent(response.file_kegiatan);
             //   var lihat =  $('.lihat_dokumen').attr('src', "http://docs.google.com/gview?url={{asset('/laporan_file')}}/"+linkUrl+"&embedded=true");
             var lihat =  $('.lihat_dokumen').attr('src', "{{Storage::url('public/dokumen')}}/"+linkUrl);

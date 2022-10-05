@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>SIMDIKLAT</title>
+        <title>SIDISEL</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
         <meta content="Coderthemes" name="author">
@@ -69,15 +69,27 @@
                                 </a>
                             </li>
                             <li class="side-nav-item">
-                                <a class="side-nav-link" href="{{url('/halaman_user')}}">
-                                    <i class="uil-user"></i>
-                                    <span> KELOLA USER </span>
+                                <a class="side-nav-link" href="{{url('/halaman_pengajuan_diklat')}}">
+                                    <i class="uil-file-lock-alt"></i>
+                                    <span> DIKLAT PENGAJUAN </span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="{{url('/halaman_riwayat_diklat')}}">
+                                    <i class="uil-file-bookmark-alt"></i>
+                                    <span> DIKLAT RIWAYAT </span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="{{url('/halaman_diklat')}}">
+                                    <i class="uil-files-landscapes-alt"></i>
+                                    <span> DIKLAT MASTER </span>
                                 </a>
                             </li>
                             <li class="side-nav-item">
                                 <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
-                                    <i class="uil-document-layout-center"></i>
-                                    <span> Master Data </span>
+                                    <i class="uil-folder"></i>
+                                    <span> MASTER DATA </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="sidebarForms">
@@ -94,11 +106,41 @@
                                     </ul>
                                 </div>
                             </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="{{url('/halaman_user')}}">
+                                    <i class="uil-user"></i>
+                                    <span> KELOLA USER </span>
+                                </a>
+                            </li>
                         @else
                         <li class="side-nav-item">
                             <a href="{{url('/admin')}}" class="side-nav-link">
                                 <i class="uil-home-alt"></i>
                                 <span> DASHBOARD</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a class="side-nav-link" href="{{url('/halaman_pengajuan_diklat')}}">
+                                <i class="uil-file-lock-alt"></i>
+                                <span> DIKLAT PENGAJUAN </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a class="side-nav-link" href="{{url('/halaman_riwayat_diklat')}}">
+                                <i class="uil-file-bookmark-alt"></i>
+                                <span> DIKLAT RIWAYAT </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a class="side-nav-link" href="{{url('/halaman_diklat')}}">
+                                <i class="uil-files-landscapes-alt"></i>
+                                <span> DIKLAT MASTER </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a class="side-nav-link" href="{{url('/halaman_diklat')}}">
+                                <i class="uil-user"></i>
+                                <span> MASTER DIKLAT </span>
                             </a>
                         </li>
                         @endif
@@ -360,6 +402,16 @@
         <!-- demo app -->
         <script src="{{asset('assets/js/pages/demo.dashboard.js')}}"></script>
         <!-- end demo js-->
+
+         <!-- Typehead -->
+         <script src="{{('assets/js/vendor/handlebars.min.js')}}"></script>
+         <script src="{{('assets/js/vendor/typeahead.bundle.min.js')}}"></script>
+ 
+         <!-- Demo -->
+         <script src="{{('assets/js/pages/demo.typehead.js')}}"></script>
+ 
+         <!-- Timepicker -->
+         <script src="{{('assets/js/pages/demo.timepicker.js')}}"></script>
         @yield('script')
     </body>
 </html>

@@ -21,7 +21,8 @@ class CreateDaftarDiklatTable extends Migration
             $table->foreign('nip_peserta')->references('nip')->on('peserta')->onDelete('cascade');            
             $table->date('tanggal_daftar');
             $table->enum('status', ['0', '1', '2']);
-            $table->string('sertifikat');
+            $table->string('catatan')->nullable();
+            $table->string('sertifikat')->nullable();
             $table->timestamps();
         });
     }

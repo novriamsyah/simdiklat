@@ -62,6 +62,7 @@ class SistemLoginPesertaController extends Controller
             $datas = $peserta;
             if (Hash::check($req->password, $peserta->password)){
                 $req->session()->put('email', $peserta->email);
+                $req->session()->put('nip', $peserta->nip);
                 $req->session()->put('nama_lengkap', $peserta->nama_lengkap);
                 return redirect()->route('dash.peserta')->with(['datas'=>$datas]);
             } else {
@@ -75,6 +76,8 @@ class SistemLoginPesertaController extends Controller
     {
         if(session()->has('email')){
             session()->pull('email');
+            session()->pull('nama');
+            session()->pull('nip');
             return redirect()->route('login.peserta')->with('berhasil', 'Selamat tinggal, kamu berhasi keluar');
         }
     }

@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>SIMDIKLAT</title>
+        <title>SIDISEL</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
         <meta content="Coderthemes" name="author">
@@ -59,7 +59,58 @@
                 </a> --}}
     
                 <div class="h-100" id="leftside-menu-container" data-simplebar="">
+                    @php
+                        $cek_nip = Session::get('nip');
+                         $cek_profil = \App\Models\Peserta::select('peserta.*')->where('nip', $cek_nip)->first();
+                         $cek_profil2 = $cek_profil->jabatan;
+                         $cek_profil3 = $cek_profil->golongan;
+                    @endphp
 
+                    @if ($cek_profil2 == null && $cek_profil3 == null)
+                    <ul class="side-nav">
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" data-bs-toggle="modal" data-bs-target="#warning-alert-modal" role="button">
+                                    <i class="uil-home-alt"></i>
+                                    <span> DASHBOARD</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" data-bs-toggle="modal" data-bs-target="#warning-alert-modal" role="button">
+                                    <i class="uil-home-alt"></i>
+                                    <span> LIST DIKLAT</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
+                                    <i class="uil-folder"></i>
+                                    <span> DIKLAT SAYA </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarForms">
+                                    <ul class="side-nav-second-level">
+                                        <li class="side-nav-item">
+                                            <a class="side-nav-link" data-bs-toggle="modal" data-bs-target="#warning-alert-modal" role="button">
+                                                <i class="uil-home-alt"></i>
+                                                <span> Pendaftaran Diklat</span>
+                                            </a>
+                                        </li>
+                                        <li class="side-nav-item">
+                                            <a class="side-nav-link" data-bs-toggle="modal" data-bs-target="#warning-alert-modal" role="button">
+                                                <i class="uil-home-alt"></i>
+                                                <span> Pengajuan Diklat </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" data-bs-toggle="modal" data-bs-target="#warning-alert-modal" role="button">
+                                    <i class="uil-home-alt"></i>
+                                    <span> PROFIL </span>
+                                </a>
+                            </li>
+                    </ul>
+                    @else
                     <!--- Sidemenu -->
                     <ul class="side-nav">
                             <li class="side-nav-item">
@@ -68,33 +119,44 @@
                                     <span> DASHBOARD</span>
                                 </a>
                             </li>
-                            {{-- <li class="side-nav-item">
-                                <a class="side-nav-link" href="{{url('/halaman_user')}}">
-                                    <i class="uil-user"></i>
-                                    <span> KELOLA USER </span>
+                            <li class="side-nav-item">
+                                <a href="{{url('/halaman_list_diklat')}}" class="side-nav-link">
+                                    <i class="uil-home-alt"></i>
+                                    <span> LIST DIKLAT</span>
                                 </a>
                             </li>
                             <li class="side-nav-item">
                                 <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
-                                    <i class="uil-document-layout-center"></i>
-                                    <span> Master Data </span>
+                                    <i class="uil-folder"></i>
+                                    <span> DIKLAT SAYA </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="sidebarForms">
                                     <ul class="side-nav-second-level">
-                                        <li>
-                                            <a href="{{url('/halaman_opd')}}">Data OPD</a>
+                                        <li class="side-nav-item">
+                                            <a href="{{url('/halaman_daftar_diklat')}}" class="side-nav-link">
+                                                <i class="uil-home-alt"></i>
+                                                <span> Pendaftaran Diklat</span>
+                                            </a>
                                         </li>
-                                        <li>
-                                            <a href="{{url('/halaman_dokumen')}}">Master Dokumen</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{url('/halaman_jenis_diklat')}}">Jenis Diklat</a>
+                                        <li class="side-nav-item">
+                                            <a href="{{url('/halaman_pengajuan_diklat')}}" class="side-nav-link">
+                                                <i class="uil-home-alt"></i>
+                                                <span> Pengajuan Diklat </span>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
-                            </li> --}}
-                        
+                            </li>
+                            <li class="side-nav-item">
+                                <a href="{{url('/profil_saya')}}" class="side-nav-link">
+                                    <i class="uil-home-alt"></i>
+                                    <span> PROFIL </span>
+                                </a>
+                            </li>
+                    </ul>
+                            
+                    @endif    
                     <!-- End Sidebar -->
 
                     <div class="clearfix"></div>
@@ -141,7 +203,9 @@
                                             $nama_peserta = Session::get('nama_lengkap');
                                         @endphp
                                         <span class="account-user-name">{{$nama_peserta}}</span>
+                                        <span class="account-user-name">Peserta</span>
                                     </span>
+
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
                                     <!-- item-->
@@ -237,6 +301,20 @@
                     <div class="container-fluid">
 
                         @yield('content')
+                        <div id="warning-alert-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-body p-4">
+                                        <div class="text-center">
+                                            <i class="dripicons-warning h1 text-warning"></i>
+                                            <h4 class="mt-2">Perthatian !!!</h4>
+                                            <p class="mt-3">Lengkapi profil kamu terlebih dahulu agar kamu bisa melakukan pengajuan diklat</p>
+                                            <a href="{{url('/halaman_tambah_profil')}}" class="btn btn-warning my-2" role="button"> Lengkapi Profil </a>
+                                        </div>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
 
                     </div>
                     <!-- container -->

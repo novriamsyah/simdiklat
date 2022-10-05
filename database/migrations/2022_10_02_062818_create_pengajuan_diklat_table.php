@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDiklatTable extends Migration
+class CreatePengajuanDiklatTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,21 @@ class CreateDiklatTable extends Migration
      */
     public function up()
     {
-        Schema::create('diklat', function (Blueprint $table) {
+        Schema::create('pengajuan_diklat', function (Blueprint $table) {
             $table->id();
             $table->string('nama_diklat');
             $table->integer('jp');
             $table->integer('angkatan');
             $table->string('tempat_diklat');
+            $table->string('sertifikat');
             $table->year('tahun');
-            $table->date('mulai_pendaftaran');
-            $table->date('selesai_pendaftaran');
-            $table->date('mulai_pelakasanaan');
-            $table->date('selesai_pelakasanaan');
-            $table->date('batas_upload');
+            $table->enum('status', ['0', '1', '2']);
+            $table->string('catatan')->nullable();
+            $table->date('tanggal_daftar');
             $table->unsignedBigInteger('id_jenis_diklat');
             $table->foreign('id_jenis_diklat')->references('id')->on('jenis_diklat')->onDelete('cascade');
+            $table->string('nip_peserta');
+            $table->foreign('nip_peserta')->references('nip')->on('peserta')->onDelete('cascade');  
             $table->timestamps();
         });
     }
@@ -38,6 +39,6 @@ class CreateDiklatTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diklat');
+        Schema::dropIfExists('pengajuan_diklat');
     }
 }

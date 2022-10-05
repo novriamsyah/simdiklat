@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDokumenTable extends Migration
+class CreateDokumenPengajuanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateDokumenTable extends Migration
      */
     public function up()
     {
-        Schema::create('dokumen', function (Blueprint $table) {
+        Schema::create('dokumen_pengajuan', function (Blueprint $table) {
             $table->id();
             $table->string('dokumen');
             $table->enum('cek', ['0', '1', '2']);
             $table->string('catatan')->nullable();
-            $table->unsignedBigInteger('id_daftar_diklat');
-            $table->foreign('id_daftar_diklat')->references('id')->on('daftar_diklat')->onDelete('cascade');
+            $table->unsignedBigInteger('id_pengajuan');
+            $table->foreign('id_pengajuan')->references('id')->on('pengajuan_diklat')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateDokumenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dokumen');
+        Schema::dropIfExists('dokumen_pengajuan');
     }
 }
