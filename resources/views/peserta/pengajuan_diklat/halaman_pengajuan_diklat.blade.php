@@ -70,15 +70,10 @@
                                         
                                         <td>{{$num}}.</td>
                                         <td>{{$dt->nama_diklat}}</td>
-                                        <td><a href="#" class="action-icon"><button type="button" class="btn btn-secondary lihat_pengajuan" data-bs-toggle="modal" data-bs-target="#full-width-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px">Lihat</button></a></td>
+                                        <td><a><button type="button" class="btn btn-link lihat_pengajuan" data-bs-toggle="modal" data-bs-target="#full-width-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i><span style="color: blue"> <u>Lihat sertifikat</u></span></button></a></td>
                                         <td>{{date('d M Y', strtotime($dt->tanggal_daftar))}}</td>
                                         <td>
-                                            @if ($dt->status == 0)
-                                                <i>Belum bisa Upload</i>
-                                                
-                                            @elseif($dt->status == 1)
-                                            <a class="action-icon"><button type="button" class="btn btn-primary btn-sm lihat_diklat" data-bs-toggle="modal" data-bs-target="#centermodal" style="display: inline-block; margin-top:8px">Upload</button></a>
-                                            @endif
+                                            <a href="{{url('/upl_pengajuan_doc/'.$dt->id)}}"><button type="button" class="btn btn-link btn-sm lihat_diklat" style="display: inline-block; margin-top:8px"><i class="dripicons-upload"></i><span style="color: blue"> <u>Upload doc</u></span></button></a>
                                         </td>
                                         <td>
                                             @if ($dt->status == 0)
@@ -86,12 +81,19 @@
                                             @elseif($dt->status == 1)
                                                 <span class="badge bg-success">Diterima</span>
                                             @else
-                                                <span class="badge bg-danger">Ditolak</span>
+                                                <span class="badge bg-danger">Ditolak</span><br>
+                                                <span style="font-size: 12px"><strong>Catatan : {{$dt->catatan}}</strong></span>
                                             @endif
                                         </td>
                                         <td>
+                                            @if ($dt->status == 2)
+                                            <a href="{{url('/edit_pengajuan_diklat_saya/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-dark btn-sm" style="display: inline-block; margin-top:8px"><i class=" dripicons-pencil"></i></button></a>
                                             <a href="{{url('/detail_pengajuan_diklat/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px"><i class=" dripicons-preview"></i></button></a>
-                                            <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>  
+                                            <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>   
+                                            @else
+                                            <a href="{{url('/detail_pengajuan_diklat/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px"><i class=" dripicons-preview"></i></button></a>
+                                            <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>   
+                                            @endif
                                         </td>
                                     </tr>
                                     <?php $num++ ?>
@@ -179,13 +181,11 @@ crossorigin="anonymous"
     $(document).on('click', '.lihat_pengajuan', function(e) {
         e.preventDefault();
         var id = $(this).attr('data-lihat');
-        console.log(id);
         $.ajax({
             url: "{{ url('/lihat_pengajuan_diklat') }}/" + id,
             method: "GET",
             success:function(response) {
                 var linkUrl = response.sertifikat;
-                console.log(linkUrl);
                 var lihat =  $('.lihat_pengajuann').attr('src', "{{Storage::url('public/dokumen_pengajuan')}}/"+linkUrl);
 
             }

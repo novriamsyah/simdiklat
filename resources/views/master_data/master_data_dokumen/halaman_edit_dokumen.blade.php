@@ -55,65 +55,16 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                  
-                    <h4 class="header-title m-t-0">Pilih dokumen<span class="text-danger">*</span></h4>
-                    <p class="text-muted font-14">
-
-                    
-                    <div class="tab-content">
-                        <div class="tab-pane show active" id="file-upload-preview">
-                            <form name="form_upload_edit" action="{{url('/ubah_dokumen/'.$id)}}" method="post" enctype="multipart/form-data" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
-                                @csrf
-                                <div class="dz-message needsclick">
-                                    <i class="h1 text-muted dripicons-cloud-upload"></i>
-                                    <h3>Pilih file dari perangkat.</h3>
-                                    {{-- <span style="display:block; color:red;" >Pastikan nama berkas dari perangkat anda rapi dan tidak menggunakan unik karakter, mohon rename jika belum rapi</span> --}}
-                                </div>
-                                <div class="dz-message needsclick">
-                                    <div class="file-input">
-                                    <input
-                                      type="file"
-                                      name="file_dokumen"
-                                      value="{{$datas->file_dokumen}}"
-                                      id="file-input"
-                                      class="file-input__input"
-                                      accept=".pdf"
-                                    />
-                                    <label class="file-input__label" for="file-input">
-                                      <svg
-                                        aria-hidden="true"
-                                        focusable="false"
-                                        data-prefix="fas"
-                                        data-icon="upload"
-                                        class="svg-inline--fa fa-upload fa-w-16"
-                                        role="img"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 512 512"
-                                      >
-                                        <path
-                                          fill="currentColor"
-                                          d="M296 384h-80c-13.3 0-24-10.7-24-24V192h-87.7c-17.8 0-26.7-21.5-14.1-34.1L242.3 5.7c7.5-7.5 19.8-7.5 27.3 0l152.2 152.2c12.6 12.6 3.7 34.1-14.1 34.1H320v168c0 13.3-10.7 24-24 24zm216-8v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h136v8c0 30.9 25.1 56 56 56h80c30.9 0 56-25.1 56-56v-8h136c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z"
-                                        ></path>
-                                      </svg>
-                                      <span>Pilih file</span></label
-                                    >
-                                  </div>
-                                </div>
-                                <div class="dz-message needsclick">
-                                <p class="bor-file" style="word-break: break-word; "><span id="dokumen_lht">{{$datas->file_dokumen}}</span> </p>
-                                </div>
-                        </div> <!-- end preview-->
-                    </div> <!-- end tab-content-->
-
+                  <form name="form_upload_edit" action="{{url('/ubah_dokumen/'.$id)}}" method="post" enctype="multipart/form-data" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
+                    @csrf
                     <div class="mb-3" style="margin-top:40px">
                       <h4 class="header-title m-t-0">Nama berkas dokumen</h4>
                       <input type="text" id="master_dokumen" value="{{$datas->master_dokumen}}" name="master_dokumen" class="form-control" placeholder="Nama berkas dokumen" style="border: 1px solid rgb(161, 161, 161);">
                       <span class="nm_berkas" style='color: red;'></span>
                     </div>
-
-                    <button onclick="alertConfirmation()" type="button" class="btn btn-danger" style="margin-top: 15px">Simpan</button>
+                    <button type="submit" class="btn btn-danger" style="margin-top: 15px">Simpan</button>
+                  </form>
                 </div>
-            </form>
                 <!-- end card-body -->
             </div>
             <!-- end card-->
@@ -135,12 +86,6 @@
     <script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script src="{{ asset('assets/js/sweetalert.init.js')}}"></script>
     <script>
-        $(function(){
-            $('input[name=file_dokumen]').change(function(){
-                 $('#dokumen_lht').html("File yang anda upload: "+$(this).val());
-            });
-        });
-
         $(function() {
           $("form[name='form_upload_edit']").validate({
             rules: {
@@ -173,28 +118,6 @@
           } 
       
     });
-
-
-    function alertConfirmation() {
-        swal({
-        title: "Apakah kamu yakin ?",
-        text: "Data ini akan diupload, periksa kembali jika ragu !!",
-        type: "warning",
-        showCancelButton: !0,
-        confirmButtonText: "Ya, Upload!",
-        cancelButtonText: "Batal",
-        reverseButtons: !0
-        }).then(function (e) {
-        if (e.value === true) {
-          $('.dropzone').submit();
-          return true;
-        } else {
-            e.dismiss;
-        }
-    }, function (dismiss) {
-    return false;
-    })
-    }
     
     </script>
 @endsection

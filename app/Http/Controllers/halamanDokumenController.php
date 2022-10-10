@@ -21,18 +21,18 @@ class halamanDokumenController extends Controller
         return view('master_data.master_data_dokumen.halaman_dokumen', ['datas'=>$query]);
     }
 
-    public function lihat_dokumen($id)
-    {
-        $data = Dokumen::find($id);
-        return response()->json($data);
-    }
+    // public function lihat_dokumen($id)
+    // {
+    //     $data = Dokumen::find($id);
+    //     return response()->json($data);
+    // }
 
-    public function unduh_dokumen($id)
-    {
-        $get_file = Dokumen::where('id', $id)->firstOrFail();
-        $path_file = Storage::path('public/dokumen/'.$get_file->file_dokumen);
-        return response()->download($path_file);
-    }
+    // public function unduh_dokumen($id)
+    // {
+    //     $get_file = Dokumen::where('id', $id)->firstOrFail();
+    //     $path_file = Storage::path('public/dokumen/'.$get_file->file_dokumen);
+    //     return response()->download($path_file);
+    // }
 
     public function halaman_tambah_dokumen()
     {
@@ -43,7 +43,6 @@ class halamanDokumenController extends Controller
     {
         // dd($req->all());
         $this->validate($req, [
-            'file_dokumen' => 'required|mimes:pdf',
             'master_dokumen' => 'required',
         ]);
         
@@ -52,11 +51,8 @@ class halamanDokumenController extends Controller
             Session::flash('fail', 'Dokumen telah digunakan');
             return redirect('/halaman_tambah_dokumen');
         } else {
-            $file_doc = $req->file('file_dokumen');
-            $file_document = $file_doc->storeAs('public/dokumen', $file_doc->hashName());
 
             $simpan = Dokumen::create([
-                'file_dokumen'  => $file_doc->hashName(),
                 'master_dokumen'=> $req->master_dokumen
             ]);
             
@@ -80,36 +76,23 @@ class halamanDokumenController extends Controller
     public function ubah_dokumen(Request $req, $id)
     {
         $this->validate($req,[
-            'file_dokumen' => 'required|mimes:pdf',
             'master_dokumen'    =>  'required'
         ]);  
         
         $dt_dokumen = Dokumen::find($id);
 
-        if($req->file('file_dokumen') == "")
-        {
             $dt_dokumen->update([
                 'master_dokumen' => $req->master_dokumen
             ]);
-        } else {
-            Storage::disk('local')->delete('public/dokumen/'.$dt_dokumen->file_dokumen);
-
-            $file_doc = $req->file('file_dokumen');
-            $file_doc->storeAs('public/dokumen', $file_doc->hashName());
-            $dt_dokumen->update([
-                'file_dokumen'  => $file_doc->hashName(),
-                'master_dokumen '=> $req->master_dokumen
-            ]);
-        }
-
+       
             
-            if($dt_dokumen) {
-                Session::flash('diubah', 'Data Dokumen berhasil diubah');
-                return redirect('/halaman_dokumen');
-            } else {
-                Session::flash('gagal', 'Data Dokumen gagal diubah');
-                return redirect()->back();
-            } 
+        if($dt_dokumen) {
+            Session::flash('diubah', 'Data dokumen berhasil diubah');
+            return redirect('/halaman_dokumen');
+        } else {
+            Session::flash('gagal', 'Data dokumen gagal diubah');
+            return redirect()->back();
+        } 
     }
 
 

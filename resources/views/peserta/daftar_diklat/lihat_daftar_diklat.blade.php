@@ -39,9 +39,9 @@
                         <td data-title="nama_diklat" class="formulir-border" style="width: 75%; padding-left:0.8em" id="nama_diklat">{{$datas2->nip}}</td>
                       </tr>
                       <tr>
-                        <td data-title="jenis_diklat" style="width: 25%;">OPD</td>
+                        <td data-title="opd" style="width: 25%;">OPD</td>
                         <td >&nbsp;:</td>
-                        <td data-title="jenis_diklat" id="id_jenis_diklat" class="formulir-border" style="width: 75%; padding-left:0.8em;"></td>
+                        <td data-title="opd" id="id_opd" class="formulir-border" style="width: 75%; padding-left:0.8em;">{{$opd->opd}}</td>
                       </tr>
                     </tbody>
                 </table>

@@ -39,17 +39,21 @@
                                 </thead>
                                 <tbody>
                                     <tr> 
-                                        
-                                        <td>1</td>
-                                        <td>Novri Amsyah</td>
+                                        <?php $num = 1 ?>
+                                        @foreach ($datas as $dt)
+                                        <td>{{$num}}.</td>
+                                        <td>{{$dt->nama_lengkap}}</td>
                                         <td>
-                                           Pelatihan Admistrasi dan Statistika Umum
+                                            {{$dt->nama_diklat}}
                                         </td>
                                         <td>
-                                            {{-- <a class="action-icon"><button type="button" class="btn btn-warning btn-sm lihat_diklat" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px">Lihat</button></a> --}}
-                                            <a class="action-icon"><button type="button" class="btn btn-dark btn-sm lihat_diklat" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg"  style="display: inline-block; margin-top:8px">Lihat</button></a>
+                                            @if ($dt->sertifikat == null)
+                                                <u><i style="color: blue">Peserta belum upload sertifikat</i></u>
+                                            @else
+                                                <a class="action-icon"><button type="button" class="btn btn-dark btn-sm lihat_rwyt_diklt" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg" data-lihat="{{$dt->id}}"  style="display: inline-block; margin-top:8px">Lihat</button></a>
+                                            @endif
                                         </td>
-                                        <td>3 November 2022</td>
+                                        <td>{{date('d M Y', strtotime($dt->tanggal_daftar))}}</td>
                                         <td>
                                             {{-- <a class="action-icon"><button type="button" class="btn btn-primary btn-sm lihat_diklat" data-bs-toggle="modal" data-bs-target="##validasi-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px">Validasi</button></a>
                                             <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>   --}}
@@ -57,6 +61,8 @@
                                             <a class="action-icon delete-confirm"><button  type="button" onclick="deleteConfirmation(1)" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a> 
                                         </td>
                                     </tr>
+                                    <?php $num++ ?>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div> <!-- end table-responsive-->                     
@@ -75,7 +81,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
-                ...file..
+                <iframe class="lihat_rwyt_sertif"  width="100%" height="900" frameborder="0"></iframe>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
@@ -154,7 +160,19 @@ crossorigin="anonymous"
     });
 </script>
 <script>
+    $(document).on('click', '.lihat_rwyt_diklt', function(e) {
+        e.preventDefault();
+        var id = $(this).attr('data-lihat');
+        $.ajax({
+            url: "{{ url('/lihat_sertifikat_rwyt') }}/" + id,
+            method: "GET",
+            success:function(response) {
+                var linkUrl = response.sertifikat;
+                var lihat =  $('.lihat_rwyt_sertif').attr('src', "{{Storage::url('public/dokumen_pengajuan')}}/"+linkUrl);
 
+            }
+        })
+    });
     function deleteConfirmation(id) {
         swal({
         title: "Apakah kamu yakin?",

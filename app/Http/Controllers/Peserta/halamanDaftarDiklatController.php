@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Peserta;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\DaftarDiklat;
 use App\Models\Diklat;
+use App\Models\Dokumen;
+use App\Models\DokumenDaftar;
 
 
 class halamanDaftarDiklatController extends Controller
@@ -22,6 +25,7 @@ class halamanDaftarDiklatController extends Controller
             ->where('daftar_diklat.nip_peserta', $cek_nip)
             ->orderBy('daftar_diklat.created_at', 'DESC')
             ->get();
+
         if(!session()->has('nip')){
             return redirect()->route('login.peserta');
         } else {
@@ -113,6 +117,58 @@ class halamanDaftarDiklatController extends Controller
         
     }
 
+    public function upload_dokumen_saya($id)
+    {
+        if(!session()->has('nip')){
+            return redirect()->route('login.peserta');
+        } else {
+
+            $dokumen = Dokumen::all();
+            $status = "0";
+            $id_daftar = $id;
+
+            return view('peserta.daftar_diklat.tambah_dokumen_diklat', ['id'=>$id,'dokumen'=>$dokumen, 'status'=>$status, 'id_daftar'=>$id_daftar]);
+        }
+    }
+
+    public function proses_upload_dokumen_saya(Request $request, $id)
+    {
+        // dd($request->all());
+        // $this->validate($request, [
+        //     'dokumen.*' => 'required|mimes:pdf,jpg,jpeg,png'
+        // ]);
+        $get_id = $request->get('id_daftars');
+        $get_cek = $request->get('ceks');
+        $files = [];
+
+        if($request->hasfile('dokumens'))
+        {
+            foreach($request->file('dokumens') as $i => $file)
+            {
+                $name = time().rand(1,100).'.'.$file->extension();
+                // $file->storeAs('public/dokumen', $name);
+                $files[] = new DokumenDaftar([
+                    'dokumen' => $file,
+                ]);
+
+
+
+                
+            }
+
+            dd($files);
+
+        }
+
+            // if($simpan) {
+            //     Session::flash('berhasil', 'Anda berhasil menambahkan dokumen');
+            //     return redirect('/halaman_daftar_diklat');
+            // } else {
+            //     Session::flash('gagal', 'dokumen diklat anda gagal');
+            //     return redirect()->back();
+            // }
+        
+    }
 
     public function hapus_daftar_diklat($id)
     {

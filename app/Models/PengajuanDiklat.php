@@ -16,6 +16,7 @@ class PengajuanDiklat extends Model
         'tahun',
         'tempat_diklat',
         'sertifikat',
+        'catatan',
         'status',
         'tanggal_daftar',
         'id_jenis_diklat',

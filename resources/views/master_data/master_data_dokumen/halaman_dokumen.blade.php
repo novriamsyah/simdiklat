@@ -31,7 +31,7 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-header" style="margin-top: 20px; margin-bottom:8px">
-                <a href="{{url('/halaman_tambah_dokumen')}}" class="btn btn-success" role="button"><i class="mdi mdi-plus "></i> Tambah Master Dokumen</a>
+                <a href="{{url('/halaman_tambah_dokumen')}}" class="btn btn-success" role="button"><i class="mdi mdi-plus "></i> Tambah Dokumen</a>
             </div>
             <div class="card-body">
                 <div class="tab-content">
@@ -52,9 +52,7 @@
                                         <td style="width: 10%">{{$num}}.</td>
                                         <td style="word-break:break-word; width:70%">{{$dt->master_dokumen}}</td>
                                         <td class="table-action" style="width: 20%">
-                                            <a href="#" class="action-icon"><button type="button" class="btn btn-dark lihat_pdf" data-bs-toggle="modal" data-bs-target="#full-width-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i></button></a>
-                                            <a href="{{url('/unduh_dokumen/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary" style="display: inline-block; margin-top:8px"><i class="dripicons-download"></i></button></a>
-                                            <a href="{{url('/edit_dokumen/'.$dt->id)}}" class="action-icon" ><button type="button" class="btn btn-warning text-white btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-pencil"></i></button></a> 
+                                            <a href="{{url('/edit_dokumen/'.$dt->id)}}" class="action-icon" ><button type="button" class="btn btn-primary text-white btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-pencil"></i></button></a> 
                                             <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>  
                                         </td>
                                     </tr>
@@ -70,22 +68,6 @@
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
-<div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fullWidthModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-full-width">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="fullWidthModalLabel">Lihat Dokumen</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <iframe class="lihat_dokumen"  width="100%" height="900" frameborder="0"></iframe>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 @endsection
 @section('script')
  <script
@@ -179,21 +161,5 @@
     return false;
     })
     }
-
-    $(document).on('click', '.lihat_pdf', function(e) {
-        e.preventDefault();
-        var id = $(this).attr('data-lihat');
-        $.ajax({
-            url: "{{ url('/lihat_dokumen') }}/" + id,
-            method: "GET",
-            success:function(response) {
-                var linkUrl = response.file_dokumen;
-            // var linkUrl = encodeURIComponent(response.file_kegiatan);
-            //   var lihat =  $('.lihat_dokumen').attr('src', "http://docs.google.com/gview?url={{asset('/laporan_file')}}/"+linkUrl+"&embedded=true");
-            var lihat =  $('.lihat_dokumen').attr('src', "{{Storage::url('public/dokumen')}}/"+linkUrl);
-
-            }
-        })
-    });
 </script>
 @endsection

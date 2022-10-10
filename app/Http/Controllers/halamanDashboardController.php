@@ -15,19 +15,17 @@ class halamanDashboardController extends Controller
 {
     public function index()
     {
-        $cek_nip = session()->get('nip');
-        $cek_profil1 = Peserta::select('peserta.*')->where('nip', $cek_nip)->first();
-        $cek_profil2 = $cek_profil1->jabatan;
-        $cek_profil3 = $cek_profil1->golongan;
-        $datas =  DB::table('diklat')->select('diklat.*')
-        ->orderBy('diklat.created_at','desc')
-        ->get();
-
-
-  
         if(!session()->has('email')){
             return redirect()->route('login.peserta');
         } else {
+            $cek_nip = session()->get('nip');
+            $cek_profil1 = Peserta::select('peserta.*')->where('nip', $cek_nip)->first();
+            $cek_profil2 = $cek_profil1->jabatan;
+            $cek_profil3 = $cek_profil1->golongan;
+            $datas =  DB::table('diklat')->select('diklat.*')
+            ->orderBy('diklat.created_at','desc')
+            ->get();
+
             return view('peserta.dashboard', ['datas'=>$datas, 'cek_profil2'=>$cek_profil2,
         'cek_profil3'=>$cek_profil3]);
         }

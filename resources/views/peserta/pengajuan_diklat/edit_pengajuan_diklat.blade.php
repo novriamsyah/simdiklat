@@ -39,10 +39,10 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Diklat Saya</a></li>
-                    <li class="breadcrumb-item active">Halaman Tambah Pengajuan Baru</li>
+                    <li class="breadcrumb-item active">Halaman Edit Pengajuan Diklat</li>
                 </ol>
             </div>
-            <h4 class="page-title">Halaman Tambah Pengajuan Baru</h4>
+            <h4 class="page-title">Halaman Edit Pengajuan Diklat</h4>
         </div>
     </div>
 </div> 
@@ -50,8 +50,8 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title" style="text-align: center; color:#000">Tambah Pengajuan Diklat Baru</h4>
-                <form action="{{url('/simpan_pengajuan_diklat')}}" method="post" enctype="multipart/form-data" name="form_aju_diklat">
+                <h4 class="header-title" style="text-align: center; color:#000">Edit Pengajuan Diklat</h4>
+                <form action="{{url('/ubah_pengajuan_diklat_saya/'.$id)}}" method="post" enctype="multipart/form-data" name="form_edit_aju_diklat">
 
                   @csrf
 
@@ -61,7 +61,7 @@
                           <tr>
                             <td data-title="nama_diklat" style="width: 15%;">Nama Diklat<span class="text-danger">*</span></td>
                             <td >&nbsp;:</td>
-                            <td data-title="nama_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="nama_diklat" type="text" class="form-control" id="nama_diklat" placeholder="Masukan nama diklat"></td>
+                            <td data-title="nama_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="nama_diklat" type="text" class="form-control" value="{{$data->nama_diklat}}" id="nama_diklat" placeholder="Masukan nama diklat"></td>
                           </tr>
                           <tr>
                             <td data-title="jenis_diklat" style="width: 15%;">Jenis Diklat<span class="text-danger">*</span></td>
@@ -70,7 +70,7 @@
                               <select class="form-control select2" name="id_jenis_diklat" id="jenis_diklat" data-toggle="select2" style="border: 1px solid rgb(161, 161, 161);">
                                 <option>---Pilih Jenis Diklat---</option>
                                 @foreach ($jenis_diklat as $jd)
-                                <option value="{{$jd->id}}">{{$jd->jenis_diklat}}</option>
+                                <option value="{{$jd->id}}" {{$data->id_jenis_diklat == $jd->id ? 'selected' : ''}}>{{$jd->jenis_diklat}}</option>
                                 @endforeach
                             </select>
                             </td>
@@ -80,31 +80,31 @@
                               <td >&nbsp;:</td>
                               <td data-title="mulai_pendaftaran" class="formulir-border" style="width: 85%; padding-left:0.8em">
                                 <div class="position-relative" id="datepicker4">
-                                  <input type="text" name="tanggal_daftar" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan tanggal pendaftaran">
+                                  <input type="text" name="tanggal_daftar" class="form-control" data-provide="datepicker" value="{{date('m/d/Y', strtotime($data->tanggal_daftar))}}" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan tanggal pendaftaran">
                               </div>
                               </td>
                           </tr>
                             <tr>
                               <td data-title="tempat_diklat" style="width: 15%;">Tempat Diklat<span class="text-danger">*</span></td>
                               <td >&nbsp;:</td>
-                              <td data-title="tempat_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="tempat_diklat" type="text" class="form-control" id="tempat_diklat" placeholder="Masukan tempat diklat"></td>
+                              <td data-title="tempat_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="tempat_diklat" type="text" class="form-control" value="{{$data->tempat_diklat}}" id="tempat_diklat" placeholder="Masukan tempat diklat"></td>
                             </tr>
                             <tr>
                               <td data-title="jp" style="width: 15%;">Lama Pembelajaran<span class="text-danger">*</span></td>
                               <td >&nbsp;:</td>
-                              <td data-title="jp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jp" type="number" class="form-control" id="jp" placeholder="Masukan lama pembelajaran"></td>
+                              <td data-title="jp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jp" type="number" class="form-control" id="jp" value="{{$data->jp}}" placeholder="Masukan lama pembelajaran"></td>
                             </tr>
                             <tr>
                               <td data-title="angkatan" style="width: 15%;">Angkatan<span class="text-danger">*</span></td>
                               <td >&nbsp;:</td>
-                              <td data-title="angkatan" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="angkatan" type="text" class="form-control" id="angkatan"  placeholder="Masukan angkatan"></td>
+                              <td data-title="angkatan" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="angkatan" type="text" class="form-control" value="{{$data->angkatan}}" id="angkatan"  placeholder="Masukan angkatan"></td>
                             </tr>
                             <tr>
                                   <td data-title="tahun" style="width: 15%;">Tahun<span class="text-danger">*</span></td>
                                   <td >&nbsp;:</td>
                                   <td data-title="tahun" class="formulir-border" style="width: 85%; padding-left:0.8em">
                                     <div class="position-relative" id="datepicker6">
-                                      <input type="text" name="tahun" class="form-control" data-provide="datepicker" data-date-format="yyyy" data-date-min-view-mode="2" data-date-container="#datepicker6"  placeholder="Masukan Tahun">
+                                      <input type="text" name="tahun" value="{{$data->tahun}}" class="form-control" data-provide="datepicker" data-date-format="yyyy" data-date-min-view-mode="2" data-date-container="#datepicker6"  placeholder="Masukan Tahun">
                                     </div>
                                   </td>
                             </tr>
@@ -113,13 +113,12 @@
                                   <td >&nbsp;:</td>
                                   <td data-title="sertifikat" class="formulir-border" style="width: 85%; padding-left:0.8em">
                                       <div style="position: relative">
-                      
                                           <label for="formFile4" class="new-button">Pilih File</label>
-                                          <input class="form-control" type="file" id="formFile4" name="sertifikat" accept=".pdf,.png,.jpg,jpeg">
-                                          <p style="word-break: break-word; border-bottom:1px solid #000"><span id="docKuasa"></span> </p>
+                                          <input class="form-control" value="{{$data->sertifikat}}" type="file" id="formFile4" name="sertifikat" accept=".pdf,.png,.jpg,jpeg">
+                                          <p style="word-break: break-word; border-bottom:1px solid #000"><span id="docKuasa"></span>{{$data->sertifikat}} </p>
                                       </div>
                                       @if ($errors->has('sertifikat'))
-                                        <span style='color: red;'>Perhatikan ekstensi file dan file tidak boleh kosong</span>
+                                        <span style='color: red;'>Perhatikan ekstensi file</span>
                                     @endif
                                   </td>
                               </tr>
@@ -202,7 +201,7 @@ crossorigin="anonymous"
     });
     @endif
     $(function() {
-          $("form[name='form_aju_diklat']").validate({
+          $("form[name='form_edit_aju_diklat']").validate({
             rules: {
               nama_diklat: "required",
               jp: "required",
@@ -210,7 +209,6 @@ crossorigin="anonymous"
               tahun: "required",
               tempat_diklat: "required",
               tanggal_daftar: "required",
-              sertifikat: "required",
               id_jenis_diklat: "required",       
             },
             messages: {
@@ -220,7 +218,6 @@ crossorigin="anonymous"
               tahun: "<span style='color: red;'>Tahun diklat tidak boleh kosong</span>",
               tempat_diklat: "<span style='color: red;'>Tempat diklat tidak boleh kosong</span>",
               tanggal_daftar: "<span style='color: red;'>Tanggal pendaftaran diklat pengajuan tidak boleh kosong</span>",
-              sertifikat: "<span style='color: red;'>File sertifikat diklat tidak boleh kosong</span>",
               id_jenis_diklat: "<span style='color: red;'>Jenis diklat tidak boleh kosong</span>",
             },
             submitHandler: function(form) {

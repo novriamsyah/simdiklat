@@ -5,11 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dokumen extends Model
+class DokumenPengajuan extends Model
 {
     use HasFactory;
-    protected $table = 'master_dokumen';
+    protected $table = 'dokumen_pengajuan';
     protected $fillable = [
-        'master_dokumen',
+        'dokumen',
+        'id_pengajuan',
+        'catatan',
+        'status',
+        
     ];
 }

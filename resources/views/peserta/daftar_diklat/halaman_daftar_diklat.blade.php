@@ -22,9 +22,9 @@
 <div class="row">
     <div class="col-xl-12">
         <div class="card">
-            <div class="card-header" style="margin-top: 20px; margin-bottom:8px">
+            {{-- <div class="card-header" style="margin-top: 20px; margin-bottom:8px">
                 <a href="{{url('/tambah_daftar_diklat')}}" class="btn btn-success" role="button"> <i class="mdi mdi-plus "></i> Tambah Diklat</a>
-            </div>
+            </div> --}}
             <div class="card-body">
                 <div class="tab-content">
                     <div class="tab-pane show active" id="striped-rows-preview">
@@ -49,12 +49,7 @@
                                         <td>{{$dt->nama_diklat}}</td>
                                         <td>{{date('d M Y', strtotime($dt->tanggal_daftar))}}</td>
                                         <td>
-                                            @if ($dt->status == 0)
-                                                <i>Belum bisa Upload</i>
-                                                
-                                            @elseif($dt->status == 1)
-                                            <a class="action-icon"><button type="button" class="btn btn-primary btn-sm lihat_diklat" data-bs-toggle="modal" data-bs-target="#centermodal" style="display: inline-block; margin-top:8px">Upload</button></a>
-                                            @endif
+                                            <a href="{{url('/upload_dokumen_saya/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-link btn-sm lihat_diklat" style="display: inline-block; margin-top:8px"><i class="dripicons-upload"></i><span style="color: blue"> Upload Dokumen</span></button></a>
                                         </td>
                                         <td>
                                             @if ($dt->status == 0)
@@ -165,8 +160,7 @@ crossorigin="anonymous"
     return false;
     })
     }
-
-     @if ($message = Session::get('berhasil'))
+    @if ($message = Session::get('berhasil'))
     toastr.success("{{ $message }}","Selamat", {
         timeOut:5e3,
         closeButton:!0,

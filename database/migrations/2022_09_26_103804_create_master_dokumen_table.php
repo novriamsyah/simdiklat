@@ -16,7 +16,6 @@ class CreateMasterDokumenTable extends Migration
         Schema::create('master_dokumen', function (Blueprint $table) {
             $table->id();
             $table->string('master_dokumen');
-            $table->string('file_dokumen');
             $table->timestamps();
         });
     }

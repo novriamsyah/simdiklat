@@ -69,7 +69,7 @@
                                 </a>
                             </li>
                             <li class="side-nav-item">
-                                <a class="side-nav-link" href="{{url('/halaman_pengajuan_diklat')}}">
+                                <a class="side-nav-link" href="{{url('/pengajuan_diklat_peserta')}}">
                                     <i class="uil-file-lock-alt"></i>
                                     <span> DIKLAT PENGAJUAN </span>
                                 </a>
