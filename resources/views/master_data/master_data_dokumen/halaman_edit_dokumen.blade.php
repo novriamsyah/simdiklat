@@ -42,10 +42,10 @@
                         <li class="breadcrumb-item">
                             <a href="javascript: void(0);">Master Data</a>
                         </li>
-                        <li class="breadcrumb-item active">Edit Master Dokumen</li>
+                        <li class="breadcrumb-item active">Edit Dokumen</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Edit Master Dokumen</h4>
+                <h4 class="page-title">Edit Dokumen</h4>
             </div>
         </div>
     </div>
@@ -58,11 +58,11 @@
                   <form name="form_upload_edit" action="{{url('/ubah_dokumen/'.$id)}}" method="post" enctype="multipart/form-data" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
                     @csrf
                     <div class="mb-3" style="margin-top:40px">
-                      <h4 class="header-title m-t-0">Nama berkas dokumen</h4>
-                      <input type="text" id="master_dokumen" value="{{$datas->master_dokumen}}" name="master_dokumen" class="form-control" placeholder="Nama berkas dokumen" style="border: 1px solid rgb(161, 161, 161);">
+                      <h4 class="header-title m-t-0">Nama dokumen</h4>
+                      <input type="text" id="master_dokumen" value="{{$datas->master_dokumen}}" name="master_dokumen" class="form-control" placeholder="Nama Dokumen" style="border: 1px solid rgb(161, 161, 161);">
                       <span class="nm_berkas" style='color: red;'></span>
                     </div>
-                    <button type="submit" class="btn btn-danger" style="margin-top: 15px">Simpan</button>
+                    <button type="submit" class="btn btn-success" style="margin-top: 15px">Simpan</button>
                   </form>
                 </div>
                 <!-- end card-body -->

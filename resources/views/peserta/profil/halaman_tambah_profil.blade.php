@@ -38,7 +38,7 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Profil Saya</a></li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Profil </a></li>
                     <li class="breadcrumb-item active">Halaman Update Profil</li>
                 </ol>
             </div>
@@ -74,14 +74,14 @@
                           <tr>
                             <td data-title="tempat_lahir" style="width: 15%;">Tempat Lahir<span class="text-danger">*</span></td>
                             <td >&nbsp;:</td>
-                            <td data-title="tempat_lahir" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="tempat_lahir" type="text" class="form-control" id="tempat_lahir" placeholder="Masukan tempat lahir"></td>
+                            <td data-title="tempat_lahir" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="tempat_lahir" type="text" class="form-control" id="tempat_lahir" placeholder="Masukan Tempat Lahir"></td>
                           </tr>
                           <tr>
                             <td data-title="tanggal_lahir" style="width: 15%;">Tanggal Lahir<span class="text-danger">*</span></td>
                             <td >&nbsp;:</td>
                             <td data-title="tanggal_lahir" class="formulir-border" style="width: 85%; padding-left:0.8em">
                               <div class="position-relative" id="datepicker4">
-                                <input type="text" name="tanggal_lahir" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan tanggal lahir">
+                                <input type="text" name="tanggal_lahir" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan Tanggal Lahir">
                             </div>
                             </td>
                         </tr>
@@ -124,12 +124,12 @@
                             <tr>
                               <td data-title="jabatan" style="width: 15%;">Jabatan<span class="text-danger">*</span></td>
                               <td >&nbsp;:</td>
-                              <td data-title="jabatan" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jabatan" type="text" class="form-control" id="jabatan"  placeholder="Masukan jabatan"></td>
+                              <td data-title="jabatan" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jabatan" type="text" class="form-control" id="jabatan"  placeholder="Masukan Jabatan"></td>
                             </tr>
                             <tr>
                                 <td data-title="golongan" style="width: 15%;">Golongan<span class="text-danger">*</span></td>
                                 <td >&nbsp;:</td>
-                                <td data-title="golongan" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="golongan" type="text" class="form-control" id="golongan"  placeholder="Masukan golongan"></td>
+                                <td data-title="golongan" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="golongan" type="text" class="form-control" id="golongan"  placeholder="Masukan Golongan"></td>
                               </tr>
                               <tr>
                                 <td style="width: 15%;"></td>

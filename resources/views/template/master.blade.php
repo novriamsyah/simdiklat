@@ -9,7 +9,7 @@
         <meta content="Coderthemes" name="author">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="{{asset('assets/images/basel/favicon.ico')}}">
 
         <!-- third party css -->
         <link href="{{asset('assets/css/vendor/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" type="text/css">
@@ -80,12 +80,12 @@
                                     <span> DIKLAT RIWAYAT </span>
                                 </a>
                             </li>
-                            <li class="side-nav-item">
+                            {{-- <li class="side-nav-item">
                                 <a class="side-nav-link" href="{{url('/halaman_diklat')}}">
                                     <i class="uil-files-landscapes-alt"></i>
-                                    <span> DIKLAT MASTER </span>
+                                    <span> DIKLAT </span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="side-nav-item">
                                 <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                                     <i class="uil-folder"></i>
@@ -95,13 +95,16 @@
                                 <div class="collapse" id="sidebarForms">
                                     <ul class="side-nav-second-level">
                                         <li>
-                                            <a href="{{url('/halaman_opd')}}">Data OPD</a>
+                                            <a href="{{url('/halaman_opd')}}">OPD</a>
                                         </li>
                                         <li>
-                                            <a href="{{url('/halaman_dokumen')}}">Master Dokumen</a>
+                                            <a href="{{url('/halaman_diklat')}}">DIKLAT</a>
                                         </li>
                                         <li>
-                                            <a href="{{url('/halaman_jenis_diklat')}}">Jenis Diklat</a>
+                                            <a href="{{url('/halaman_dokumen')}}">DOKUMEN</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{url('/halaman_jenis_diklat')}}">JENIS DIKLAT</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -120,7 +123,7 @@
                             </a>
                         </li>
                         <li class="side-nav-item">
-                            <a class="side-nav-link" href="{{url('/halaman_pengajuan_diklat')}}">
+                            <a class="side-nav-link" href="{{url('/pengajuan_diklat_peserta')}}">
                                 <i class="uil-file-lock-alt"></i>
                                 <span> DIKLAT PENGAJUAN </span>
                             </a>
@@ -131,7 +134,7 @@
                                 <span> DIKLAT RIWAYAT </span>
                             </a>
                         </li>
-                        <li class="side-nav-item">
+                        {{-- <li class="side-nav-item">
                             <a class="side-nav-link" href="{{url('/halaman_diklat')}}">
                                 <i class="uil-files-landscapes-alt"></i>
                                 <span> DIKLAT MASTER </span>
@@ -142,7 +145,7 @@
                                 <i class="uil-user"></i>
                                 <span> MASTER DIKLAT </span>
                             </a>
-                        </li>
+                        </li> --}}
                         @endif
                         
                     <!-- End Sidebar -->
@@ -385,13 +388,13 @@
         <!-- quill js -->
         <script src="{{asset('assets/js/vendor/quill.min.js')}}"></script>
         <!-- Init js-->
-        <script src="{{asset('assets/js/pages/demo.quilljs.js')}}"></script>
+        {{-- <script src="{{asset('assets/js/pages/demo.quilljs.js')}}"></script> --}}
 
         <!-- SimpleMDE js -->
         <script src="{{asset('assets/js/vendor/simplemde.min.js')}}"></script>
 
         <!-- SimpleMDE demo -->
-        <script src="{{asset('assets/js/pages/demo.simplemde.js')}}"></script>
+        {{-- <script src="{{asset('assets/js/pages/demo.simplemde.js')}}"></script> --}}
 
         <!-- third party js -->
         <script src="{{asset('assets/js/vendor/apexcharts.min.js')}}"></script>
@@ -400,7 +403,7 @@
         <!-- third party js ends -->
 
         <!-- demo app -->
-        <script src="{{asset('assets/js/pages/demo.dashboard.js')}}"></script>
+        {{-- <script src="{{asset('assets/js/pages/demo.dashboard.js')}}"></script> --}}
         <!-- end demo js-->
 
          <!-- Typehead -->
@@ -408,7 +411,7 @@
          <script src="{{('assets/js/vendor/typeahead.bundle.min.js')}}"></script>
  
          <!-- Demo -->
-         <script src="{{('assets/js/pages/demo.typehead.js')}}"></script>
+         {{-- <script src="{{('assets/js/pages/demo.typehead.js')}}"></script> --}}
  
          <!-- Timepicker -->
          <script src="{{('assets/js/pages/demo.timepicker.js')}}"></script>

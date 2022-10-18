@@ -16,6 +16,7 @@ class CreateDokumenTable extends Migration
         Schema::create('dokumen', function (Blueprint $table) {
             $table->id();
             $table->string('dokumen');
+            $table->string('nm_dokumen')->nullable();
             $table->enum('cek', ['0', '1', '2']);
             $table->string('catatan')->nullable();
             $table->unsignedBigInteger('id_daftar_diklat');

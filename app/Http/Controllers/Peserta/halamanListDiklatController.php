@@ -38,6 +38,26 @@ class halamanListDiklatController extends Controller
         $st_laksana = Carbon::createFromFormat('Y-m-d',$lihat_diklat->mulai_pelakasanaan)->format('d F Y');
         $sl_laksana = Carbon::createFromFormat('Y-m-d',$lihat_diklat->selesai_pelakasanaan)->format('d F Y');
         $bt_upl = Carbon::createFromFormat('Y-m-d',$lihat_diklat->batas_upload)->format('d F Y');
+
+        //status
+        $now_date = \Carbon\Carbon::now()->format('d-m-Y');
+
+        $str_date = \Carbon\Carbon::parse($lihat_diklat->mulai_pendaftaran)->format('d-m-Y');
+        $end_date = \Carbon\Carbon::parse($lihat_diklat->selesai_pendaftaran)->format('d-m-Y');
+        $str_date1 = \Carbon\Carbon::parse($lihat_diklat->mulai_pelakasanaan)->format('d-m-Y');
+        $end_date1 = \Carbon\Carbon::parse($lihat_diklat->selesai_pelakasanaan)->format('d-m-Y');
+
+        $sekarang = \Carbon\Carbon::createFromFormat('d-m-Y', $now_date);
+        $mulai_dftr = \Carbon\Carbon::createFromFormat('d-m-Y', $str_date);
+        $selesai_dftr = \Carbon\Carbon::createFromFormat('d-m-Y', $end_date);
+        $mulai_lksana = \Carbon\Carbon::createFromFormat('d-m-Y', $str_date1 );
+        $selesai_lksana  = \Carbon\Carbon::createFromFormat('d-m-Y', $end_date1);
+
+        $selisih = $sekarang->diffInDays($mulai_dftr, false);
+        $selisih1 = $sekarang->diffInDays($selesai_dftr, false);
+        $selisih2 = $sekarang->diffInDays($mulai_lksana, false);
+        $selisih3 = $sekarang->diffInDays($selesai_lksana, false);
+
         return response()->json(array(
             'lihat_diklat'=>$lihat_diklat,
             'jenis_diklat'=>$jenis_diklat,
@@ -45,7 +65,11 @@ class halamanListDiklatController extends Controller
             'sl_daftar'=>$sl_daftar,
             'st_laksana'=>$st_laksana,
             'sl_laksana'=>$sl_laksana,
-            'bt_upl'=>$bt_upl
+            'bt_upl'=>$bt_upl,
+            'selisih'=>$selisih,
+            'selisih1'=>$selisih1,
+            'selisih2'=>$selisih2,
+            'selisih3'=>$selisih3,
         ));
     }
 }

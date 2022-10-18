@@ -8,10 +8,12 @@ use Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use App\Models\PengajuanDiklat;
 use App\Models\Diklat;
 use App\Models\DokumenPengajuan;
 use App\Models\JenisDiklat;
+use App\Models\Dokumen;
 
 class halamanAjuDiklatController extends Controller
 {
@@ -34,6 +36,12 @@ class halamanAjuDiklatController extends Controller
     }
 
     public function lihat_pengajuan_diklat($id)
+    {
+        $data = PengajuanDiklat::find($id);
+        return response()->json($data);
+    }
+
+    public function lihat_catatan_pengajuan($id)
     {
         $data = PengajuanDiklat::find($id);
         return response()->json($data);
@@ -64,8 +72,18 @@ class halamanAjuDiklatController extends Controller
             ->where('id', $id_jenis_diklat)
             ->first();
 
+            $dkmn =  DB::table('dokumen_pengajuan')
+            ->select('dokumen_pengajuan.*')
+            ->where('id_pengajuan', $id)
+            ->get();
+        
+            $ct_dkmn =  DB::table('dokumen_pengajuan')
+            ->select('dokumen_pengajuan.*')
+            ->where('id_pengajuan', $id)
+            ->count();
+
             // dd($datas);
-            return view('peserta.pengajuan_diklat.lihat_pengajuan_diklat', ['cek_nip'=>$cek_nip, 'datas2'=>$datas2, 'opd'=>$opd, 'datas'=>$datas, 'jenis_diklat'=>$jenis_diklat]);
+            return view('peserta.pengajuan_diklat.lihat_pengajuan_diklat', ['cek_nip'=>$cek_nip, 'datas2'=>$datas2, 'opd'=>$opd, 'datas'=>$datas, 'jenis_diklat'=>$jenis_diklat, 'dkmn'=>$dkmn, 'ct_dkmn'=>$ct_dkmn]);
         }
     }
 
@@ -185,57 +203,127 @@ class halamanAjuDiklatController extends Controller
         if(!session()->has('nip')){
             return redirect()->route('login.peserta');
         } else {
-            $cek_nip = session()->get('nip');
-            $datas2 = DB::table('peserta')
-            ->where('nip', $cek_nip)
-            ->first();
 
-            $id_opd = $datas2->opd_id;
-            $opd = DB::table('opd')
-            ->where('id', $id_opd)
-            ->first();
-
-            $datas = DB::table('pengajuan_diklat')
-            ->select('pengajuan_diklat.*')
-            ->where('pengajuan_diklat.id', $id)
-            ->first();
-
-            $id_jenis_diklat = $datas->id_jenis_diklat;
-            $jenis_diklat = DB::table('jenis_diklat')
-            ->where('id', $id_jenis_diklat)
-            ->first();
+            // $dokumen = Dokumen::all();
+            $dokumen = DB::table('master_dokumen')
+                ->select('master_dokumen.*')
+                ->orderBy('created_at', 'DESC')
+                ->get();
+            $status = "0";
+            $id_aju = $id;
 
             // dd($datas);
-            return view('peserta.pengajuan_diklat.dokumen_pengajuan_diklat', ['cek_nip'=>$cek_nip, 'datas2'=>$datas2, 'opd'=>$opd, 'datas'=>$datas, 'jenis_diklat'=>$jenis_diklat, 'id'=>$id]);
+            return view('peserta.pengajuan_diklat.dokumen_pengajuan_diklat', ['dokumen'=>$dokumen, 'id_aju'=>$id_aju, 'status'=>$status]);
         }
     }
 
-    public function proses_upl_pengajuan_doc(Request $req)
+    public function proses_upl_pengajuan_doc(Request $request)
     {
-        $this->validate($req, [
-            'dokumen' => 'required|file|mimes:pdf',
+
+        $validator = Validator::make($request->all(), [
+            'dokumens'   => 'required',
+            'dokumens.*' => 'required|mimes:pdf,jpg,jpeg,png',
         ]);
 
-        $status_default = "0";
+        $get_id = $request->get('id_pengajuans');
+        $get_cek = $request->get('ceks');
+        $nama_doc = $request->get('nm_dokumens');
+        $tgl = Carbon::now();
+        $tgl_in = $tgl->toDateTimeString();
+        $files = [];
 
-        $file_doc3 = $req->file('dokumen');
-        $file_doc3->storeAs('public/dokumen_pengajuan', $file_doc3->hashName());
+        if($request->hasfile('dokumens'))
+        {
+            foreach($request->file('dokumens') as $i => $file)
+            {
+                $name = time().rand(1,100).'.'.$file->extension();
+                $file->storeAs('public/dokumen_pengajuan', $name);
+                $files[] = array(
+                    'dokumen' => $name,
+                    'nm_dokumen'=>$nama_doc[$i],
+                    'cek' => $get_cek[$i],
+                    'id_pengajuan' => $get_id[$i],
+                    'created_at'    => $tgl_in,
+                ); 
+            }
+            // dd($files);
+            $simpan = DB::table('dokumen_pengajuan')->insert($files);
 
-        $dt_doc_pengajuan_diklat = new DokumenPengajuan;
-        $dt_doc_pengajuan_diklat->id_pengajuan =  $req->id_pengajuan;
-        $dt_doc_pengajuan_diklat->cek = $status_default;
-        $dt_doc_pengajuan_diklat->dokumen = $file_doc3->hashName();
-        $simpan = $dt_doc_pengajuan_diklat->save();
-        
-        if($simpan) {
-            Session::flash('berhasil', 'Anda berhasil menambahkan dokumen pengajuan diklat SIDEISEL');
-            return redirect('/halaman_pengajuan_diklat');
+            if($simpan) {
+                Session::flash('berhasil', 'Anda berhasil menambahkan dokumen pengajuan diklat');
+                return redirect('/halaman_pengajuan_diklat');
+            } else {
+                Session::flash('gagal', 'dokumen diklat anda gagal');
+                return redirect()->back();
+            }
+        } 
+    }
+
+    public function edit_dokumen_pengajuan($id)
+    {
+        if(!session()->has('nip')){
+            return redirect()->route('login.peserta');
         } else {
-            Session::flash('gagal', 'Dokumen pengajuan diklat anda gagal');
-            return redirect()->back();
+
+            // $dokumen = Dokumen::all();
+            $dokumen = DB::table('dokumen_pengajuan')
+                ->select('dokumen_pengajuan.*')
+                ->where('id_pengajuan', $id)
+                ->orderBy('created_at', 'DESC')
+                ->get();
+            // dd($dokumen);
+            return view('peserta.pengajuan_diklat.edit_dokumen_diklat', ['id'=>$id,'dokumen'=>$dokumen]);
         }
     }
 
+    public function get_ubah_dokumen_pengajuan($id)
+    {
+        // $datas = DaftarDiklat::find($id);
+        $datas = DB::table('dokumen_pengajuan')
+        ->select('dokumen_pengajuan.*')
+        ->where('id', $id)
+        ->first();
+        //return response
+        return response()->json([
+            'success' => true,
+            'data'    => $datas  
+        ]); 
+    }
+
+    public function ubah_doc_pengajuan_peserta(Request $request, $id)
+    {
+        // $validator = Validator::make($request->all(), [
+        //     'status'     => 'required',
+        // ]);
+        $fileName = '';
+        $datas = DokumenPengajuan::find($id);
+
+        if($request->hasFile('dokumen')) 
+        {
+            Storage::disk('local')->delete('public/dokumen_pengajuan/'.$datas->dokumen);
+            $file = $request->file('dokumen');
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            $file->storeAs('public/dokumen_pengajuan', $fileName);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Edit data dokumen gagal disimpan'
+            ]);
+        }
+
+        //create post
+        DB::table('dokumen_pengajuan')->where('id', $id)->update([
+            'dokumen' => $fileName
+        ]);
+
+        //return response
+        return response()->json([
+            'success' => true,
+            'message' => 'Edit data dokumen berhasil disimpan',
+            'data'    => $datas,
+            'fileName'   => $fileName
+        ]);
+    }
 
     public function hapus_pengajuan_diklat($id)
     {

@@ -36,7 +36,7 @@
                                     <h4 class="text-dark-50 text-center mt-0 fw-bold" style="color: #000000;">Reset Password</h4>
                                    
                                 </div>
-                                <form action="{{ route('reset.password.post') }}" method="POST">
+                                <form action="{{ route('reset.password.post.peserta') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="token" value="{{ $token }}">
                                     

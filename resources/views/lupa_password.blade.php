@@ -2,12 +2,12 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>SIMDIKLAT</title>
+        <title>SIDISEL</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="{{asset('assets/images/basel/favicon.ico')}}">
 
         <!-- App css -->
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
@@ -54,7 +54,7 @@
                                 </form>
                                 <div class="row mt-3">
                                     <div class="col-12 text-center">
-                                        <p style="color: #000000;">Back to <a href="{{route('login')}}" class="ms-1" style="color: #060af7;"><b>Log In</b></a></p>
+                                        <p style="color: #000000;">Kembali <a href="{{route('login')}}" class="ms-1" style="color: #060af7;"><b>Log In</b></a></p>
                                     </div> <!-- end col -->
                                 </div>
                             </div> <!-- end card-body-->

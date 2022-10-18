@@ -16,11 +16,11 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master OPD</a></li>
-                    <li class="breadcrumb-item active">Halaman Tambah data OPD</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master Data</a></li>
+                    <li class="breadcrumb-item active">Tambah Data OPD</li>
                 </ol>
             </div>
-            <h4 class="page-title">Halaman Tambah Data OPD</h4>
+            <h4 class="page-title">Tambah Data OPD</h4>
         </div>
     </div>
 </div> 
@@ -38,7 +38,7 @@
                       <tr>
                         <td data-title="opd" style="width: 15%;">Nama OPD<span class="text-danger">*</span></td>
                         <td >&nbsp;:</td>
-                        <td data-title="opd" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="opd" type="text" class="form-control" id="nama_opd" placeholder="Masukan nama opd"></td>
+                        <td data-title="opd" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="opd" type="text" class="form-control" id="nama_opd" placeholder="Masukan Nama OPD"></td>
                       </tr>
                       <tr>
                         <td style="width: 15%;"></td>

@@ -12,7 +12,7 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Diklat</a></li>
-                    <li class="breadcrumb-item active">Riwayat Diklat Saya</li>
+                    <li class="breadcrumb-item active">Data Diklat</li>
                 </ol>
             </div>
             <h4 class="page-title">Daftar Diklat</h4>
@@ -34,6 +34,7 @@
                                     <tr>
                                         <th scope="col">No.</th>
                                         <th scope="col">Nama Diklat</th>
+                                        <th scope="col">Sertifikat</th>
                                         <th scope="col">Tanggal Daftar</th>
                                         <th scope="col">Dokumen</th>
                                         <th scope="col">Status</th>
@@ -47,9 +48,27 @@
                                         
                                         <td>{{$num}}.</td>
                                         <td>{{$dt->nama_diklat}}</td>
+                                        <td>
+                                            @if ($dt->sertifikat == null || $dt->sertifikat == '')
+                                            <a class="action-icon"><button type="button" class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#centermodal" data-lihat="{{$dt->id}}" id="upl_sertif" style="display: inline-block; margin-top:8px;"><i class="dripicons-upload"></i><span style="color: blue"> Upload Sertifikat</span></button></a> 
+                                            @else
+                                            <a class="action-icon"><button type="button" class="btn btn-link btn-sm lihat_sertif_daftar" data-bs-toggle="modal" data-bs-target="#full-width-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i><span style="color: blue"> Lihat Sertifikat</span></button></a>
+                                            @endif
+                                            
+                                        </td>
                                         <td>{{date('d M Y', strtotime($dt->tanggal_daftar))}}</td>
                                         <td>
-                                            <a href="{{url('/upload_dokumen_saya/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-link btn-sm lihat_diklat" style="display: inline-block; margin-top:8px"><i class="dripicons-upload"></i><span style="color: blue"> Upload Dokumen</span></button></a>
+                                            @php
+                                                $doc_diklat = \App\Models\DokumenDaftar::where('id_daftar_diklat', $dt->id)->count();
+                                            @endphp
+
+                                            @if ($doc_diklat > 0 && $dt->status != 0)
+                                             <strong><i>Diklat telah diverifikasi</i></strong>
+                                            @elseif($doc_diklat > 0 && $dt->status == 0)
+                                               <a href="{{url('/edit_dokumen_daftar/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-link btn-sm lihat_diklat" style="display: inline-block; margin-top:8px"><i class="dripicons-pencil"></i><span style="color: blue"> Edit Dokumen</span></button></a> 
+                                            @else
+                                            <a href="{{url('/upload_dokumen_saya/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-link btn-sm lihat_diklat" style="display: inline-block; margin-top:8px"><i class="dripicons-upload"></i><span style="color: blue"> Upload Dokumen</span></button></a> 
+                                            @endif
                                         </td>
                                         <td>
                                             @if ($dt->status == 0)
@@ -58,6 +77,8 @@
                                                 <span class="badge bg-success">Diterima</span>
                                             @else
                                                 <span class="badge bg-danger">Ditolak</span>
+                                                <br>
+                                                <span style="font-size: 12px"><strong>Catatan : </strong> <button  type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" data-bs-target="#bs-example-modal-sm" data-lht="{{$dt->id}}" id="lihat_catatan" style="font-weight: bold">Lihat</button></span>
                                             @endif
                                         </td>
                                         <td>
@@ -82,6 +103,63 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="myCenterModalLabel">Upload Serifikat</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <form action="#" method="POST" id="form_sertifikat" enctype="multipart/form-data">
+                @csrf
+            <div class="modal-body">
+                    <input type="hidden" id="daftar_id">
+                    <div class="mb-3" id="file_sertifikat" name="id_daftar">
+                        <label for="file_sertifikat" class="form-label">Upload Sertifikat</label>
+                        <input type="file" name="sertifikat" class="form-control" id="file_sertifikat">
+                    </div>
+                    <div class="mb-3 text-left">
+                        <button class="btn btn-primary" type="submit" id="simpan_sertif">Simpan</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                    </div>
+            </div>
+        </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fullWidthModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full-width">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="fullWidthModalLabel">Lihat Sertifikat</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe class="lihat_sertif_dftr"  width="100%" height="900" frameborder="0"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mySmallModalLabel">Catatan: </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <p id="isi-catatan"></p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{{-- <div class="modal fade" id="centermodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
                 <h4 class="modal-title" id="myCenterModalLabel">Upload Dokumen</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
@@ -96,14 +174,14 @@
 
                     <br><br>
                     <div class="mb-3 text-center">
-                        <button class="btn btn-success " type="submit">Simpan</button>
+                        <button class="btn btn-success"  type="button">Simpan</button>
                     </div>
 
                 </form>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</div><!-- /.modal --> --}}
 
 @endsection
 @section('script')
@@ -126,6 +204,75 @@ crossorigin="anonymous"
       });
 </script>
 <script>
+
+    $(document).on('click', '#upl_sertif', function(e) {
+        e.preventDefault();
+        var id = $(this).attr('data-lihat');
+        $.ajax({
+            url: "{{ url('/get_upload_sertifikat') }}/" + id,
+            method: "GET",
+            data: {
+                id: id,
+                _token: '{{ csrf_token() }}'
+            },
+            success:function(response) {
+                $('#daftar_id').val(response.data.id);
+            }
+        });
+    }); 
+    $('#form_sertifikat').submit(function(e) {
+        e.preventDefault();
+
+        //define variable
+        let id        = $('#daftar_id').val();  
+        let dt_form   = new FormData(this);
+        $('#simpan_sertif').text('Proses...');
+        $.ajax({
+            url: "{{ url('/upload_sertifikat') }}/" + id,
+            method: "POST",
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            data: dt_form,
+            success:function(response) {
+            if (response.success === true) { 
+                swal("Done!", response.message, "success");
+            } else {
+                swal("Error!", response.message, "error");
+            }
+                $("#form_sertifikat")[0].reset();
+                $('#centermodal').modal('hide');
+                location.reload();
+            }
+        });
+    });
+
+    $(document).on('click', '.lihat_sertif_daftar', function(e) {
+        e.preventDefault();
+        var id = $(this).attr('data-lihat');
+        $.ajax({
+            url: "{{ url('/lihat_sertifikat_daftar') }}/" + id,
+            method: "GET",
+            success:function(response) {
+                var linkUrl = response.sertifikat;
+                var lihat =  $('.lihat_sertif_dftr').attr('src', "{{Storage::url('public/sertifikat')}}/"+linkUrl);
+            }
+        });
+    }); 
+
+    $(document).on('click', '#lihat_catatan', function(e) {
+        e.preventDefault();
+        var id = $(this).attr('data-lht');
+        $.ajax({
+            url: "{{ url('/lihat_catatan_daftar') }}/" + id,
+            method: "GET",
+            success:function(response) {
+                var isi_cttn = response.catatan;
+                var lihat =  $('#isi-catatan').text(isi_cttn);
+            }
+        });
+    }); 
 
     function deleteConfirmation(id) {
         swal({

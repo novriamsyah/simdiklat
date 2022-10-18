@@ -40,6 +40,70 @@ class halamanPengajuanDiklatController extends Controller
         return response()->json($datas);
     }
 
+    public function lihat_verifikasi_pengajuan($id)
+    {
+        $datas = DB::table('pengajuan_diklat')
+            ->select('pengajuan_diklat.*', 'peserta.*')
+            ->join('peserta', 'peserta.nip', '=','pengajuan_diklat.nip_peserta')
+            ->where('id', $id)
+            ->orderBy('pengajuan_diklat.created_at', 'DESC')
+            ->first();
+
+        $dkmn =  DB::table('dokumen_pengajuan')
+            ->select('dokumen_pengajuan.*')
+            ->where('id_pengajuan', $id)
+            ->get();
+        
+        $ct_dkmn =  DB::table('dokumen_pengajuan')
+            ->select('dokumen_pengajuan.*')
+            ->where('id_pengajuan', $id)
+            ->count();
+
+        $id_opd = $datas->opd_id;
+        $opd = DB::table('opd')
+                ->where('id', $id_opd)
+                ->first();
+            
+        $id_jenis_diklat = $datas->id_jenis_diklat;
+        $jenis_diklat = DB::table('jenis_diklat')
+                ->where('id', $id_jenis_diklat)
+                ->first();
+
+        return view('side_menu.pengajuan_diklat.lihat_verif_diklat', ['datas'=>$datas, 'dkmn'=>$dkmn, 'ct_dkmn'=>$ct_dkmn, 'opd'=>$opd, 'jenis_diklat'=>$jenis_diklat]);
+    }
+
+    public function detail_pengajuan_diklat_peserta($id)
+    {
+        $datas = DB::table('pengajuan_diklat')
+            ->select('pengajuan_diklat.*', 'peserta.*')
+            ->join('peserta', 'peserta.nip', '=','pengajuan_diklat.nip_peserta')
+            ->where('id', $id)
+            ->orderBy('pengajuan_diklat.created_at', 'DESC')
+            ->first();
+
+        $dkmn =  DB::table('dokumen_pengajuan')
+            ->select('dokumen_pengajuan.*')
+            ->where('id_pengajuan', $id)
+            ->get();
+        
+        $ct_dkmn =  DB::table('dokumen_pengajuan')
+            ->select('dokumen_pengajuan.*')
+            ->where('id_pengajuan', $id)
+            ->count();
+
+        $id_opd = $datas->opd_id;
+        $opd = DB::table('opd')
+                ->where('id', $id_opd)
+                ->first();
+            
+        $id_jenis_diklat = $datas->id_jenis_diklat;
+        $jenis_diklat = DB::table('jenis_diklat')
+                ->where('id', $id_jenis_diklat)
+                ->first();
+
+        return view('side_menu.pengajuan_diklat.lihat_dt_diklat', ['datas'=>$datas, 'dkmn'=>$dkmn, 'ct_dkmn'=>$ct_dkmn, 'opd'=>$opd, 'jenis_diklat'=>$jenis_diklat]);
+    }
+
 
     public function get_edit_pengajuan($id)
     {
@@ -62,8 +126,6 @@ class halamanPengajuanDiklatController extends Controller
             'data'    => $data  
         ]); 
     }
-
-
 
     public function proses_validasi_pengajuan(Request $request, $id)
     {

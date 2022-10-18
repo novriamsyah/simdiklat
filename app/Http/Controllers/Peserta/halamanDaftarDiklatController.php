@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Models\DaftarDiklat;
 use App\Models\Diklat;
 use App\Models\Dokumen;
@@ -18,17 +19,17 @@ class halamanDaftarDiklatController extends Controller
 {
     public function halaman_daftar_diklat()
     {
-        $cek_nip = session()->get('nip');
-        $datas = DB::table('daftar_diklat')
+
+        if(!session()->has('nip')){
+            return redirect()->route('login.peserta');
+        } else {
+            $cek_nip = session()->get('nip');
+            $datas = DB::table('daftar_diklat')
             ->select('daftar_diklat.*', 'diklat.nama_diklat')
             ->join('diklat', 'diklat.id', '=','daftar_diklat.id_diklat')
             ->where('daftar_diklat.nip_peserta', $cek_nip)
             ->orderBy('daftar_diklat.created_at', 'DESC')
             ->get();
-
-        if(!session()->has('nip')){
-            return redirect()->route('login.peserta');
-        } else {
             return view('peserta.daftar_diklat.halaman_daftar_diklat', ['datas'=>$datas]);
         }
         
@@ -62,8 +63,18 @@ class halamanDaftarDiklatController extends Controller
             $jenis_diklat = DB::table('jenis_diklat')
             ->where('id', $id_jenis_diklat)
             ->first();
-            // dd($datas);
-            return view('peserta.daftar_diklat.lihat_daftar_diklat', ['cek_nip'=>$cek_nip, 'datas2'=>$datas2, 'opd'=>$opd, 'datas'=>$datas, 'jenis_diklat'=>$jenis_diklat, 'tgl'=>$tgl]);
+
+            $dkmn =  DB::table('dokumen')
+            ->select('dokumen.*')
+            ->where('id_daftar_diklat', $id)
+            ->get();
+        
+            $ct_dkmn =  DB::table('dokumen')
+            ->select('dokumen.*')
+            ->where('id_daftar_diklat', $id)
+            ->count();
+
+            return view('peserta.daftar_diklat.lihat_daftar_diklat', ['cek_nip'=>$cek_nip, 'datas2'=>$datas2, 'opd'=>$opd, 'datas'=>$datas, 'jenis_diklat'=>$jenis_diklat, 'tgl'=>$tgl,'dkmn'=>$dkmn, 'ct_dkmn'=>$ct_dkmn]);
         }
     }
 
@@ -117,13 +128,18 @@ class halamanDaftarDiklatController extends Controller
         
     }
 
+
     public function upload_dokumen_saya($id)
     {
         if(!session()->has('nip')){
             return redirect()->route('login.peserta');
         } else {
 
-            $dokumen = Dokumen::all();
+            // $dokumen = Dokumen::all();
+            $dokumen = DB::table('master_dokumen')
+                ->select('master_dokumen.*')
+                ->orderBy('created_at', 'DESC')
+                ->get();
             $status = "0";
             $id_daftar = $id;
 
@@ -131,14 +147,22 @@ class halamanDaftarDiklatController extends Controller
         }
     }
 
-    public function proses_upload_dokumen_saya(Request $request, $id)
+    public function proses_upload_dokumen_saya(Request $request)
     {
         // dd($request->all());
         // $this->validate($request, [
-        //     'dokumen.*' => 'required|mimes:pdf,jpg,jpeg,png'
+        //     'dokumens.*' => 'required|mimes:pdf,jpg,jpeg,png'
         // ]);
+        $validator = Validator::make($request->all(), [
+            'dokumens'   => 'required',
+            'dokumens.*' => 'required|mimes:pdf,jpg,jpeg,png',
+        ]);
+
         $get_id = $request->get('id_daftars');
         $get_cek = $request->get('ceks');
+        $nama_doc = $request->get('nm_dokumens');
+        $tgl = Carbon::now();
+        $tgl_in = $tgl->toDateTimeString();
         $files = [];
 
         if($request->hasfile('dokumens'))
@@ -146,28 +170,155 @@ class halamanDaftarDiklatController extends Controller
             foreach($request->file('dokumens') as $i => $file)
             {
                 $name = time().rand(1,100).'.'.$file->extension();
-                // $file->storeAs('public/dokumen', $name);
-                $files[] = new DokumenDaftar([
-                    'dokumen' => $file,
-                ]);
-
-
-
-                
+                $file->storeAs('public/dokumen', $name);
+                $files[] = array(
+                    'dokumen' => $name,
+                    'nm_dokumen'=>$nama_doc[$i],
+                    'cek' => $get_cek[$i],
+                    'id_daftar_diklat' => $get_id[$i],
+                    'created_at'    => $tgl_in,
+                ); 
             }
+            // dd($files);
+            $simpan = DB::table('dokumen')->insert($files);
 
-            dd($files);
+            if($simpan) {
+                Session::flash('berhasil', 'Anda berhasil menambahkan dokumen');
+                return redirect('/halaman_daftar_diklat');
+            } else {
+                Session::flash('gagal', 'dokumen diklat anda gagal');
+                return redirect()->back();
+            }
+        }     
+        
+    }
 
+    public function edit_dokumen_daftar($id)
+    {
+        if(!session()->has('nip')){
+            return redirect()->route('login.peserta');
+        } else {
+
+            // $dokumen = Dokumen::all();
+            $dokumen = DB::table('dokumen')
+                ->select('dokumen.*')
+                ->where('id_daftar_diklat', $id)
+                ->orderBy('created_at', 'DESC')
+                ->get();
+            // dd($dokumen);
+            return view('peserta.daftar_diklat.edit_dokumen_diklat', ['id'=>$id,'dokumen'=>$dokumen]);
+        }
+    }
+
+    
+
+    public function get_upload_sertifikat($id)
+    {
+        // $datas = DaftarDiklat::find($id);
+        $datas =  DB::table('daftar_diklat')
+        ->select('daftar_diklat.*')
+        ->where('id', $id)
+        ->first();
+        //return response
+        return response()->json([
+            'success' => true,
+            'data'    => $datas  
+        ]); 
+    }
+
+    public function upload_sertifikat(Request $request, $id)
+    {
+        // $validator = Validator::make($request->all(), [
+        //     'status'     => 'required',
+        // ]);
+        $fileName = '';
+        $datas = DaftarDiklat::find($id);
+
+        if($request->hasFile('sertifikat')) 
+        {
+            $file = $request->file('sertifikat');
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            $file->storeAs('public/sertifikat', $fileName);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data sertifikat gagal disimpan'
+            ]);
         }
 
-            // if($simpan) {
-            //     Session::flash('berhasil', 'Anda berhasil menambahkan dokumen');
-            //     return redirect('/halaman_daftar_diklat');
-            // } else {
-            //     Session::flash('gagal', 'dokumen diklat anda gagal');
-            //     return redirect()->back();
-            // }
-        
+        //create post
+        $datas->update([
+            'sertifikat' => $fileName
+        ]);
+
+        //return response
+        return response()->json([
+            'success' => true,
+            'message' => 'Data sertifikat berhasil disimpan',
+            'data'    => $datas,
+            'fileName'   => $fileName
+        ]);
+    }
+
+    public function lihat_sertifikat_daftar($id)
+    {
+        $data = DaftarDiklat::find($id);
+        return response()->json($data);
+    }
+
+    public function lihat_catatan_daftar($id)
+    {
+        $data = DaftarDiklat::find($id);
+        return response()->json($data);
+    }
+
+    public function get_ubah_dokumen_daftar($id)
+    {
+        // $datas = DaftarDiklat::find($id);
+        $datas = DB::table('dokumen')
+        ->select('dokumen.*')
+        ->where('id', $id)
+        ->first();
+        //return response
+        return response()->json([
+            'success' => true,
+            'data'    => $datas  
+        ]); 
+    }
+
+    public function ubah_doc_daftar_peserta(Request $request, $id)
+    {
+        // $validator = Validator::make($request->all(), [
+        //     'status'     => 'required',
+        // ]);
+        $fileName = '';
+        $datas = DokumenDaftar::find($id);
+
+        if($request->hasFile('dokumen')) 
+        {
+            Storage::disk('local')->delete('public/dokumen/'.$datas->dokumen);
+            $file = $request->file('dokumen');
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            $file->storeAs('public/dokumen', $fileName);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Edit data dokumen gagal disimpan'
+            ]);
+        }
+
+        //create post
+        DB::table('dokumen')->where('id', $id)->update([
+            'dokumen' => $fileName
+        ]);
+
+        //return response
+        return response()->json([
+            'success' => true,
+            'message' => 'Edit data dokumen berhasil disimpan',
+            'data'    => $datas,
+            'fileName'   => $fileName
+        ]);
     }
 
     public function hapus_daftar_diklat($id)

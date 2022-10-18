@@ -20,10 +20,10 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Diklat</a></li>
-                    <li class="breadcrumb-item active">Halaman Upload Dokumen Diklat </li>
+                    <li class="breadcrumb-item active">Upload Dokumen Diklat </li>
                 </ol>
             </div>
-            <h4 class="page-title">Halaman Upload Dokumen Diklat</h4>
+            <h4 class="page-title">Upload Dokumen Diklat</h4>
         </div>
     </div>
 </div> 
@@ -31,8 +31,13 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                @if ($errors->has('dokumens'))
+                    <span style='color: red;'>Perhatikan ekstensi file dan file tidak boleh kosong</span>
+                @endif
+
                 <h4 class="header-title" style="text-align: center; color:#000">Upload Dokumen Diklat</h4>
-                <form action="{{route('proses_dokumen_saya', ['id'=>$id])}}" method="post" enctype="multipart/form-data" name="form_daftar_diklat">
+                
+                <form action="{{route('proses_dokumen_saya')}}" method="post" enctype="multipart/form-data" name="form_docc_daftar_diklat">
                   @csrf
 
                   
@@ -42,6 +47,8 @@
                       @foreach ($dokumen as $i => $item)
                       
                       <input type="hidden" name="id_daftars[]" value="{{$id_daftar}}">
+                      <input type="hidden" name="nm_dokumens[]" value="{{$item->master_dokumen}}">
+                      
                             <tr>
                                 <td data-title="dokumen" style="width: 15%;">{{$item->master_dokumen}}</td>
                                 <td >&nbsp;:</td>
@@ -73,7 +80,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 crossorigin="anonymous"
 ></script>
 <script src="{{asset('assets/vendor/toastr/js/toastr.min.js')}}"></script>
-<script src="{{ asset('assets/js/jquery.form-validator.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.formm-validator.min.js') }}"></script>
 
 <script>
     @if ($message = Session::get('fail'))
@@ -137,13 +144,26 @@ crossorigin="anonymous"
     });
     @endif
     $(function() {
-          $("form[name='form_daftar_diklat']").validate({
+          $("form[name='form_docc_daftar_diklat']").validate({
             rules: {
-                id_diklat: "required"     
+                "dokumens[]": {
+                    required: true,
+                    minlength:1,
+                },     
             },
+            // errorPlacement: function(error, element){
+            //     // console.log("oke", element.attr("name"));
+            //     if(element.attr("name") == "dokumens[]"){
+            //         error.appendTo(".errorTeks");
+            //         // error.insertAfter(element);
+            //     }
+
+            // },
             messages: {
-                id_diklat: "<span style='color: red;'>Jenis diklat tidak boleh kosong</span>"
+                "dokumens[]": "<span style='color: red;'><u><strong>Semua</strong></u> file dokumen tidak boleh kosong</span>",
             },
+            
+
             submitHandler: function(form) {
               form.submit();
             }

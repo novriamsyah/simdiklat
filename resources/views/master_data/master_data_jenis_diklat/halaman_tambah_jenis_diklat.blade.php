@@ -16,11 +16,11 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master Jenis Diklat</a></li>
-                    <li class="breadcrumb-item active">Halaman Tambah Jenis Diklat</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master Data</a></li>
+                    <li class="breadcrumb-item active">Tambah Jenis Diklat</li>
                 </ol>
             </div>
-            <h4 class="page-title">Halaman Tambah Jenis Diklat</h4>
+            <h4 class="page-title">Tambah Jenis Diklat</h4>
         </div>
     </div>
 </div> 
@@ -38,7 +38,7 @@
                       <tr>
                         <td data-title="jenis_diklat" style="width: 15%;">Jenis Diklat<span class="text-danger">*</span></td>
                         <td >&nbsp;:</td>
-                        <td data-title="jenis_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jenis_diklat" type="text" class="form-control" id="jenis_diklat" placeholder="Masukan jenis diklat"></td>
+                        <td data-title="jenis_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jenis_diklat" type="text" class="form-control" id="jenis_diklat" placeholder="Masukan Jenis Diklat"></td>
                       </tr>
                       <tr>
                         <td style="width: 15%;"></td>

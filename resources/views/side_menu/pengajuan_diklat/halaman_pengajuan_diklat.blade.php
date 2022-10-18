@@ -36,7 +36,6 @@
                                         <th scope="col">Nama Pegawai</th>
                                         <th scope="col">Diklat</th>
                                         <th scope="col">Sertifikat</th>
-                                        <th scope="col">Dokumen</th>
                                         <th scope="col">Tanggal Daftar</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
@@ -52,26 +51,19 @@
                                             {{$dt->nama_diklat}}
                                         </td>
                                         <td>
-                                            <a class="action-icon"><button type="button" class="btn btn-link btn-sm lihat_pengajuan_adm" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i><span style="color: blue"> Lihat Sertifikat</span></button></a>
-                                        </td>
-                                        <td>
-                                            @if ($dt->status == 1)
-                                            <a class="action-icon"><button type="button" class="btn btn-link btn-sm lihat_pengajuan_dkmn" data-bs-toggle="modal" data-bs-target="#bs-example1-modal-lg" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-document-remove"></i><span style="color: blue"> Lihat Doc</span></button></a>
-                                            @else
-                                                <i style="font-weight: bold">peserta belum upload</i>
-                                            @endif
-                                           
+                                            <a class="action-icon"><button type="button" class="btn btn-link btn-sm lihat_pengajuan_adm" data-bs-toggle="modal" data-bs-target="#full-width-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i><span style="color: blue"> Lihat Sertifikat</span></button></a>
                                         </td>
                                         <td>{{date('d M Y', strtotime($dt->tanggal_daftar))}}</td>
                                         <td>
                                             @if ($dt->status == 0)
-                                            <span>Validasi Pengajuan</span><br>
-                                            <a class="action-icon"><button type="button" class="btn btn-primary btn-sm" data-lihat="{{$dt->id}}" id="valid_ajuan" style="display: inline-block; margin-top:8px">Validasi</button></a>
+                                            <a href="{{url('/lihat_verifikasi_pengajuan/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px">Verifikasi</button></a>
                                             @else
-                                            <span>Validasi Dokumen</span><br>
-                                            <a class="action-icon"><button type="button" class="btn btn-primary btn-sm lihat_diklat" data-lihat="{{$dt->id}}" data-bs-toggle="modal" data-bs-target="#centermodal1" id="valid_doc_aju" style="display: inline-block; margin-top:8px">Validasi</button></a>
-                                            {{-- <a href="{{url('/detail_verifikasi_anda/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" data-lihat="{{$dt->id}}" id="valid_ajuan" style="display: inline-block; margin-top:8px">Validasi</button></a> --}}
+                                            <a href="{{url('/detail_pengajuan_diklat_peserta/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px">Lihat</button></a>
                                             @endif
+                                            {{-- <span>Validasi Dokumen</span><br>
+                                            <a class="action-icon"><button type="button" class="btn btn-primary btn-sm lihat_diklat" data-lihat="{{$dt->id}}" data-bs-toggle="modal" data-bs-target="#centermodal1" id="valid_doc_aju" style="display: inline-block; margin-top:8px">Validasi</button></a>  --}}
+                                            {{-- <a href="{{url('/detail_verifikasi_anda/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" data-lihat="{{$dt->id}}" id="valid_ajuan" style="display: inline-block; margin-top:8px">Validasi</button></a> --}}
+                                            {{-- @endif --}}
                                             
                                         </td>
                                     </tr>
@@ -87,18 +79,18 @@
     </div><!-- end col-->
 </div>
 
-<div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fullWidthModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-full-width">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myLargeModalLabel">Sertifikat</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title" id="fullWidthModalLabel">Lihat Sertifikat</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <iframe class="lihat_pengajuann_admin"  width="100%" height="900" frameborder="0"></iframe>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -122,38 +114,6 @@
 </div><!-- /.modal -->
 
 
-{{-- validasi modal --}}
-<div class="modal fade" id="centermodal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myCenterModalLabel">Validasi Diklat</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
-            </div>
-            <div class="modal-body">
-                    <input type="hidden" id="validate_id">
-                    <div class="mb-3">
-                        <label for="aksi_validd" class="form-label">Validasi</label>
-                        <select class="form-select aksi-val" id="aksi_validd">
-                            <option value="" selected>--Pilih Aksi--</option>
-                            <option value="1">Disetujui</option>
-                            <option value="2">Ditolak</option>
-                        </select>
-                    </div>
-                    <div class="mb-3" id="catatan-valid" style="display: none">
-                        <label for="catatan_ct" class="form-label">Catatan</label>
-                        <textarea class="form-control" id="catatan_ct" rows="5"></textarea>
-                    </div>
-
-                    <div class="mb-3 text-left">
-                        <button class="btn btn-primary" type="button" id="kirim_valid">Kirim</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                    </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 <div class="modal fade" id="centermodal1" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -162,6 +122,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
+                
                 <input type="hidden" id="validate_id_doc">
                     <div class="mb-3">
                         <label for="aksi_validd_doc" class="form-label">Validasi</label>
@@ -207,16 +168,6 @@ crossorigin="anonymous"
 </script>
 <script>
     $(document).ready(function() {
-        $('.aksi-val').change(function(){
-            var idAksi = $(this).val();
-            if (idAksi == 2) {
-                $('#catatan-valid').show();
-            } else {
-                $('#catatan-valid').hide();
-            }
-        });
-    });
-    $(document).ready(function() {
         $('.aksi-val1').change(function(){
             var idAksi = $(this).val();
             if (idAksi == 2) {
@@ -257,59 +208,7 @@ crossorigin="anonymous"
         })
     }); 
 
-    $(document).on('click', '#valid_ajuan', function(e) {
-        e.preventDefault();
-        var id = $(this).attr('data-lihat');
-        $.ajax({
-            url: "{{ url('/get_edit_pengajuan') }}/" + id,
-            method: "GET",
-            success:function(response) {
-                
-                $('#validate_id').val(response.data.id);
-                $('#centermodal').modal('show');
-            }
-        })
-    }); 
-    $('#kirim_valid').click(function(e) {
-        e.preventDefault();
-
-        //define variable
-        let id        = $('#validate_id').val();
-        let status    = $('#aksi_validd').find(":selected").val();
-        let catatan       = $('textarea#catatan_ct').val();
-        let token     = $("meta[name='csrf-token']").attr("content");
-
-        $.ajax({
-            url: "{{ url('/proses_validasi_pengajuan') }}/" + id,
-            method: "POST",
-            cache: false,
-            data: {
-                "status": status,
-                "catatan": catatan,
-                "_token": token
-            },
-            success:function(response) {
-                // console.log(response);
-                swal.fire({
-                    type: 'success',
-                    icon: 'success',
-                    title: `${response.message}`,
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-
-                $('#centermodal').modal('hide');
-            },
-            error:function(error){
-                if(error.response.JSON.status[0]){
-                    $('#alert-edit-validate').removeClass('d-none');
-                    $('#alert-edit-validate').addClass('d-block');
-
-                    $('#alert-edit-validate').html(error.response.JSON.status[0]);
-                }
-            }
-        })
-    });
+    
 
     $(document).on('click', '#valid_doc_aju', function(e) {
         e.preventDefault();

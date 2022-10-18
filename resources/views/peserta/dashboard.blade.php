@@ -27,7 +27,7 @@
                     <i class="mdi mdi-text-box-multiple mdi-48px"></i>
                 </div>
                 <h6 class="text-uppercase mt-0" title="Customers">Total Diklat Saya</h6>
-                <h2 class="mt-3 mb-3"></h2>
+                <h2 class="mt-3 mb-3">{{$ct_total_diklat}}</h2>
                 <p class="mb-0">
                 </p>
             </div>
@@ -37,10 +37,10 @@
         <div class="card widget-flat bg-dark text-white">
             <div class="card-body">
                 <div class="float-end">
-                    <i class="mdi mdi-folder-open mdi-48px"></i>
+                    <i class="mdi mdi-clock-outline mdi-48px"></i>
                 </div>
                 <h6 class="text-uppercase mt-0" title="Customers">Total Diklat Menunggu</h6>
-                <h2 class="mt-3 mb-3"></h2>
+                <h2 class="mt-3 mb-3">{{$ct_total_tunggu}}</h2>
                 <p class="mb-0">
                 </p>
             </div>
@@ -50,11 +50,11 @@
         <div class="card widget-flat bg-success text-white">
             <div class="card-body">
                 <div class="float-end">
-                    <i class="mdi mdi-account-multiple mdi-48px"></i>
+                    <i class="mdi mdi-check-bold mdi-48px"></i>
                     {{-- <i class='uil uil-users-alt float-end'></i> --}}
                 </div>
                 <h6 class="text-uppercase mt-0" title="Customers">Total Diklat Diterima</h6>
-                <h2 class="mt-3 mb-3"></h2>
+                <h2 class="mt-3 mb-3">{{$ct_total_sukses}}</h2>
                 <p class="mb-0">
                 </p>
             </div>
@@ -64,21 +64,24 @@
         <div class="card widget-flat bg-danger text-white">
             <div class="card-body">
                 <div class="float-end">
-                    <i class="mdi mdi-text-box-multiple mdi-48px"></i>
+                    <i class="mdi mdi-cancel mdi-48px"></i>
                 </div>
                 <h6 class="text-uppercase mt-0" title="Customers">Total Diklat Ditolak</h6>
-                <h2 class="mt-3 mb-3"></h2>
+                <h2 class="mt-3 mb-3">{{$ct_total_tolak}}</h2>
                 <p class="mb-0">
                 </p>
             </div>
         </div>
     </div>
+    
 </div>  
 <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myLargeModalLabel">Detail Diklat</h4>
+                                                
+                <h4 class="modal-title" id="myLargeModalLabel">Detail Diklat &nbsp;&nbsp;&nbsp;<span id="sts_cek"></span></h4>
+                
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">
@@ -160,7 +163,7 @@
                             <div class="text-center">
                                 <i class="dripicons-warning h1 text-warning"></i>
                                 <h4 class="mt-2">Perthatian !!!</h4>
-                                <p class="mt-3">Lengkapi profil kamu terlebih dahulu agar kamu bisa melakukan pengajuan diklat</p>
+                                <p class="mt-3">Lengkapi profil kamu terlebih dahulu agar kamu bisa melakukan pengajuan dan pendaftaran diklat</p>
                                 <a href="{{url('/halaman_tambah_profil')}}" class="btn btn-warning my-2" role="button"> Lengkapi Profil </a>
                             </div>
                         </div> <!-- end table-responsive-->                     
@@ -175,7 +178,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title" style="color:#000">:::&nbsp;List Diklat SIDISEL</h4><br><br>
+                    <h4 class="header-title" style="color:#000">:::&nbsp;Data Diklat</h4><br><br>
                     <div class="tab-content">
                         <div class="tab-pane show active" id="striped-rows-preview">
                             <div class="table-responsive-sm">
@@ -184,9 +187,9 @@
                                         <tr>
                                             <th scope="col">No.</th>
                                             <th scope="col">Nama Diklat</th>
-                                            <th scope="col">Jenis Diklat</th>
-                                            <th scope="col">Pendaftaran</th>
-                                            <th scope="col">Pelaksanaan</th>
+                                            <th scope="col">Status Diklat</th>
+                                            {{-- <th scope="col">Pendaftaran</th>
+                                            <th scope="col">Pelaksanaan</th> --}}
                                             <th scope="col">Tempat Diklat</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
@@ -195,30 +198,68 @@
                                         
                                         <?php $num = 1 ?>
                                         @foreach ($datas as $dt)
+
+                                                @php
+                                                    $now_date = \Carbon\Carbon::now()->format('d-m-Y');
+
+                                                    $str_date = \Carbon\Carbon::parse($dt->mulai_pendaftaran)->format('d-m-Y');
+                                                    $end_date = \Carbon\Carbon::parse($dt->selesai_pendaftaran)->format('d-m-Y');
+                                                    $str_date1 = \Carbon\Carbon::parse($dt->mulai_pelakasanaan)->format('d-m-Y');
+                                                    $end_date1 = \Carbon\Carbon::parse($dt->selesai_pelakasanaan)->format('d-m-Y');
+
+                                                    $sekarang = \Carbon\Carbon::createFromFormat('d-m-Y', $now_date);
+                                                    $mulai_dftr = \Carbon\Carbon::createFromFormat('d-m-Y', $str_date);
+                                                    $selesai_dftr = \Carbon\Carbon::createFromFormat('d-m-Y', $end_date);
+                                                    $mulai_lksana = \Carbon\Carbon::createFromFormat('d-m-Y', $str_date1 );
+                                                    $selesai_lksana  = \Carbon\Carbon::createFromFormat('d-m-Y', $end_date1);
+
+                                                   $selisih = $sekarang->diffInDays($mulai_dftr, false);
+                                                   $selisih1 = $sekarang->diffInDays($selesai_dftr, false);
+                                                   $selisih2 = $sekarang->diffInDays($mulai_lksana, false);
+                                                   $selisih3 = $sekarang->diffInDays($selesai_lksana, false);
+                                                @endphp
                                         <tr> 
                                             <td>{{$num}}.</td>
                                             <td>{{$dt->nama_diklat}}</td>
                                             <td>
-                                                @php
-                                                    $jenis = \App\Models\JenisDiklat::select('jenis_diklat.*')->where('id', $dt->id_jenis_diklat)->first();
-                                                @endphp
-    
-                                                {{$jenis->jenis_diklat}}
-                                            
+                                                
+                                                @if ($selisih > 0)
+                                                <span class="badge bg-dark"> Belum dimulai </span>
+                                                @elseif($selisih <= 0 && $selisih1 >= 0)
+                                                <span class="badge bg-primary"> Pendaftaran dibuka </span>
+                                                @elseif($selisih1 < 0 && $selisih2 > 0)
+                                                <span class="badge bg-warning"> Menunggu pelaksanaan </span>
+                                                @elseif($selisih2 <= 0 && $selisih3 >= 0)
+                                                <span class="badge bg-success"> Sedang berlangsung </span>
+                                                @elseif($selisih3 < 0)
+                                                <span class="badge bg-danger"> Diklat ditutup </span>
+                                                @endif
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 <p>mulai : <span class="badge badge-outline-success">{{date('d M Y', strtotime($dt->mulai_pendaftaran))}}</span></p>
                                                 <p>selesai : <span class="badge badge-outline-dark">{{date('d M Y', strtotime($dt->selesai_pendaftaran))}}</span></p>
                                             </td>
                                             <td>
                                                 <p>mulai : <span class="badge badge-outline-success">{{date('d M Y', strtotime($dt->mulai_pelakasanaan))}}</span>
                                                 </p>
-                                                <p>selesai : <span class="badge badge-outline-dark">{{date('d M Y', strtotime($dt->mulai_pelakasanaan))}}</span></p>
-                                            </td>
+                                                <p>selesai : <span class="badge badge-outline-dark">{{date('d M Y', strtotime($dt->selesai_pelakasanaan))}}</span></p>
+                                            </td> --}}
                                             <td>{{$dt->tempat_diklat}}</td>
+                                            
                                             <td>
-                                                <a class="action-icon"><button type="button" class="btn btn-secondary btn-sm lihat_diklat_ds" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"> Detail  </button></a>
-                                                <a class="action-icon"><button type="button" class="btn btn-success btn-sm konfirmasii" style="display: inline-block; margin-top:8px" data-daftar="{{$dt->id}}">Daftar</button></a>
+                                                @if ($selisih > 0)
+                                                    <a class="action-icon"><button type="button" class="btn btn-secondary btn-sm lihat_diklat_ds" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"> Detail  </button></a>
+                                                @elseif($selisih <= 0 && $selisih1 >= 0)
+                                                    <a class="action-icon"><button type="button" class="btn btn-secondary btn-sm lihat_diklat_ds" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"> Detail  </button></a>
+                                                    <a class="action-icon"><button type="button" class="btn btn-success btn-sm konfirmasii" style="display: inline-block; margin-top:8px" data-daftar="{{$dt->id}}">Daftar</button></a>
+                                                @elseif($selisih1 < 0 && $selisih2 > 0)
+                                                    <a class="action-icon"><button type="button" class="btn btn-secondary btn-sm lihat_diklat_ds" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"> Detail  </button></a>
+                                                @elseif($selisih2 <= 0 && $selisih3 >= 0)
+                                                    <a class="action-icon"><button type="button" class="btn btn-secondary btn-sm lihat_diklat_ds" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"> Detail  </button></a>
+                                                @elseif($selisih3 < 0)
+                                                    <a class="action-icon"><button type="button" class="btn btn-secondary btn-sm lihat_diklat_ds" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"> Detail  </button></a>
+                                                @endif
+                                                
                                             </td>
                                         </tr>
                                         <?php $num++ ?>
@@ -273,6 +314,18 @@ crossorigin="anonymous"
                 $('#selesai_pelakasanaan').html(response.sl_laksana);
                 $('#batas_upload').html(response.bt_upl);
                 $('#id_jenis_diklat').html(response.jenis_diklat.jenis_diklat);
+
+                if (response.selisih > 0) {
+                    $('#sts_cek').html('<span class="badge bg-dark"> Belum dimulai </span>');
+                }else if (response.selisih <= 0 && response.selisih1 >= 0) {
+                    $('#sts_cek').html('<span class="badge bg-primary"> Pendaftaran dibuka </span>');
+                }else if (response.selisih1 < 0 && response.selisih2 > 0) {
+                    $('#sts_cek').html('<span class="badge bg-warning"> Menunggu pelaksanaan </span>');
+                }else if (response.selisih2 <= 0 && response.selisih3 >= 0) {
+                    $('#sts_cek').html('<span class="badge bg-primary"> Sedang berlangsung </span>');
+                }else if(response.selisih3 < 0) {
+                    $('#sts_cek').html('<span class="badge bg-danger"> Diklat ditutup </span>');
+                }
             }
         })
     });

@@ -7,7 +7,7 @@
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="{{asset('assets/images/basel/favicon.ico')}}">
 
         <!-- App css -->
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
@@ -24,7 +24,17 @@
                 <div class="row justify-content-center">
                     <div class="col-xxl-4 col-lg-5">
                         <div class="card">
-                            
+                            <!-- Logo -->
+                            <div class="card-header pt-3 pb-2 text-center">
+                                <a href="#">
+                                    <span><img src="{{asset('assets/images/basel/logo.png')}}" alt="" height="70"></span>
+                                </a>
+                                <a href="#">
+                                    <span><img src="{{asset('assets/images/basel/brand.png')}}" alt="" height="75"></span>
+                                </a><br><br>
+                                <span style="font-size: 20px; color:#000000;font-weight:bold">(SISTEM INFORMASI DIKLAT BASEL)</span>
+
+                            </div>
 
                             <div class="card-body p-4">
                                 
@@ -36,23 +46,23 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label for="fullname" class="form-label" style="color:#000000">Nama Lengkap</label>
-                                        <input class="form-control" type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Masukan nama lengkap" style="border: 1px solid rgb(161, 161, 161);" required>
+                                        <input class="form-control" type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Masukan Nama Lengkap" style="border: 1px solid rgb(161, 161, 161);" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="fullname" class="form-label" style="color:#000000">NIP</label>
-                                        <input class="form-control" type="text" id="nip" name="nip" placeholder="Masukan NIP" style="border: 1px solid rgb(161, 161, 161);" required>
+                                        <label for="fullname" class="form-label" style="color:#000000">Nomor Identitas Pegawai (NIP)</label>
+                                        <input class="form-control" type="text" id="nip" name="nip" placeholder="Masukan Nomor Indentitas Pegawai" style="border: 1px solid rgb(161, 161, 161);" required>
                                         <span id="error_nip" style="display: none;color:red"></span>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="emailaddress" class="form-label" style="color:#000000">Email</label>
-                                        <input class="form-control" type="email" id="email" style="border: 1px solid rgb(161, 161, 161);" name="email" required placeholder="Masukan email kamu">
+                                        <input class="form-control" type="email" id="email" style="border: 1px solid rgb(161, 161, 161);" name="email" required placeholder="Masukan Email">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="password" class="form-label" style="color:#000000">Password</label>
                                         <div class="input-group input-group-merge">
-                                            <input type="password" id="password" name="password" class="form-control" style="border: 1px solid rgb(161, 161, 161);" placeholder="Masukan password kamu">
+                                            <input type="password" id="password" name="password" class="form-control" style="border: 1px solid rgb(161, 161, 161);" placeholder="Masukan Password">
                                             <div class="input-group-text" data-password="false">
                                                 <span class="password-eye"></span>
                                             </div>

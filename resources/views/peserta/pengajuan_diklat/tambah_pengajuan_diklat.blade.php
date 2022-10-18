@@ -61,7 +61,7 @@
                           <tr>
                             <td data-title="nama_diklat" style="width: 15%;">Nama Diklat<span class="text-danger">*</span></td>
                             <td >&nbsp;:</td>
-                            <td data-title="nama_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="nama_diklat" type="text" class="form-control" id="nama_diklat" placeholder="Masukan nama diklat"></td>
+                            <td data-title="nama_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="nama_diklat" type="text" class="form-control" id="nama_diklat" placeholder="Masukan Nama Diklat"></td>
                           </tr>
                           <tr>
                             <td data-title="jenis_diklat" style="width: 15%;">Jenis Diklat<span class="text-danger">*</span></td>
@@ -80,24 +80,24 @@
                               <td >&nbsp;:</td>
                               <td data-title="mulai_pendaftaran" class="formulir-border" style="width: 85%; padding-left:0.8em">
                                 <div class="position-relative" id="datepicker4">
-                                  <input type="text" name="tanggal_daftar" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan tanggal pendaftaran">
+                                  <input type="text" name="tanggal_daftar" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan Tanggal Pendaftaran">
                               </div>
                               </td>
                           </tr>
                             <tr>
                               <td data-title="tempat_diklat" style="width: 15%;">Tempat Diklat<span class="text-danger">*</span></td>
                               <td >&nbsp;:</td>
-                              <td data-title="tempat_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="tempat_diklat" type="text" class="form-control" id="tempat_diklat" placeholder="Masukan tempat diklat"></td>
+                              <td data-title="tempat_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="tempat_diklat" type="text" class="form-control" id="tempat_diklat" placeholder="Masukan Tempat Diklat"></td>
                             </tr>
                             <tr>
                               <td data-title="jp" style="width: 15%;">Lama Pembelajaran<span class="text-danger">*</span></td>
                               <td >&nbsp;:</td>
-                              <td data-title="jp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jp" type="number" class="form-control" id="jp" placeholder="Masukan lama pembelajaran"></td>
+                              <td data-title="jp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jp" type="number" class="form-control" id="jp" placeholder="Masukan Lama Pembelajaran"></td>
                             </tr>
                             <tr>
                               <td data-title="angkatan" style="width: 15%;">Angkatan<span class="text-danger">*</span></td>
                               <td >&nbsp;:</td>
-                              <td data-title="angkatan" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="angkatan" type="text" class="form-control" id="angkatan"  placeholder="Masukan angkatan"></td>
+                              <td data-title="angkatan" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="angkatan" type="text" class="form-control" id="angkatan"  placeholder="Masukan Angkatan"></td>
                             </tr>
                             <tr>
                                   <td data-title="tahun" style="width: 15%;">Tahun<span class="text-danger">*</span></td>

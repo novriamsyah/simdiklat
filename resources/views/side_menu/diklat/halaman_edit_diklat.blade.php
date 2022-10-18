@@ -20,10 +20,10 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Diklat</a></li>
-                    <li class="breadcrumb-item active">Halaman Tambah Data Diklat</li>
+                    <li class="breadcrumb-item active">Edit Data Diklat</li>
                 </ol>
             </div>
-            <h4 class="page-title">Halaman Tambah Data Diklat</h4>
+            <h4 class="page-title">Edit Data Diklat</h4>
         </div>
     </div>
 </div> 
@@ -31,7 +31,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title" style="text-align: center; color:#000">Halaman Tambah Data Diklat</h4>
+                <h4 class="header-title" style="text-align: center; color:#000">Edit Data Diklat</h4>
                 <form action="{{url('/ubah_diklat/'.$id)}}" method="post" enctype="multipart/form-data" name="form_edit_diklat">
                   @csrf
 
@@ -96,7 +96,7 @@
                         <td >&nbsp;:</td>
                         <td data-title="selesai_pelaksanaan" class="formulir-border" style="width: 85%; padding-left:0.8em">
                           <div class="position-relative" id="datepicker4">
-                            <input type="text" name="selesai_pelakasanaan" value="{{date('m/d/Y', strtotime($datas->selesai_pelaksanaan))}}" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" placeholder="Masukan selesai pelaksanaan">
+                            <input type="text" name="selesai_pelakasanaan" value="{{date('m/d/Y', strtotime($datas->selesai_pelakasanaan))}}" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" placeholder="Masukan selesai pelaksanaan">
                         </div>
                         </td>
                       </tr>

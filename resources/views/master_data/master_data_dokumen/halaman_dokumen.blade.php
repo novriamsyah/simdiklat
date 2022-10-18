@@ -20,10 +20,10 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Master data</a></li>
-                    <li class="breadcrumb-item active">Master Dokumen</li>
+                    <li class="breadcrumb-item active">Dokumen</li>
                 </ol>
             </div>
-            <h4 class="page-title" style="color: #000000">Master Dokumen</h4>
+            <h4 class="page-title" style="color: #000000">Dokumen</h4>
         </div>
     </div>
 </div>    
@@ -41,7 +41,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">No.</th>
-                                        <th scope="col">Master Dokumen</th>
+                                        <th scope="col">Dokumen</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead> 

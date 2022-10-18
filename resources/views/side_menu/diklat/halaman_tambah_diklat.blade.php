@@ -20,10 +20,10 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Diklat</a></li>
-                    <li class="breadcrumb-item active">Halaman Tambah Data Diklat</li>
+                    <li class="breadcrumb-item active">Tambah Data Diklat</li>
                 </ol>
             </div>
-            <h4 class="page-title">Halaman Tambah Data Diklat</h4>
+            <h4 class="page-title">Tambah Data Diklat</h4>
         </div>
     </div>
 </div> 
@@ -31,7 +31,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title" style="text-align: center; color:#000">Halaman Tambah Data Diklat</h4>
+                <h4 class="header-title" style="text-align: center; color:#000">Tambah Data Diklat</h4>
                 <form action="{{url('/simpan_diklat')}}" method="post" enctype="multipart/form-data" name="form_diklat">
                   @csrf
 
@@ -41,7 +41,7 @@
                       <tr>
                         <td data-title="nama_diklat" style="width: 15%;">Nama Diklat<span class="text-danger">*</span></td>
                         <td >&nbsp;:</td>
-                        <td data-title="nama_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="nama_diklat" type="text" class="form-control" id="nama_diklat" placeholder="Masukan nama diklat"></td>
+                        <td data-title="nama_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="nama_diklat" type="text" class="form-control" id="nama_diklat" placeholder="Masukan Nama Diklat"></td>
                       </tr>
                       <tr>
                         <td data-title="jenis_diklat" style="width: 15%;">Jenis Diklat<span class="text-danger">*</span></td>
@@ -64,19 +64,19 @@
                       <tr>
                         <td data-title="tempat_diklat" style="width: 15%;">Tempat Diklat<span class="text-danger">*</span></td>
                         <td >&nbsp;:</td>
-                        <td data-title="tempat_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="tempat_diklat" type="text" class="form-control" id="tempat_diklat" placeholder="Masukan tempat diklat"></td>
+                        <td data-title="tempat_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="tempat_diklat" type="text" class="form-control" id="tempat_diklat" placeholder="Masukan Tempat Diklat"></td>
                       </tr>
                       <tr>
                         <td data-title="jp" style="width: 15%;">Lama Pembelajaran<span class="text-danger">*</span></td>
                         <td >&nbsp;:</td>
-                        <td data-title="jp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jp" type="number" class="form-control" id="jp" placeholder="Masukan lama pembelajaran"></td>
+                        <td data-title="jp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jp" type="number" class="form-control" id="jp" placeholder="Masukan Lama Pembelajaran"></td>
                       </tr>
                       <tr>
                         <td data-title="mulai_pendaftaran" style="width: 15%;">Mulai Pendaftaran<span class="text-danger">*</span></td>
                         <td >&nbsp;:</td>
                         <td data-title="mulai_pendaftaran" class="formulir-border" style="width: 85%; padding-left:0.8em">
                           <div class="position-relative" id="datepicker4">
-                            <input type="text" name="mulai_pendaftaran" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan mulai pendaftaran">
+                            <input type="text" name="mulai_pendaftaran" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan Mulai Pendaftaran">
                         </div>
                         </td>
                       </tr>
@@ -85,7 +85,7 @@
                         <td >&nbsp;:</td>
                         <td data-title="selesai_pendaftaran" class="formulir-border" style="width: 85%; padding-left:0.8em">
                           <div class="position-relative" id="datepicker4">
-                            <input type="text" name="selesai_pendaftaran" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" placeholder="Masukan selesai pendaftaran">
+                            <input type="text" name="selesai_pendaftaran" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" placeholder="Masukan Selesai Pendaftaran">
                         </div>
                         </td>
                       </tr>
@@ -94,7 +94,7 @@
                         <td >&nbsp;:</td>
                         <td data-title="mulai_pelaksanaan" class="formulir-border" style="width: 85%; padding-left:0.8em">
                           <div class="position-relative" id="datepicker4">
-                            <input type="text" name="mulai_pelakasanaan" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan mulai pelaksanaan">
+                            <input type="text" name="mulai_pelakasanaan" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan Mulai Pelaksanaan">
                         </div>
                         </td>
                       </tr>
@@ -103,7 +103,7 @@
                         <td >&nbsp;:</td>
                         <td data-title="selesai_pelaksanaan" class="formulir-border" style="width: 85%; padding-left:0.8em">
                           <div class="position-relative" id="datepicker4">
-                            <input type="text" name="selesai_pelakasanaan" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" placeholder="Masukan selesai pelaksanaan">
+                            <input type="text" name="selesai_pelakasanaan" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" placeholder="Masukan Selesai Pelaksanaan">
                         </div>
                         </td>
                       </tr>
@@ -112,14 +112,14 @@
                         <td >&nbsp;:</td>
                         <td data-title="batas_upload" class="formulir-border" style="width: 85%; padding-left:0.8em">
                           <div class="position-relative" id="datepicker4">
-                            <input type="text" name="batas_upload" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" placeholder="Masukan batas upload">
+                            <input type="text" name="batas_upload" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" placeholder="Masukan Batas Upload">
                         </div>
                         </td>
                       </tr>
                       <tr>
                         <td data-title="angkatan" style="width: 15%;">Angkatan<span class="text-danger">*</span></td>
                         <td >&nbsp;:</td>
-                        <td data-title="angkatan" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="angkatan" type="text" class="form-control" id="angkatan"  placeholder="Masukan angkatan"></td>
+                        <td data-title="angkatan" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="angkatan" type="text" class="form-control" id="angkatan"  placeholder="Masukan Angkatan"></td>
                       </tr>
                       <tr>
                         <td data-title="tahun" style="width: 15%;">Tahun<span class="text-danger">*</span></td>

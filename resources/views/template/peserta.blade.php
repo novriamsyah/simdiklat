@@ -9,7 +9,7 @@
         <meta content="Coderthemes" name="author">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="{{asset('assets/images/basel/favicon.ico')}}">
 
         <!-- third party css -->
         <link href="{{asset('assets/css/vendor/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" type="text/css">
@@ -74,16 +74,16 @@
                                     <span> DASHBOARD</span>
                                 </a>
                             </li>
-                            <li class="side-nav-item">
+                            {{-- <li class="side-nav-item">
                                 <a class="side-nav-link" data-bs-toggle="modal" data-bs-target="#warning-alert-modal" role="button">
                                     <i class="uil-home-alt"></i>
                                     <span> LIST DIKLAT</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="side-nav-item">
                                 <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                                     <i class="uil-folder"></i>
-                                    <span> DIKLAT SAYA </span>
+                                    <span> DIKLAT </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="sidebarForms">
@@ -91,13 +91,13 @@
                                         <li class="side-nav-item">
                                             <a class="side-nav-link" data-bs-toggle="modal" data-bs-target="#warning-alert-modal" role="button">
                                                 <i class="uil-home-alt"></i>
-                                                <span> Pendaftaran Diklat</span>
+                                                <span> PENDAFTARAN DIKLAT </span>
                                             </a>
                                         </li>
                                         <li class="side-nav-item">
                                             <a class="side-nav-link" data-bs-toggle="modal" data-bs-target="#warning-alert-modal" role="button">
                                                 <i class="uil-home-alt"></i>
-                                                <span> Pengajuan Diklat </span>
+                                                <span> PENGAJUAN DIKLAT </span>
                                             </a>
                                         </li>
                                     </ul>
@@ -119,30 +119,30 @@
                                     <span> DASHBOARD</span>
                                 </a>
                             </li>
-                            <li class="side-nav-item">
+                            {{-- <li class="side-nav-item">
                                 <a href="{{url('/halaman_list_diklat')}}" class="side-nav-link">
                                     <i class="uil-home-alt"></i>
                                     <span> LIST DIKLAT</span>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li class="side-nav-item">
                                 <a data-bs-toggle="collapse" href="#sidebarForms" aria-expanded="false" aria-controls="sidebarForms" class="side-nav-link">
                                     <i class="uil-folder"></i>
-                                    <span> DIKLAT SAYA </span>
+                                    <span> DIKLAT </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <div class="collapse" id="sidebarForms">
                                     <ul class="side-nav-second-level">
                                         <li class="side-nav-item">
                                             <a href="{{url('/halaman_daftar_diklat')}}" class="side-nav-link">
-                                                <i class="uil-home-alt"></i>
-                                                <span> Pendaftaran Diklat</span>
+                                                <i class="uil-file-bookmark-alt"></i>
+                                                <span> PENDAFTARAN DIKLAT</span>
                                             </a>
                                         </li>
                                         <li class="side-nav-item">
                                             <a href="{{url('/halaman_pengajuan_diklat')}}" class="side-nav-link">
-                                                <i class="uil-home-alt"></i>
-                                                <span> Pengajuan Diklat </span>
+                                                <i class="uil-file-lock-alt"></i>
+                                                <span> PENGAJUAN DIKLAT </span>
                                             </a>
                                         </li>
                                     </ul>
@@ -150,7 +150,7 @@
                             </li>
                             <li class="side-nav-item">
                                 <a href="{{url('/profil_saya')}}" class="side-nav-link">
-                                    <i class="uil-home-alt"></i>
+                                    <i class="uil-user"></i>
                                     <span> PROFIL </span>
                                 </a>
                             </li>
@@ -218,7 +218,10 @@
                                         <i class="mdi mdi-account-circle me-1"></i>
                                         <span>Profil Saya</span>
                                     </a> --}}
-
+                                    <a href="{{url('/peserta/kelola_profil')}}" class="dropdown-item notify-item">
+                                        <i class="mdi mdi-account-circle me-1"></i>
+                                        <span>Profil Saya</span>
+                                    </a>
                                     <!-- item-->
                                     <a href="{{route('logout.peserta')}}" class="dropdown-item notify-item">
                                         <i class="mdi mdi-logout me-1"></i>
@@ -415,13 +418,13 @@
         <!-- quill js -->
         <script src="{{asset('assets/js/vendor/quill.min.js')}}"></script>
         <!-- Init js-->
-        <script src="{{asset('assets/js/pages/demo.quilljs.js')}}"></script>
+        {{-- <script src="{{asset('assets/js/pages/demo.quilljs.js')}}"></script> --}}
 
         <!-- SimpleMDE js -->
         <script src="{{asset('assets/js/vendor/simplemde.min.js')}}"></script>
 
         <!-- SimpleMDE demo -->
-        <script src="{{asset('assets/js/pages/demo.simplemde.js')}}"></script>
+        {{-- <script src="{{asset('assets/js/pages/demo.simplemde.js')}}"></script> --}}
 
         <!-- third party js -->
         <script src="{{asset('assets/js/vendor/apexcharts.min.js')}}"></script>
@@ -430,7 +433,7 @@
         <!-- third party js ends -->
 
         <!-- demo app -->
-        <script src="{{asset('assets/js/pages/demo.dashboard.js')}}"></script>
+        {{-- <script src="{{asset('assets/js/pages/demo.dashboard.js')}}"></script> --}}
         <script src="{{asset('assets/vendor/toastr/js/toastr.min.js')}}"></script>
         <!-- end demo js-->
         @yield('script')

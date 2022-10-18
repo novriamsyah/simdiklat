@@ -11,11 +11,11 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Master OPD</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master Data</a></li>
+                    <li class="breadcrumb-item active">OPD</li>
                 </ol>
             </div>
-            <h4 class="page-title">Kelola data OPD</h4>
+            <h4 class="page-title">Data OPD</h4>
         </div>
     </div>
 </div>    
@@ -23,7 +23,7 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-header" style="margin-top: 20px; margin-bottom:8px">
-                <a href="{{url('/halaman_tambah_opd')}}" class="btn btn-success" role="button"><i class="mdi mdi-plus "></i> Tambah Data</a>
+                <a href="{{url('/halaman_tambah_opd')}}" class="btn btn-success" role="button"><i class="mdi mdi-plus "></i> Tambah OPD</a>
             </div>
             <div class="card-body">
                 <div class="tab-content">

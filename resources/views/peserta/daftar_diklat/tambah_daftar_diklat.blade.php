@@ -20,10 +20,10 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Diklat</a></li>
-                    <li class="breadcrumb-item active">Halaman Tambah Diklat Baru</li>
+                    <li class="breadcrumb-item active">Tambah Diklat Baru</li>
                 </ol>
             </div>
-            <h4 class="page-title">Halaman Tambah Diklat Baru</h4>
+            <h4 class="page-title">Tambah Diklat Baru</h4>
         </div>
     </div>
 </div> 
@@ -31,7 +31,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title" style="text-align: center; color:#000">Tambah Diklat Baru</h4>
+                <h4 class="header-title" style="text-align: center; color:#000">Tambah Diklat</h4>
                 <form action="{{url('/simpan_daftar_diklat')}}" method="post" enctype="multipart/form-data" name="form_daftar_diklat">
                   @csrf
 
@@ -41,12 +41,12 @@
                       <tr>
                         <td data-title="nama_diklat" style="width: 15%;">Nama Lengkap</td>
                         <td >&nbsp;:</td>
-                        <td data-title="nama_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input type="text" class="form-control" value="{{$datas->nama_lengkap}}" id="nama_diklat" placeholder="Masukan nama diklat" readonly></td>
+                        <td data-title="nama_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input type="text" class="form-control" value="{{$datas->nama_lengkap}}" id="nama_diklat" placeholder="Masukan Nama Diklat" readonly></td>
                       </tr>
                       <tr>
                         <td data-title="nama_diklat" style="width: 15%;">NIP</td>
                         <td >&nbsp;:</td>
-                        <td data-title="nama_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input type="text" class="form-control" value="{{$cek_nip}}" id="nama_diklat" placeholder="Masukan nama diklat" readonly></td>
+                        <td data-title="nama_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input type="text" class="form-control" value="{{$cek_nip}}" id="nama_diklat" placeholder="Masukan Nama Diklat" readonly></td>
                       </tr>
                       {{-- <tr>
                         <td data-title="nama_diklat" style="width: 15%;">OPD</td>

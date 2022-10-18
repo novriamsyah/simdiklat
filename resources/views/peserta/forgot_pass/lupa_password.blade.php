@@ -13,6 +13,7 @@
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="light-style" />
         <link href="{{asset('assets/css/app-dark.min.css')}}" rel="stylesheet" type="text/css" id="dark-style" />
+       
 
     </head>
 
@@ -34,30 +35,28 @@
                                 
                                 <div class="text-center w-75 m-auto">
                                     <h4 class="text-dark-50 text-center mt-0 fw-bold" style="color: #000000;">Reset Password</h4>
-                                   
+                                    <p class="text-muted mb-4">Masukan alamat Email dan kami akan mengirimkan intruksi dalam mereset password pada email tersebut.</p>
                                 </div>
-                                <form action="{{ route('reset.password.post') }}" method="POST">
+
+                                <form action="{{route('forget.password.post.peserta')}}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="token" value="{{ $token }}">
-                                    
                                     <div class="mb-3">
-                                        <label for="password" class="form-label" style="color: #000000;">Password Baru</label>
-                                        <input class="form-control" type="password" name="password" id="password" required="" placeholder="Masukan password baru" style="border:1px solid #000000">
-                                        @if ($errors->has('password'))
-                                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                                        <label for="emailaddress" class="form-label" style="color: #000000;">Alamat Email</label>
+                                        <input class="form-control" type="email" name="email" id="emailaddress" required="" placeholder="Masukan email" style="border:1px solid #000000">
+                                        @if ($errors->has('email'))
+                                            <span class="text-danger">Masukan Email yang valid</span>
                                         @endif
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="password-confirm" class="form-label" style="color: #000000;">Konfirmasi Password</label>
-                                        <input class="form-control" type="password" name="password_confirmation" id="password-confirm" required="" placeholder="Konfirmasi password" style="border:1px solid #000000">
-                                        @if ($errors->has('password_confirmation'))
-                                            <span class="text-danger"{{ $errors->first('password_confirmation') }}></span>
-                                        @endif
-                                    </div>
+
                                     <div class="mb-0 text-center">
-                                        <button class="btn btn-primary" type="submit">Reset Password</button>
+                                        <button class="btn btn-primary" type="submit">Kirim</button>
                                     </div>
                                 </form>
+                                <div class="row mt-3">
+                                    <div class="col-12 text-center">
+                                        <p style="color: #000000;">kembali <a href="{{route('login.peserta')}}" class="ms-1" style="color: #060af7;"><b>Log In</b></a></p>
+                                    </div> <!-- end col -->
+                                </div>
                             </div> <!-- end card-body-->
                         </div>
                         <!-- end card -->

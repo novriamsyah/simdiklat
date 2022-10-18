@@ -14,6 +14,7 @@ class DaftarDiklat extends Model
         'nip_peserta',
         'tanggal_daftar',
         'status',
-        'sertifikat'
+        'sertifikat',
+        'catatan'
     ];
 }

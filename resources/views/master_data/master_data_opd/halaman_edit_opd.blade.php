@@ -16,11 +16,11 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master OPD</a></li>
-                    <li class="breadcrumb-item active">Halaman Edit Data OPD</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master Data</a></li>
+                    <li class="breadcrumb-item active">Edit Data OPD</li>
                 </ol>
             </div>
-            <h4 class="page-title">Halaman Edit Data OPD</h4>
+            <h4 class="page-title">Edit Data OPD</h4>
         </div>
     </div>
 </div> 
@@ -28,7 +28,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title" style="text-align: center; color:#000">Halaman Edit Data OPD</h4>
+                <h4 class="header-title" style="text-align: center; color:#000">Edit Data OPD</h4>
                 <form action="{{url('/ubah_opd/'.$id)}}" method="post" enctype="multipart/form-data" name="form_opd_edit">
                   @csrf
 
@@ -38,7 +38,7 @@
                       <tr>
                         <td data-title="nama" style="width: 10%;">Nama OPD</td>
                         <td >&nbsp;:</td>
-                        <td data-title="opd" class="formulir-border" style="width: 90%; padding-left:0.8em"><input name="opd" type="text" class="form-control" id="nama_opd" placeholder="Masukan nama opd" value="{{$datas->opd}}"></td>
+                        <td data-title="opd" class="formulir-border" style="width: 90%; padding-left:0.8em"><input name="opd" type="text" class="form-control" id="nama_opd" placeholder="Masukan Nama OPD" value="{{$datas->opd}}"></td>
                       </tr>
                       <tr>
                         <td style="width: 10%;"></td>

@@ -7,7 +7,7 @@
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="{{asset('assets/images/basel/favicon.ico')}}">
         
         <!-- App css -->
        
@@ -48,15 +48,19 @@
                 <div class="row justify-content-center" style="margin-top:30px">
                     <div class="col-xxl-4 col-lg-5">
                         <div class="card">
-
                             <!-- Logo -->
-                            {{-- <div class="card-header pt-4 pb-4 text-center bg-primary">
-                                <a href="index.html">
-                                    <span><img src="{{asset('assets/images/logo.png')}}" alt="" height="18"></span>
+                            <div class="card-header pt-3 pb-2 text-center">
+                                <a href="#">
+                                    <span><img src="{{asset('assets/images/basel/logo.png')}}" alt="" height="70"></span>
                                 </a>
-                            </div> --}}
+                                <a href="#">
+                                    <span><img src="{{asset('assets/images/basel/brand.png')}}" alt="" height="75"></span>
+                                </a><br><br>
+                                <span style="font-size: 20px; color:#000000; font-weight:bold">SELAMAT DATANG DI SIDISEL</span><br>
+                                <span style="font-size: 20px; color:#000000;font-weight:bold">(SISTEM INFORMASI DIKLAT BASEL)</span>
+                            </div>
 
-                            <div class="card-body p-2">
+                            <div class="card-body p-3">
 
                                 @if (Session::has('message'))
                                     <div class="alert alert-success">
@@ -74,14 +78,14 @@
 
                                     <div class="mb-3">
                                         <label for="emailaddress" class="form-label" style="font-weight: bold;color:#000000">Email</label>
-                                        <input class="form-control" type="text" id="emaill" required name="email" placeholder="Masukan email" style="border: 1px solid rgb(161, 161, 161);">
+                                        <input class="form-control" type="text" id="emaill" required name="email" placeholder="Masukan Email" style="border: 1px solid rgb(161, 161, 161);">
                                     </div>
 
                                     <div class="mb-3">
                                         <a href="{{route('forget.password.get')}}" class="text-muted float-end"><small style="font-weight: bold;color:#000000">Lupa Password?</small></a>
                                         <label for="password" class="form-label" style="font-weight: bold;color:#000000">Password</label>
                                         <div class="input-group input-group-merge">
-                                            <input type="password" id="password" name="password" class="form-control" placeholder="Masukan password" style="border: 1px solid rgb(161, 161, 161);">
+                                            <input type="password" id="password" name="password" class="form-control" placeholder="Masukan Password" style="border: 1px solid rgb(161, 161, 161);">
                                             <div class="input-group-text" data-password="false">
                                                 <span class="password-eye"></span>
                                             </div>
@@ -102,14 +106,6 @@
                                     </div>
 
                                 </form>
-                                {{-- <div class="mb-3 mb-0 text-center">
-                                    <a href="#" class="text-muted">Lupa Password?</a>
-                                </div> --}}
-                                {{-- <div class="row mt-3">
-                                    <div class="col-12 text-center">
-                                        <p>Belum meiliki akun? <a href="{{route('register.akun')}}" class="ms-1"><b style="color: rgb(0, 0, 255)"><u>Daftar</u></b></a></p>
-                                    </div> <!-- end col -->
-                                </div> --}}
                             </div> <!-- end card-body -->
                         </div>
                         <!-- end card -->

@@ -15,7 +15,7 @@
                     <li class="breadcrumb-item active">Data Diklat</li>
                 </ol>
             </div>
-            <h4 class="page-title">Kelola Data Diklat</h4>
+            <h4 class="page-title">Data Diklat</h4>
         </div>
     </div>
 </div>    
@@ -23,7 +23,7 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-header" style="margin-top: 20px; margin-bottom:8px">
-                <a href="{{url('/halaman_tambah_diklat')}}" class="btn btn-success" role="button"><i class="mdi mdi-plus "></i> Tambah data diklat</a>
+                <a href="{{url('/halaman_tambah_diklat')}}" class="btn btn-success" role="button"><i class="mdi mdi-plus "></i> Tambah diklat</a>
             </div>
             <div class="card-body">
                 <div class="tab-content">
@@ -36,8 +36,7 @@
                                         <th scope="col">Nama Diklat</th>
                                         <th scope="col">Pendaftaran</th>
                                         <th scope="col">Pelaksanaan</th>
-                                        <th scope="col">Batas Upload</th>
-                                        <th scope="col">Tahun</th>
+                                        <th scope="col">Tempat Diklat</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -49,16 +48,15 @@
                                         <td>{{$num}}.</td>
                                         <td>{{$dt->nama_diklat}}</td>
                                         <td>
-                                            <p>mulai : <span class="badge bg-success">{{date('d M Y', strtotime($dt->mulai_pendaftaran))}}</span></p>
-                                            <p>selesai : <span class="badge bg-dark">{{date('d M Y', strtotime($dt->selesai_pendaftaran))}}</span></p>
+                                            <p>Mulai : <span class="badge bg-success">{{date('d M Y', strtotime($dt->mulai_pendaftaran))}}</span></p>
+                                            <p>Selesai : <span class="badge bg-dark">{{date('d M Y', strtotime($dt->selesai_pendaftaran))}}</span></p>
                                         </td>
                                         <td>
-                                            <p>mulai : <span class="badge bg-success">{{date('d M Y', strtotime($dt->mulai_pelakasanaan))}}</span>
+                                            <p>Mulai : <span class="badge bg-success">{{date('d M Y', strtotime($dt->mulai_pelakasanaan))}}</span>
                                             </p>
-                                            <p>selesai : <span class="badge bg-dark">{{date('d M Y', strtotime($dt->mulai_pelakasanaan))}}</span></p>
+                                            <p>Selesai : <span class="badge bg-dark">{{date('d M Y', strtotime($dt->selesai_pelakasanaan))}}</span></p>
                                         </td>
-                                        <td>{{date('d M Y', strtotime($dt->batas_upload))}}</td>
-                                        <td>{{$dt->tahun}}</td>
+                                        <td>{{$dt->tempat_diklat}}</td>
                                         <td>
                                             <a href="{{url('/edit_diklat/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px"><i class=" dripicons-pencil"></i></button></a>
                                             <a class="action-icon"><button type="button" class="btn btn-warning btn-sm lihat_diklat" data-bs-toggle="modal" data-bs-target="#bs-example-modal-lg" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class=" dripicons-preview"></i></button></a>

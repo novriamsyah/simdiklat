@@ -16,6 +16,7 @@ class CreateDokumenPengajuanTable extends Migration
         Schema::create('dokumen_pengajuan', function (Blueprint $table) {
             $table->id();
             $table->string('dokumen');
+            $table->string('nm_dokumen')->nullable();
             $table->enum('cek', ['0', '1', '2']);
             $table->string('catatan')->nullable();
             $table->unsignedBigInteger('id_pengajuan');

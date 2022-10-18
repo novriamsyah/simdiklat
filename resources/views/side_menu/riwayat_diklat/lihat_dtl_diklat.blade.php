@@ -1,5 +1,7 @@
-@extends('template.peserta')
+@extends('template.master')
 @section('css')
+<link rel="stylesheet" href="{{asset('assets/vendor/toastr/css/toastr.min.css')}}">
+<link href="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
     <style>
         tbody tr td {
             color: #000;
@@ -12,11 +14,11 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Diklat</a></li>
-                    <li class="breadcrumb-item active">Detail Diklat Saya</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Diklat Riwayat</a></li>
+                    <li class="breadcrumb-item active">Detail Pendaftaran</li>
                 </ol>
             </div>
-            <h4 class="page-title">Detail Diklat Saya</h4>
+            <h4 class="page-title">Detail Pendaftaran Diklat</h4>
         </div>
     </div>
 </div>  
@@ -24,19 +26,19 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title" style="text-align: center; color:#000">Detal Diklat Saya</h4><br>
+                <h4 class="header-title" style="text-align: center; color:#000">Detail Pendaftaran Diklat</h4><br>
                 <h5 style="color:#000">A. Detail Pendaftar</h5>
                 <table class="table" style="border-color: #fff ">
                     <tbody>
                       <tr>
                         <td data-title="nama_diklat" style="width: 25%;">Nama Lengkap</td>
                         <td >&nbsp;:</td>
-                        <td data-title="nama_diklat" class="formulir-border" style="width: 75%; padding-left:0.8em" id="nama_diklat">{{$datas2->nama_lengkap}}</td>
+                        <td data-title="nama_diklat" class="formulir-border" style="width: 75%; padding-left:0.8em" id="nama_diklat">{{$datas->nama_lengkap}}</td>
                       </tr>
                       <tr>
                         <td data-title="nama_diklat" style="width: 25%;">NIP</td>
                         <td >&nbsp;:</td>
-                        <td data-title="nama_diklat" class="formulir-border" style="width: 75%; padding-left:0.8em" id="nama_diklat">{{$datas2->nip}}</td>
+                        <td data-title="nama_diklat" class="formulir-border" style="width: 75%; padding-left:0.8em" id="nama_diklat">{{$datas->nip}}</td>
                       </tr>
                       <tr>
                         <td data-title="opd" style="width: 25%;">OPD</td>
@@ -54,20 +56,6 @@
                         <td data-title="nama_diklat" class="formulir-border" style="width: 75%; padding-left:0.8em" id="nama_diklat">{{$datas->nama_diklat}}</td>
                       </tr>
                       <tr>
-                        <td data-title="status" style="width: 25%;">Status</td>
-                        <td >&nbsp;:</td>
-                        <td data-title="status" class="formulir-border" style="width: 75%; padding-left:0.8em" id="kl">
-                            @if ($datas->status == 0)
-                                <span class="badge bg-dark">Menunggu</span>
-                            @elseif($datas->status == 1)
-                              <span class="badge bg-success">Diterima</span>
-                            @else
-                              <span class="badge bg-danger">Ditolak</span>
-                            @endif
-                            
-                        </td>
-                      </tr>
-                      <tr>
                         <td data-title="jenis_diklat" style="width: 25%;">Jenis Diklat</td>
                         <td >&nbsp;:</td>
                         <td data-title="jenis_diklat" id="id_jenis_diklat" class="formulir-border" style="width: 75%; padding-left:0.8em;">{{$jenis_diklat->jenis_diklat}}</td>
@@ -77,38 +65,12 @@
                         <td >&nbsp;:</td>
                         <td data-title="tempat_diklat" id="tempat_diklat" class="formulir-border" style="width: 75%; padding-left:0.8em;">{{$datas->tempat_diklat}}</td>
                       </tr>
-                      <tr>
-                        <td data-title="jp" style="width: 25%;">Lama Pembelajaran</td>
-                        <td >&nbsp;:</td>
-                        <td data-title="jp" id="jp" class="formulir-border" style="width: 75%; padding-left:0.8em">{{$datas->jp}}</td>
-                      </tr>
-                      <tr>
-                        <td data-title="mulai_pendaftaran" style="width: 25%;">Mulai Pendaftaran</td>
-                        <td >&nbsp;:</td>
-                        <td data-title="mulai_pendaftaran" id="mulai_pendaftaran" class="formulir-border" style="width: 75%; padding-left:0.8em">{{date('d F Y', strtotime($datas->mulai_pendaftaran))}}</td>
-                      </tr>
-                      <tr>
-                        <td data-title="selesai_pendaftaran" style="width: 25%;">Selesai Pendaftaran</td>
-                        <td >&nbsp;:</td>
-                        <td data-title="selesai_pendaftaran" id="selesai_pendaftaran" class="formulir-border" style="width: 75%; padding-left:0.8em">{{date('d F Y', strtotime($datas->selesai_pendaftaran))}}</td>
-                      </tr>
-                      <tr>
-                        <td data-title="mulai_pelaksanaan" style="width: 25%;">Mulai Pelaksanaan</td>
-                        <td >&nbsp;:</td>
-                        <td data-title="mulai_pelaksanaan" id="mulai_pelakasanaan" class="formulir-border" style="width: 75%; padding-left:0.8em">{{date('d F Y', strtotime($datas->mulai_pelakasanaan))}}</td>
-                      </tr>
-                      <tr>
-                        <td data-title="selesai_pelaksanaan" style="width: 25%;">Selesai Pelaksanaan</td>
-                        <td >&nbsp;:</td>
-                        <td data-title="selesai_pelaksanaan" id="selesai_pelakasanaan" class="formulir-border" style="width: 75%; padding-left:0.8em">{{date('d F Y', strtotime($datas->selesai_pelakasanaan))}}</td>
-                      </tr>
                     </tbody>
                 </table>
                 <h5 style="color:#000">C. Lihat Dokumen Diklat</h5>
                 @if ($ct_dkmn == 0)
                     <p><i>Dokumen Belum diupload</i></p>
                 @else
-                
                 <table class="table" style="border-color: #fff ">
                     <tbody>
                         @foreach ($dkmn as $dcmn)
@@ -128,7 +90,7 @@
                 <table>
                   <tbody>
                     <tr>
-                      <td class="formulir-border" style="padding-left:0.8em"><a href="{{url('/halaman_daftar_diklat')}}" class="btn btn-danger" role="button"><i class="mdi mdi-arrow-left"> Kembali </a></td>
+                        <td class="formulir-border" style="padding-left:0.8em"><a href="{{url('/halaman_riwayat_diklat')}}" class="btn btn-danger" role="button"><i class="mdi mdi-arrow-left"> Kembali </a></td>
                     </tr>
                   </tbody>
                 </table>
@@ -136,4 +98,20 @@
         </div>
     </div>
 </div>
+
+@endsection
+@section('script')
+<script
+src="https://code.jquery.com/jquery-3.6.0.min.js"
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+crossorigin="anonymous"
+></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('assets/vendor/toastr/js/toastr.min.js')}}"></script>
+<script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+<script src="{{ asset('assets/js/sweetalert.init.js')}}"></script>
+
+<script>
+    
+</script>
 @endsection

@@ -26,8 +26,25 @@ class halamanDashboardController extends Controller
             ->orderBy('diklat.created_at','desc')
             ->get();
 
+            $ct_diklat1 = Db::table('daftar_diklat')->count();
+            $ct_diklat2 = Db::table('pengajuan_diklat')->count();
+
+            $ct_sukses_diklat_1 = DaftarDiklat::where('status','=','1')->count();
+            $ct_sukses_diklat_2 = PengajuanDiklat::where('status','=','1')->count();
+
+            $ct_tolak_diklat_1 = DaftarDiklat::where('status','=','2')->count();
+            $ct_tolak_diklat_2 = PengajuanDiklat::where('status','=','2')->count();
+
+            $ct_tunggu_diklat_1 = DaftarDiklat::where('status','=','0')->count();
+            $ct_tunggu_diklat_2 = PengajuanDiklat::where('status','=','0')->count();
+
+            $ct_total_diklat =  $ct_diklat1 +  $ct_diklat2;
+            $ct_total_sukses = $ct_sukses_diklat_1 + $ct_sukses_diklat_2;
+            $ct_total_tolak = $ct_tolak_diklat_1 + $ct_tolak_diklat_2;
+            $ct_total_tunggu = $ct_tunggu_diklat_1 + $ct_tunggu_diklat_2;
+
             return view('peserta.dashboard', ['datas'=>$datas, 'cek_profil2'=>$cek_profil2,
-        'cek_profil3'=>$cek_profil3]);
+        'cek_profil3'=>$cek_profil3, 'ct_total_diklat'=>$ct_total_diklat, 'ct_total_sukses'=>$ct_total_sukses, 'ct_total_tolak'=>$ct_total_tolak, 'ct_total_tunggu'=>$ct_total_tunggu]);
         }
         
     }
@@ -44,6 +61,28 @@ class halamanDashboardController extends Controller
         $st_laksana = Carbon::createFromFormat('Y-m-d',$lihat_diklat->mulai_pelakasanaan)->format('d F Y');
         $sl_laksana = Carbon::createFromFormat('Y-m-d',$lihat_diklat->selesai_pelakasanaan)->format('d F Y');
         $bt_upl = Carbon::createFromFormat('Y-m-d',$lihat_diklat->batas_upload)->format('d F Y');
+
+
+        //status
+        $now_date = \Carbon\Carbon::now()->format('d-m-Y');
+
+        $str_date = \Carbon\Carbon::parse($lihat_diklat->mulai_pendaftaran)->format('d-m-Y');
+        $end_date = \Carbon\Carbon::parse($lihat_diklat->selesai_pendaftaran)->format('d-m-Y');
+        $str_date1 = \Carbon\Carbon::parse($lihat_diklat->mulai_pelakasanaan)->format('d-m-Y');
+        $end_date1 = \Carbon\Carbon::parse($lihat_diklat->selesai_pelakasanaan)->format('d-m-Y');
+
+        $sekarang = \Carbon\Carbon::createFromFormat('d-m-Y', $now_date);
+        $mulai_dftr = \Carbon\Carbon::createFromFormat('d-m-Y', $str_date);
+        $selesai_dftr = \Carbon\Carbon::createFromFormat('d-m-Y', $end_date);
+        $mulai_lksana = \Carbon\Carbon::createFromFormat('d-m-Y', $str_date1 );
+        $selesai_lksana  = \Carbon\Carbon::createFromFormat('d-m-Y', $end_date1);
+
+        $selisih = $sekarang->diffInDays($mulai_dftr, false);
+        $selisih1 = $sekarang->diffInDays($selesai_dftr, false);
+        $selisih2 = $sekarang->diffInDays($mulai_lksana, false);
+        $selisih3 = $sekarang->diffInDays($selesai_lksana, false);
+
+
         return response()->json(array(
             'lihat_diklat'=>$lihat_diklat,
             'jenis_diklat'=>$jenis_diklat,
@@ -51,7 +90,11 @@ class halamanDashboardController extends Controller
             'sl_daftar'=>$sl_daftar,
             'st_laksana'=>$st_laksana,
             'sl_laksana'=>$sl_laksana,
-            'bt_upl'=>$bt_upl
+            'bt_upl'=>$bt_upl,
+            'selisih'=>$selisih,
+            'selisih1'=>$selisih1,
+            'selisih2'=>$selisih2,
+            'selisih3'=>$selisih3
         ));
     }
 

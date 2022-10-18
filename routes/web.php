@@ -101,12 +101,18 @@ Route::group(['middleware' => ['auth', 'cekrole:Admin,Operator,Peserta']], funct
 
     Route::get('/halaman_riwayat_diklat', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'halaman_riwayat_diklat']);
     Route::get('/lihat_sertifikat_rwyt/{id}', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'lihat_sertifikat_rwyt']);
+    Route::get('/detail_pendaftaran_diklat_peserta/{id}', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'detail_pendaftaran_diklat_peserta']);
+    Route::get('/lihat_verifikasi_diklat/{id}', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'lihat_verifikasi_diklat'])->name('ver_diklat');
+    Route::get('/get_edit_daftar/{id}', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'get_edit_daftar']);
+    Route::post('/proses_validasi_daftar/{id}', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'proses_validasi_daftar']);
 
     Route::get('/pengajuan_diklat_peserta', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'halaman_pengajuan_diklat']);
     Route::get('/lihat_pengajuan_peserta/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'lihat_pengajuan_peserta']);
     Route::get('/peserta_doc_pengajuan/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'peserta_doc_pengajuan']);
     Route::get('/get_edit_pengajuan/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'get_edit_pengajuan']);
     Route::get('/get_dokumen_pengajuan/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'get_dokumen_pengajuan']);
+    Route::get('/lihat_verifikasi_pengajuan/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'lihat_verifikasi_pengajuan'])->name('ver_pengajuan');
+    Route::get('/detail_pengajuan_diklat_peserta/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'detail_pengajuan_diklat_peserta']);
     Route::post('/proses_validasi_pengajuan/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'proses_validasi_pengajuan']);
     Route::post('/proses_validasi_dokumen_peserta/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'proses_validasi_dokumen_peserta']);
     Route::post('/validasi_pengajuan_diklat', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'validasi_pengajuan_diklat']);
@@ -122,6 +128,12 @@ Route::post('/proses_register', [App\Http\Controllers\SistemLoginPesertaControll
 Route::get('/login', [App\Http\Controllers\SistemLoginPesertaController::class, 'halaman_login'])->name('login.peserta');
 Route::post('/verifikasilogin', [App\Http\Controllers\SistemLoginPesertaController::class, 'loginVerifikasi'])->name('verifikasi.login');
 Route::get('/log_out', [App\Http\Controllers\SistemLoginPesertaController::class, 'log_out'])->name('logout.peserta');
+
+//forgot password
+Route::get('/forget-password-peserta', [App\Http\Controllers\Peserta\ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.peserta');
+Route::post('/proses-forget-password-peserta', [App\Http\Controllers\Peserta\ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post.peserta'); 
+Route::get('/reset-password-peserta/{token}', [App\Http\Controllers\Peserta\ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.peserta');
+Route::post('/reset-password-peserta', [App\Http\Controllers\Peserta\ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post.peserta');
 
 //dashboard
 Route::get('/', [App\Http\Controllers\halamanDashboardController::class, 'index'])->name('dash.peserta');
@@ -139,7 +151,15 @@ Route::get('/lihat_daftar_diklat/{id}', [App\Http\Controllers\Peserta\halamanDaf
 Route::get('/tambah_daftar_diklat', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'tambah_daftar_diklat']);
 Route::post('/simpan_daftar_diklat', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'simpan_daftar_diklat']);
 Route::get('/upload_dokumen_saya/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'upload_dokumen_saya']);
-Route::post('/proses/upload_dokumen_saya/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'proses_upload_dokumen_saya'])->name('proses_dokumen_saya');
+Route::post('/proses/upload_dokumen_saya', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'proses_upload_dokumen_saya'])->name('proses_dokumen_saya');
+Route::get('/edit_dokumen_daftar/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'edit_dokumen_daftar']);
+Route::post('/proses/edit_dokumen_daftar/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'proses_edit_dokumen_daftar'])->name('proses_edit_dokumen_daftar');
+Route::get('/get_upload_sertifikat/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'get_upload_sertifikat']);
+Route::post('/upload_sertifikat/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'upload_sertifikat']);
+Route::get('/lihat_sertifikat_daftar/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'lihat_sertifikat_daftar']);
+Route::get('/lihat_catatan_daftar/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'lihat_catatan_daftar']);
+Route::get('/get_ubah_dokumen_daftar/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'get_ubah_dokumen_daftar']);
+Route::post('/ubah_doc_daftar_peserta/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'ubah_doc_daftar_peserta']);
 Route::post('/hapus_daftar_diklat/{id}', [App\Http\Controllers\Peserta\halamanDaftarDiklatController::class, 'hapus_daftar_diklat']);
 
 //pengajuan Diklat
@@ -152,6 +172,10 @@ Route::get('/edit_pengajuan_diklat_saya/{id}', [App\Http\Controllers\Peserta\hal
 Route::post('/ubah_pengajuan_diklat_saya/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'ubah_pengajuan_diklat_saya']);
 Route::get('/upl_pengajuan_doc/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'upl_pengajuan_doc']);
 Route::post('/proses/upl_pengajuan_doc/', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'proses_upl_pengajuan_doc'])->name('upl_pengajuan_doc');
+Route::get('/lihat_catatan_pengajuan/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'lihat_catatan_pengajuan']);
+Route::get('/edit_dokumen_pengajuan/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'edit_dokumen_pengajuan']);
+Route::get('/get_ubah_dokumen_pengajuan/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'get_ubah_dokumen_pengajuan']);
+Route::post('/ubah_doc_pengajuan_peserta/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'ubah_doc_pengajuan_peserta']);
 Route::post('/hapus_pengajuan_diklat/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'hapus_pengajuan_diklat']);
 
 //profil
@@ -160,3 +184,5 @@ Route::get('/halaman_tambah_profil', [App\Http\Controllers\Peserta\halamanProfil
 Route::post('/simpan_profil', [App\Http\Controllers\Peserta\halamanProfilController::class, 'simpan_profil']);
 Route::get('/edit_profil/{email}', [App\Http\Controllers\Peserta\halamanProfilController::class, 'edit_profil']);
 Route::post('/ubah_profil/{email}', [App\Http\Controllers\Peserta\halamanProfilController::class, 'ubah_profil']);
+Route::get('/peserta/kelola_profil/', [App\Http\Controllers\Peserta\halamanProfilController::class, 'kelola_profil']);
+Route::post('/ubah_password_peserta/{email}', [App\Http\Controllers\Peserta\halamanProfilController::class, 'ubah_password']);

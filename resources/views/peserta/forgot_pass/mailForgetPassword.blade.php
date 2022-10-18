@@ -43,7 +43,7 @@
                                         <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
                                             Kami tidak bisa begitu saja mengirimkan kata sandi lama anda. Email ini untuk mengatur ulang kata sandi / password yang telah anda gunakan sebelumnya. untuk mengatur ulang password, klik tombol dibawah ini dan ikuti petunjuknya.
                                         </p>
-                                            <a href="{{route('reset.password.get', $token)}}"
+                                            <a href="{{route('reset.password.peserta', $token)}}"
                                             style="background:#0004fd;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;" target="_BLANK">Reset
                                             Password</a> 
                                     </td>

@@ -42,10 +42,10 @@
                         <li class="breadcrumb-item">
                             <a href="javascript: void(0);">Master Data</a>
                         </li>
-                        <li class="breadcrumb-item active">Tambah Master dokumen</li>
+                        <li class="breadcrumb-item active">Tambah dokumen</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Tambah Master dokumen</h4>
+                <h4 class="page-title">Tambah dokumen</h4>
             </div>
         </div>
     </div>
@@ -59,12 +59,12 @@
                     @csrf
                     <div class="mb-3" style="margin-top:40px">
                       {{-- <label for="example-email" class="form-label">Email</label> --}}
-                      <h4 class="header-title m-t-0">Nama berkas dokumen<span class="text-danger">*</span></h4>
-                      <input type="text" id="master_dokumen" name="master_dokumen" class="form-control" placeholder="Nama berkas dokumen" style="border: 1px solid rgb(161, 161, 161);">
+                      <h4 class="header-title m-t-0">Nama dokumen<span class="text-danger">*</span></h4>
+                      <input type="text" id="master_dokumen" name="master_dokumen" class="form-control" placeholder="Nama Dokumen" style="border: 1px solid rgb(161, 161, 161);">
                       <span class="nm_berkas" style='color: red;'></span>
                     </div>
 
-                    <button type="submit" class="btn btn-danger" style="margin-top: 15px">Simpan</button>
+                    <button type="submit" class="btn btn-success" style="margin-top: 15px">Simpan</button>
                   </form>
                 </div>
             

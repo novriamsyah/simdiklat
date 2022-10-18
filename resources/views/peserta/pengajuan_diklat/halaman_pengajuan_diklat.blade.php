@@ -73,7 +73,18 @@
                                         <td><a><button type="button" class="btn btn-link lihat_pengajuan" data-bs-toggle="modal" data-bs-target="#full-width-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i><span style="color: blue"> <u>Lihat sertifikat</u></span></button></a></td>
                                         <td>{{date('d M Y', strtotime($dt->tanggal_daftar))}}</td>
                                         <td>
-                                            <a href="{{url('/upl_pengajuan_doc/'.$dt->id)}}"><button type="button" class="btn btn-link btn-sm lihat_diklat" style="display: inline-block; margin-top:8px"><i class="dripicons-upload"></i><span style="color: blue"> <u>Upload doc</u></span></button></a>
+                                            @php
+                                            $doc_diklat = \App\Models\dokumenPengajuan::where('id_pengajuan', $dt->id)->count();
+                                             @endphp
+
+                                             @if ($doc_diklat > 0 && $dt->status != 0)
+                                            <strong><i>Diklat telah diverifikasi</i></strong>
+                                            @elseif($doc_diklat > 0 && $dt->status == 0)
+                                            <a href="{{url('/edit_dokumen_pengajuan/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-link btn-sm lihat_diklat" style="display: inline-block; margin-top:8px"><i class="dripicons-pencil"></i><span style="color: blue"> Edit Dokumen</span></button></a> 
+                                             @else
+                                             <a href="{{url('/upl_pengajuan_doc/'.$dt->id)}}"><button type="button" class="btn btn-link btn-sm lihat_diklat" style="display: inline-block; margin-top:8px"><i class="dripicons-upload"></i><span style="color: blue"> <u>Upload doc</u></span></button></a> 
+                                             @endif
+                                            
                                         </td>
                                         <td>
                                             @if ($dt->status == 0)
@@ -82,18 +93,19 @@
                                                 <span class="badge bg-success">Diterima</span>
                                             @else
                                                 <span class="badge bg-danger">Ditolak</span><br>
-                                                <span style="font-size: 12px"><strong>Catatan : {{$dt->catatan}}</strong></span>
+                                                <span style="font-size: 12px"><strong>Catatan :</strong> <button  type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" data-bs-target="#bs-example-modal-sm" data-lht="{{$dt->id}}" id="lihat_catatan2" style="font-weight: bold">Lihat</button></span>
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($dt->status == 2)
+                                            {{-- @if ($dt->status == 2)
                                             <a href="{{url('/edit_pengajuan_diklat_saya/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-dark btn-sm" style="display: inline-block; margin-top:8px"><i class=" dripicons-pencil"></i></button></a>
                                             <a href="{{url('/detail_pengajuan_diklat/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px"><i class=" dripicons-preview"></i></button></a>
                                             <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>   
-                                            @else
+                                            @else --}}
+                                            {{-- @endif --}}
                                             <a href="{{url('/detail_pengajuan_diklat/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px"><i class=" dripicons-preview"></i></button></a>
                                             <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>   
-                                            @endif
+                                           
                                         </td>
                                     </tr>
                                     <?php $num++ ?>
@@ -151,6 +163,19 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<div class="modal fade" id="bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mySmallModalLabel">Catatan: </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <p id="isi-catatan2"></p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 @endsection
 @section('script')
 <script
@@ -178,6 +203,7 @@ crossorigin="anonymous"
             $('#fil_doc').html($(this).val() );
         });
     });
+
     $(document).on('click', '.lihat_pengajuan', function(e) {
         e.preventDefault();
         var id = $(this).attr('data-lihat');
@@ -191,6 +217,20 @@ crossorigin="anonymous"
             }
         })
     });
+
+    $(document).on('click', '#lihat_catatan2', function(e) {
+        e.preventDefault();
+        var id = $(this).attr('data-lht');
+        $.ajax({
+            url: "{{ url('/lihat_catatan_pengajuan') }}/" + id,
+            method: "GET",
+            success:function(response) {
+                var isi_cttn = response.catatan;
+                var lihat =  $('#isi-catatan2').text(isi_cttn);
+
+            }
+        });
+    }); 
 
     function deleteConfirmation(id) {
         swal({

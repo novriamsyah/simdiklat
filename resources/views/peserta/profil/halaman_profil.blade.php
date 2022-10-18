@@ -12,10 +12,10 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Profil</a></li>
-                    <li class="breadcrumb-item active">Profil Saya</li>
+                    <li class="breadcrumb-item active">Profil</li>
                 </ol>
             </div>
-            <h4 class="page-title">Profil Saya</h4>
+            <h4 class="page-title">Profil</h4>
         </div>
     </div>
 </div>    
@@ -71,7 +71,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myLargeModalLabel">Detail Profil Saya</h4>
+                <h4 class="modal-title" id="myLargeModalLabel">Detail Profil</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
             </div>
             <div class="modal-body">

@@ -16,11 +16,11 @@
         <div class="page-title-box">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master Jenis Diklat</a></li>
-                    <li class="breadcrumb-item active">Halaman Edit Jenis Diklat</li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master Data</a></li>
+                    <li class="breadcrumb-item active">Edit Jenis Diklat</li>
                 </ol>
             </div>
-            <h4 class="page-title">Halaman Edit Jenis Diklat</h4>
+            <h4 class="page-title">Edit Jenis Diklat</h4>
         </div>
     </div>
 </div> 
@@ -28,7 +28,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title" style="text-align: center; color:#000">Halaman Edit Jenis Diklat</h4>
+                <h4 class="header-title" style="text-align: center; color:#000">Edit Jenis Diklat</h4>
                 <form action="{{url('/ubah_jenis_diklat/'.$id)}}" method="post" enctype="multipart/form-data" name="form_jenis_diklat_edit">
                   @csrf
 
@@ -38,7 +38,7 @@
                       <tr>
                         <td data-title="jenis_diklat" style="width: 10%;">Nama OPD</td>
                         <td >&nbsp;:</td>
-                        <td data-title="jenis_diklat" class="formulir-border" style="width: 90%; padding-left:0.8em"><input name="jenis_diklat" type="text" class="form-control" id="jenis_diklat" placeholder="Masukan jenis diklat" value="{{$datas->jenis_diklat}}"></td>
+                        <td data-title="jenis_diklat" class="formulir-border" style="width: 90%; padding-left:0.8em"><input name="jenis_diklat" type="text" class="form-control" id="jenis_diklat" placeholder="Masukan Jenis Diklat" value="{{$datas->jenis_diklat}}"></td>
                       </tr>
                       <tr>
                         <td style="width: 10%;"></td>

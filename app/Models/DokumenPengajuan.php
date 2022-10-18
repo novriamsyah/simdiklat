@@ -13,7 +13,7 @@ class DokumenPengajuan extends Model
         'dokumen',
         'id_pengajuan',
         'catatan',
-        'status',
+        'cek',
         
     ];
 }
