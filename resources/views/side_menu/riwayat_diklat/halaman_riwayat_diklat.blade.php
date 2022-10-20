@@ -64,11 +64,13 @@
 
                                             @if ($dt->status == 0)
                                             <a href="{{url('/lihat_verifikasi_diklat/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px">Verifikasi</button></a>
+                                            <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a> 
                                             @else
                                             <a href="{{url('/detail_pendaftaran_diklat_peserta/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px">Lihat</button></a>
+                                            <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a> 
                                             @endif
                                             {{-- <a href="{{url('/lihat_verifikasi_diklat/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px">Verifikasi</button></a> --}}
-                                            {{-- <a class="action-icon delete-confirm"><button  type="button" onclick="deleteConfirmation(1)" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>  --}}
+                                            
                                         </td>
                                     </tr>
                                     <?php $num++ ?>
@@ -148,43 +150,39 @@ crossorigin="anonymous"
         })
     });
 
-   
-
-
-
-    // function deleteConfirmation(id) {
-    //     swal({
-    //     title: "Apakah kamu yakin?",
-    //     text: "Data ini akan dihapus permanen !!",
-    //     type: "warning",
-    //     showCancelButton: !0,
-    //     confirmButtonText: "Ya, hapus!",
-    //     cancelButtonText: "Batal",
-    //     reverseButtons: !0
-    //     }).then(function (e) {
-    //     if (e.value === true) {
-    //     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    //     $.ajax({
-    //     type: 'POST',
-    //     url: "{{url('/hapus_diklat')}}/" + id,
-    //     data: {_token: CSRF_TOKEN},
-    //     dataType: 'JSON',
-    //     success: function (results) {
-    //         if (results.success === true) { 
-    //             swal("Done!", results.message, "success");
-    //         } else {
-    //             swal("Error!", results.message, "error");
-    //     }
-    //     }
-    //     });
-    //         location.reload();
-    //     } else {
-    //         e.dismiss;
-    //     }
-    // }, function (dismiss) {
-    // return false;
-    // })
-    // }
+    function deleteConfirmation(id) {
+        swal({
+        title: "Apakah kamu yakin?",
+        text: "Data ini akan dihapus permanen !!",
+        type: "warning",
+        showCancelButton: !0,
+        confirmButtonText: "Ya, hapus!",
+        cancelButtonText: "Batal",
+        reverseButtons: !0
+        }).then(function (e) {
+        if (e.value === true) {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+        type: 'POST',
+        url: "{{url('/hapus_diklat_riwayatt')}}/" + id,
+        data: {_token: CSRF_TOKEN},
+        dataType: 'JSON',
+        success: function (results) {
+            if (results.success === true) { 
+                swal("Done!", results.message, "success");
+            } else {
+                swal("Error!", results.message, "error");
+        }
+        }
+        });
+            location.reload();
+        } else {
+            e.dismiss;
+        }
+    }, function (dismiss) {
+    return false;
+    })
+    }
 
      @if ($message = Session::get('berhasil'))
     toastr.success("{{ $message }}","Selamat", {

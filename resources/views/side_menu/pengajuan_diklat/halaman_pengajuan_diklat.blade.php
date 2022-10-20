@@ -57,8 +57,10 @@
                                         <td>
                                             @if ($dt->status == 0)
                                             <a href="{{url('/lihat_verifikasi_pengajuan/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px">Verifikasi</button></a>
+                                            <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a> 
                                             @else
                                             <a href="{{url('/detail_pengajuan_diklat_peserta/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px">Lihat</button></a>
+                                            <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a> 
                                             @endif
                                             {{-- <span>Validasi Dokumen</span><br>
                                             <a class="action-icon"><button type="button" class="btn btn-primary btn-sm lihat_diklat" data-lihat="{{$dt->id}}" data-bs-toggle="modal" data-bs-target="#centermodal1" id="valid_doc_aju" style="display: inline-block; margin-top:8px">Validasi</button></a>  --}}
@@ -281,7 +283,7 @@ crossorigin="anonymous"
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
         type: 'POST',
-        url: "{{url('/hapus_diklat')}}/" + id,
+        url: "{{url('/hapus_diklat_pengajuann')}}/" + id,
         data: {_token: CSRF_TOKEN},
         dataType: 'JSON',
         success: function (results) {

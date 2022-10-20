@@ -194,4 +194,21 @@ class halamanPengajuanDiklatController extends Controller
             'data'    => $datas  
         ]);
     }
+
+    public function hapus_diklat($id)
+    {
+        $jenis_diklat = PengajuanDiklat::where('id', $id)->delete();
+        
+         if($jenis_diklat == 1) {
+             $success = true;
+             $message = "Data diklat pengajuan berhasil dihapus !";
+         } else {
+             $success = false;
+             $message = "gagal menghapus";
+         }
+         return response()->json([
+             'success' => $success,
+             'message' => $message,
+         ]);
+    }
 }

@@ -157,5 +157,25 @@ class halamanRiwayatDiklatController extends Controller
         ]);
     }
 
+    public function hapus_diklat($id)
+    {
+        $jenis_diklat = DB::table('daftar_diklat')
+        ->select('daftar_diklat.*')
+        ->where('id_diklat', $id)
+        ->delete();
+        
+         if($jenis_diklat == 1) {
+             $success = true;
+             $message = "Data diklat berhasil dihapus !";
+         } else {
+             $success = false;
+             $message = "gagal menghapus";
+         }
+         return response()->json([
+             'success' => $success,
+             'message' => $message,
+         ]);
+    }
+
     
 }

@@ -38,24 +38,24 @@
             <div class="leftside-menu">
     
                 <!-- LOGO -->
-                {{-- <a href="{{url('/')}}" class="logo text-center logo-light">
+                <a href="{{url('/')}}" class="logo text-center logo-light">
                     <span class="logo-lg">
-                        <img src="{{asset('assets/images/ic3.png')}}" alt="" height="36">
+                        <img src="{{asset('assets/images/basel/sdsl2.png')}}" alt="" height="36">
                     </span>
                     <span class="logo-sm">
-                        <img src="{{asset('assets/images/ic1.png')}}" alt="" height="36">
+                        <img src="{{asset('assets/images/basel/logo.png')}}" alt="" height="36">
                     </span>
                 </a>
 
                 <!-- LOGO -->
                 <a href="{{url('/')}}" class="logo text-center logo-dark">
                     <span class="logo-lg">
-                        <img src="{{asset('assets/images/ic2.png')}}" alt="" height="36">
+                        <img src="{{asset('assets/images/basel/sdsl1.png')}}" alt="" height="36">
                     </span>
                     <span class="logo-sm">
-                        <img src="{{asset('assets/images/ic1.png')}}" alt="" height="36">
+                        <img src="{{asset('assets/images/basel/logo.png')}}" alt="" height="36">
                     </span>
-                </a> --}}
+                </a>
     
                 <div class="h-100" id="leftside-menu-container" data-simplebar="">
 

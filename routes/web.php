@@ -91,6 +91,7 @@ Route::group(['middleware' => ['auth', 'cekrole:Admin,Operator,Peserta']], funct
     Route::post('/ubah_jenis_diklat/{id}', [App\Http\Controllers\halamanJenisDiklatController::class, 'ubah_jenis_diklat']);
     Route::post('/hapus_jenis_diklat/{id}', [App\Http\Controllers\halamanJenisDiklatController::class, 'hapus_jenis_diklat']);
 
+    //master diklat
     Route::get('/halaman_diklat', [App\Http\Controllers\halamanDiklatController::class, 'halaman_diklat']);
     Route::get('/lihat_diklat/{id}', [App\Http\Controllers\halamanDiklatController::class, 'lihat_diklat']);
     Route::get('/halaman_tambah_diklat', [App\Http\Controllers\halamanDiklatController::class, 'halaman_tambah_diklat']);
@@ -99,13 +100,16 @@ Route::group(['middleware' => ['auth', 'cekrole:Admin,Operator,Peserta']], funct
     Route::post('/ubah_diklat/{id}', [App\Http\Controllers\halamanDiklatController::class, 'ubah_diklat']);
     Route::post('/hapus_diklat/{id}', [App\Http\Controllers\halamanDiklatController::class, 'hapus_diklat']);
 
+    //diklat riwayat
     Route::get('/halaman_riwayat_diklat', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'halaman_riwayat_diklat']);
     Route::get('/lihat_sertifikat_rwyt/{id}', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'lihat_sertifikat_rwyt']);
     Route::get('/detail_pendaftaran_diklat_peserta/{id}', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'detail_pendaftaran_diklat_peserta']);
     Route::get('/lihat_verifikasi_diklat/{id}', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'lihat_verifikasi_diklat'])->name('ver_diklat');
     Route::get('/get_edit_daftar/{id}', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'get_edit_daftar']);
     Route::post('/proses_validasi_daftar/{id}', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'proses_validasi_daftar']);
+    Route::post('/hapus_diklat_riwayatt/{id}', [App\Http\Controllers\halamanRiwayatDiklatController::class, 'hapus_diklat']);
 
+    //diklat pengajuan
     Route::get('/pengajuan_diklat_peserta', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'halaman_pengajuan_diklat']);
     Route::get('/lihat_pengajuan_peserta/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'lihat_pengajuan_peserta']);
     Route::get('/peserta_doc_pengajuan/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'peserta_doc_pengajuan']);
@@ -116,7 +120,7 @@ Route::group(['middleware' => ['auth', 'cekrole:Admin,Operator,Peserta']], funct
     Route::post('/proses_validasi_pengajuan/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'proses_validasi_pengajuan']);
     Route::post('/proses_validasi_dokumen_peserta/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'proses_validasi_dokumen_peserta']);
     Route::post('/validasi_pengajuan_diklat', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'validasi_pengajuan_diklat']);
-
+    Route::post('/hapus_diklat_pengajuann/{id}', [App\Http\Controllers\halamanPengajuanDiklatController::class, 'hapus_diklat']);
 });
 
 

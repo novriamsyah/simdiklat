@@ -98,12 +98,13 @@
                                         </td>
                                         <td>
                                             {{-- @if ($dt->status == 2)
-                                            <a href="{{url('/edit_pengajuan_diklat_saya/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-dark btn-sm" style="display: inline-block; margin-top:8px"><i class=" dripicons-pencil"></i></button></a>
+                                            
                                             <a href="{{url('/detail_pengajuan_diklat/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px"><i class=" dripicons-preview"></i></button></a>
                                             <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>   
                                             @else --}}
                                             {{-- @endif --}}
                                             <a href="{{url('/detail_pengajuan_diklat/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px"><i class=" dripicons-preview"></i></button></a>
+                                            <a href="{{url('/edit_pengajuan_diklat_saya/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-warning btn-sm" style="display: inline-block; margin-top:8px"><i class=" dripicons-pencil"></i></button></a>
                                             <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>   
                                            
                                         </td>
