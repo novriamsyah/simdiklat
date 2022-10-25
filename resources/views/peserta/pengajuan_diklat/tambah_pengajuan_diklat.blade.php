@@ -39,7 +39,7 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="javascript: void(0);">Diklat Saya</a></li>
-                    <li class="breadcrumb-item active">Halaman Tambah Pengajuan Baru</li>
+                    <li class="breadcrumb-item active">Tambah Pengajuan Baru</li>
                 </ol>
             </div>
             <h4 class="page-title">Halaman Tambah Pengajuan Baru</h4>
@@ -80,7 +80,7 @@
                               <td >&nbsp;:</td>
                               <td data-title="mulai_pendaftaran" class="formulir-border" style="width: 85%; padding-left:0.8em">
                                 <div class="position-relative" id="datepicker4">
-                                  <input type="text" name="tanggal_daftar" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan Tanggal Pendaftaran">
+                                  <input type="text" name="tanggal_daftar" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" autocomplete="off"  placeholder="Masukan Tanggal Pendaftaran">
                               </div>
                               </td>
                           </tr>
@@ -90,9 +90,9 @@
                               <td data-title="tempat_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="tempat_diklat" type="text" class="form-control" id="tempat_diklat" placeholder="Masukan Tempat Diklat"></td>
                             </tr>
                             <tr>
-                              <td data-title="jp" style="width: 15%;">Lama Pembelajaran<span class="text-danger">*</span></td>
+                              <td data-title="jp" style="width: 15%;">Lama Pembelajaran <strong>(Hari)</strong><span class="text-danger">*</span></td>
                               <td >&nbsp;:</td>
-                              <td data-title="jp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jp" type="number" class="form-control" id="jp" placeholder="Masukan Lama Pembelajaran"></td>
+                              <td data-title="jp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jp" type="number" class="form-control" id="jp" placeholder="Masukan Lama Pembelajaran (Hari)"></td>
                             </tr>
                             <tr>
                               <td data-title="angkatan" style="width: 15%;">Angkatan<span class="text-danger">*</span></td>
@@ -107,23 +107,7 @@
                                       <input type="text" name="tahun" class="form-control" data-provide="datepicker" data-date-format="yyyy" data-date-min-view-mode="2" data-date-container="#datepicker6"  placeholder="Masukan Tahun">
                                     </div>
                                   </td>
-                            </tr>
-                              <tr>
-                                  <td data-title="sertifikat" style="width: 15%;">Upload Sertifikat<span class="text-danger">*</span></td>
-                                  <td >&nbsp;:</td>
-                                  <td data-title="sertifikat" class="formulir-border" style="width: 85%; padding-left:0.8em">
-                                      <div style="position: relative">
-                      
-                                          <label for="formFile4" class="new-button">Pilih File</label>
-                                          <input class="form-control" type="file" id="formFile4" name="sertifikat" accept=".pdf,.png,.jpg,jpeg">
-                                          <p style="word-break: break-word; border-bottom:1px solid #000"><span id="docKuasa"></span> </p>
-                                      </div>
-                                      @if ($errors->has('sertifikat'))
-                                        <span style='color: red;'>Perhatikan ekstensi file dan file tidak boleh kosong</span>
-                                    @endif
-                                  </td>
-                              </tr>
-                            
+                            </tr>                            
                         </tbody>
                   </table>
                     <table>
@@ -156,11 +140,6 @@ crossorigin="anonymous"
 <script src="{{ asset('assets/js/jquery.form-validator.min.js') }}"></script>
 
 <script>
-    $(function(){
-        $('input[name=sertifikat]').change(function(){
-            $('#docKuasa').html($(this).val() );
-        });
-    });
     @if ($message = Session::get('fail'))
     toastr.warning("{{ $message }}","Peringatan !!", {
         timeOut:5e3,
@@ -210,7 +189,6 @@ crossorigin="anonymous"
               tahun: "required",
               tempat_diklat: "required",
               tanggal_daftar: "required",
-              sertifikat: "required",
               id_jenis_diklat: "required",       
             },
             messages: {
@@ -220,7 +198,6 @@ crossorigin="anonymous"
               tahun: "<span style='color: red;'>Tahun diklat tidak boleh kosong</span>",
               tempat_diklat: "<span style='color: red;'>Tempat diklat tidak boleh kosong</span>",
               tanggal_daftar: "<span style='color: red;'>Tanggal pendaftaran diklat pengajuan tidak boleh kosong</span>",
-              sertifikat: "<span style='color: red;'>File sertifikat diklat tidak boleh kosong</span>",
               id_jenis_diklat: "<span style='color: red;'>Jenis diklat tidak boleh kosong</span>",
             },
             submitHandler: function(form) {

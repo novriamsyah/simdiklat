@@ -24,6 +24,7 @@ class CreatePesertaTable extends Migration
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('golongan')->nullable();
+            $table->string('nohp')->nullable();
             $table->string('jabatan')->nullable();
             $table->unsignedBigInteger('opd_id')->nullable();
             $table->foreign('opd_id')->references('id')->on('opd')->onDelete('cascade');

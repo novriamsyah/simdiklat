@@ -71,6 +71,7 @@ class halamanProfilController extends Controller
             ->update([
                 'jk' => $req->jk,
                 'alamat' => $req->alamat,
+                'nohp' => $req->nohp,
                 'tempat_lahir' => $req->tempat_lahir,
                 'tanggal_lahir'  => $tanggal_lahir,
                 'golongan' => $req->golongan,
@@ -120,6 +121,7 @@ class halamanProfilController extends Controller
                 'nip'=>$req->nip,
                 'jk' => $req->jk,
                 'alamat' => $req->alamat,
+                'nohp' => $req->nohp,
                 'tempat_lahir' => $req->tempat_lahir,
                 'tanggal_lahir'  => $tanggal_lahir,
                 'golongan' => $req->golongan,

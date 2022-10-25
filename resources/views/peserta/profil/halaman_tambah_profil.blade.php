@@ -107,6 +107,11 @@
                             <td data-title="alamat" class="formulir-border" style="width: 85%; padding-left:0.8em"><textarea class="form-control" id="example-textarea" name="alamat" id="alamat" rows="5"></textarea></td>
                           </tr>
                           <tr>
+                            <td data-title="nohp" style="width: 15%;">Nomor HP <i><strong>(WhatsApp)</strong></i><span class="text-danger">*</span></td>
+                            <td >&nbsp;:</td>
+                            <td data-title="nohp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="nohp" type="text" class="form-control" id="nohp"  placeholder="Masukan Nomor HP (WhatsApp)"></td>
+                          </tr>
+                          <tr>
                             <td data-title="opd" style="width: 15%;">OPD<span class="text-danger">*</span></td>
                             <td >&nbsp;:</td>
                             <td data-title="opd" class="formulir-border" style="width: 85%; padding-left:0.8em;">
@@ -206,6 +211,7 @@ crossorigin="anonymous"
               tempat_lahir: "required",
               tanggal_lahir: "required",
               jabatan: "required",
+              nohp: "required",
               golongan: "required",
               opd_id: "required",      
             },
@@ -217,6 +223,7 @@ crossorigin="anonymous"
               tempat_lahir: "<span style='color: red;'>Tempat lahir tidak boleh kosong</span>",
               tanggal_lahir: "<span style='color: red;'>Tanggal lahir tidak boleh kosong</span>",
               jabatan: "<span style='color: red;'>Jabatan tidak boleh kosong</span>",
+              nohp: "<span style='color: red;'>Nomor HP tidak boleh kosong</span>",
               golongan: "<span style='color: red;'>Golongan tidak boleh kosong</span>",
               opd_id: "<span style='color: red;'>OPD tidak boleh kosong</span>",
             },

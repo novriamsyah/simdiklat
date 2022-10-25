@@ -210,8 +210,6 @@ class halamanDaftarDiklatController extends Controller
         }
     }
 
-    
-
     public function get_upload_sertifikat($id)
     {
         // $datas = DaftarDiklat::find($id);

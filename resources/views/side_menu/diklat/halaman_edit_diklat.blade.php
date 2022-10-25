@@ -60,7 +60,7 @@
                         <td data-title="tempat_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="tempat_diklat" type="text" value="{{$datas->tempat_diklat}}" class="form-control" id="tempat_diklat" placeholder="Masukan tempat diklat"></td>
                       </tr>
                       <tr>
-                        <td data-title="jp" style="width: 15%;">Lama Pembelajaran<span class="text-danger">*</span></td>
+                        <td data-title="jp" style="width: 15%;">Lama Pembelajaran <strong>(Hari)</strong><span class="text-danger">*</span></td>
                         <td >&nbsp;:</td>
                         <td data-title="jp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jp" type="number" value="{{$datas->jp}}" class="form-control" id="jp" placeholder="Masukan lama pembelajaran"></td>
                       </tr>

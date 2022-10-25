@@ -36,6 +36,8 @@
 
                   <p class="text-muted mb-2 font-13"><strong>Email :</strong><span class="ms-2">{{$data->email}}</span></p>
 
+                  <p class="text-muted mb-2 font-13"><strong>No. HP :</strong><span class="ms-2">{{$data->nohp}}</span></p>
+
                   <p class="text-muted mb-2 font-13"><strong>Jabatan :</strong> <span class="ms-2 ">{{$data->jabatan}}</span></p>
 
                   <p class="text-muted mb-2 font-13"><strong>OPD :</strong> <span class="ms-2 ">{{$opddd->opd}}</span></p>

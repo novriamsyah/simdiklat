@@ -94,18 +94,20 @@
                                 </a>
                                 <div class="collapse" id="sidebarForms">
                                     <ul class="side-nav-second-level">
+                                        
                                         <li>
-                                            <a href="{{url('/halaman_opd')}}">OPD</a>
+                                            <a href="{{url('/halaman_jenis_diklat')}}">JENIS DIKLAT</a>
                                         </li>
                                         <li>
-                                            <a href="{{url('/halaman_diklat')}}">DIKLAT</a>
+                                            <a href="{{url('/halaman_opd')}}">OPD</a>
                                         </li>
                                         <li>
                                             <a href="{{url('/halaman_dokumen')}}">DOKUMEN</a>
                                         </li>
                                         <li>
-                                            <a href="{{url('/halaman_jenis_diklat')}}">JENIS DIKLAT</a>
+                                            <a href="{{url('/halaman_diklat')}}">DIKLAT</a>
                                         </li>
+                                       
                                     </ul>
                                 </div>
                             </li>

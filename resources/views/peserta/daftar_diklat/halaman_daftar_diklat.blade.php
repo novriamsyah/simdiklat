@@ -49,10 +49,12 @@
                                         <td>{{$num}}.</td>
                                         <td>{{$dt->nama_diklat}}</td>
                                         <td>
-                                            @if ($dt->sertifikat == null || $dt->sertifikat == '')
+                                            @if ($dt->sertifikat == null && $dt->status != '0')
                                             <a class="action-icon"><button type="button" class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#centermodal" data-lihat="{{$dt->id}}" id="upl_sertif" style="display: inline-block; margin-top:8px;"><i class="dripicons-upload"></i><span style="color: blue"> Upload Sertifikat</span></button></a> 
-                                            @else
+                                            @elseif ($dt->sertifikat != null && $dt->status != '0')
                                             <a class="action-icon"><button type="button" class="btn btn-link btn-sm lihat_sertif_daftar" data-bs-toggle="modal" data-bs-target="#full-width-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i><span style="color: blue"> Lihat Sertifikat</span></button></a>
+                                            @else
+                                            <i><strong>Diklat Sedang Diproses</strong></i>
                                             @endif
                                             
                                         </td>
@@ -61,7 +63,6 @@
                                             @php
                                                 $doc_diklat = \App\Models\DokumenDaftar::where('id_daftar_diklat', $dt->id)->count();
                                             @endphp
-
                                             @if ($doc_diklat > 0 && $dt->status != 0)
                                              <strong><i>Diklat telah diverifikasi</i></strong>
                                             @elseif($doc_diklat > 0 && $dt->status == 0)

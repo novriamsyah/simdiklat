@@ -99,18 +99,12 @@ class halamanAjuDiklatController extends Controller
 
     public function simpan_pengajuan_diklat(Request $req)
     {
-            $this->validate($req, [
-                'sertifikat' => 'required|file|mimes:pdf,png,jpg,jpeg',
-            ]);
+            
 
             // dd($req->all());
 
             $cek_nip = session()->get('nip');
             $status_default = "0";
-
-            $file_doc1 = $req->file('sertifikat');
-            // dd($file_doc1);
-            $file_doc1->storeAs('public/dokumen_pengajuan', $file_doc1->hashName());
 
             $dt_pengajuan_diklat = new PengajuanDiklat;
             $dt_pengajuan_diklat->nama_diklat = $req->nama_diklat;
@@ -121,7 +115,6 @@ class halamanAjuDiklatController extends Controller
             $dt_pengajuan_diklat->tahun = $req->tahun;
             $dt_pengajuan_diklat->nip_peserta = $cek_nip;
             $dt_pengajuan_diklat->status = $status_default;
-            $dt_pengajuan_diklat->sertifikat = $file_doc1->hashName();
             $dt_pengajuan_diklat->tanggal_daftar = Carbon::createFromFormat('m/d/Y',$req->tanggal_daftar)->format('Y-m-d');
             $simpan = $dt_pengajuan_diklat->save();
             
@@ -147,55 +140,77 @@ class halamanAjuDiklatController extends Controller
 
     public function ubah_pengajuan_diklat_saya(Request $req, $id)
     {
-        $this->validate($req, [
-            'sertifikat' => 'file|mimes:pdf,png,jpg,jpeg',
-        ]);
-
+        
         $dt_sertif = PengajuanDiklat::find($id);
         $cek_nip = session()->get('nip');
         $status_default = "0";
 
-        if($req->file('sertifikat') == "")
-        {
-            $dt_sertif->update([
-                'nama_diklat' => $req->nama_diklat,
-                'tempat_diklat' => $req->tempat_diklat,
-                'jp' => $req->jp,
-                'id_jenis_diklat' => $req->id_jenis_diklat,
-                'angkatan' => $req->angkatan,
-                'tahun' => $req->tahun,
-                'nip_peserta' => $cek_nip,
-                'status' => $status_default,
-                'tanggal_daftar' => Carbon::createFromFormat('m/d/Y',$req->tanggal_daftar)->format('Y-m-d'),
-            ]);
+        $dt_sertif->update([
+            'nama_diklat' => $req->nama_diklat,
+            'tempat_diklat' => $req->tempat_diklat,
+            'jp' => $req->jp,
+            'id_jenis_diklat' => $req->id_jenis_diklat,
+            'angkatan' => $req->angkatan,
+            'tahun' => $req->tahun,
+            'nip_peserta' => $cek_nip,
+            'status' => $status_default,
+            'tanggal_daftar' => Carbon::createFromFormat('m/d/Y',$req->tanggal_daftar)->format('Y-m-d'),
+        ]);
+
+        if($dt_sertif) {
+            Session::flash('diubah', 'Data pengajuan diklat berhasil diubah');
+            return redirect('/halaman_pengajuan_diklat');
         } else {
-            Storage::disk('local')->delete('public/dokumen_pengajuan/'.$dt_sertif->sertifikat);
-
-            $file_doc = $req->file('sertifikat');
-            $file_doc->storeAs('public/dokumen_pengajuan', $file_doc->hashName());
-            $dt_sertif->update([
-                'nama_diklat' => $req->nama_diklat,
-                'tempat_diklat' => $req->tempat_diklat,
-                'jp' => $req->jp,
-                'id_jenis_diklat' => $req->id_jenis_diklat,
-                'angkatan' => $req->angkatan,
-                'tahun' => $req->tahun,
-                'nip_peserta' => $cek_nip,
-                'status' => $status_default,
-                'tanggal_daftar' => Carbon::createFromFormat('m/d/Y',$req->tanggal_daftar)->format('Y-m-d'),
-                'sertifikat'  => $file_doc->hashName(),
-            ]);
-        }
-            if($dt_sertif) {
-                Session::flash('diubah', 'Data pengajuan diklat berhasil diubah');
-                return redirect('/halaman_pengajuan_diklat');
-
-            } else {
-                Session::flash('gagal', 'Data pengajuan diklat gagal diubah');
-                return redirect()->back();
-            } 
+            Session::flash('gagal', 'Data pengajuan diklat gagal diubah');
+            return redirect()->back();
+        } 
 
         
+    }
+
+    public function get_upload_sertifikat($id)
+    {
+        // $datas = DaftarDiklat::find($id);
+        $datas =  PengajuanDiklat::find($id);
+        //return response
+        return response()->json([
+            'success' => true,
+            'data'    => $datas  
+        ]); 
+    }
+
+    public function upload_sertifikat(Request $request, $id)
+    {
+        // $validator = Validator::make($request->all(), [
+        //     'status'     => 'required',
+        // ]);
+        $fileName = '';
+        $datas = PengajuanDiklat::find($id);
+
+        if($request->hasFile('sertifikat')) 
+        {
+            $file = $request->file('sertifikat');
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            $file->storeAs('public/sertifikat', $fileName);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data sertifikat gagal disimpan'
+            ]);
+        }
+
+        //create post
+        $datas->update([
+            'sertifikat' => $fileName
+        ]);
+
+        //return response
+        return response()->json([
+            'success' => true,
+            'message' => 'Data sertifikat berhasil disimpan',
+            'data'    => $datas,
+            'fileName'   => $fileName
+        ]);
     }
 
     public function upl_pengajuan_doc($id)

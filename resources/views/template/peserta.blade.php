@@ -109,6 +109,27 @@
                                     <span> PROFIL </span>
                                 </a>
                             </li>
+                            <li class="side-nav-item">
+                                <a data-bs-toggle="collapse" href="#sidebarTables" aria-expanded="false" aria-controls="sidebarTables" class="side-nav-link">
+                                    <i class="uil-phone-volume"></i>
+                                    <span> KONTAK ADMIN </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarTables">
+                                    <ul class="side-nav-second-level">
+                                        <li>
+                                            <a href="#"><strong>-</strong> KABID PENGEMBANGAN <br> KOMPETANSI APARATUR: <br>
+                                                LISBETH,S.KEP.,M.M <br>
+                                                085267071223</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><strong>-</strong> ADMIN SI-DISEL <br>
+                                                EKA FITRI PURNAMASARI, S.IP <br>
+                                                081271316757</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
                     </ul>
                     @else
                     <!--- Sidemenu -->
@@ -153,6 +174,27 @@
                                     <i class="uil-user"></i>
                                     <span> PROFIL </span>
                                 </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a data-bs-toggle="collapse" href="#sidebarTables" aria-expanded="false" aria-controls="sidebarTables" class="side-nav-link">
+                                    <i class="uil-phone-volume"></i>
+                                    <span> KONTAK ADMIN </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarTables">
+                                    <ul class="side-nav-second-level">
+                                        <li>
+                                            <a href="javascript:void(0)" style="color: #ffffff"><strong>-</strong> KABID PENGEMBANGAN <br> KOMPETANSI APARATUR: <br>
+                                                LISBETH,S.KEP.,M.M <br>
+                                                085267071223</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" style="color: #ffffff"><strong>-</strong> ADMIN SI-DISEL <br>
+                                                EKA FITRI PURNAMASARI, S.IP <br>
+                                                081271316757</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                     </ul>
                             

@@ -19,7 +19,7 @@ class CreatePengajuanDiklatTable extends Migration
             $table->integer('jp');
             $table->integer('angkatan');
             $table->string('tempat_diklat');
-            $table->string('sertifikat');
+            $table->string('sertifikat')->nullable();
             $table->year('tahun');
             $table->enum('status', ['0', '1', '2']);
             $table->string('catatan')->nullable();

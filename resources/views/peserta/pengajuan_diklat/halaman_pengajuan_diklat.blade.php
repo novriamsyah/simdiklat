@@ -5,27 +5,6 @@
 <link rel="stylesheet" href="{{asset('assets/vendor/toastr/css/toastr.min.css')}}">
 <link href="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 
-<style>
-    .new-button {
-        display: inline-block;
-        padding: 8px 12px; 
-        cursor: pointer;
-        border-radius: 4px;
-        background-color: #2f5063;
-        font-size: 14px;
-        color: #fff;
-        height:40px;
-        }
-
-        input[type="file"] {
-            position: absolute;
-            z-index: -1;
-            top: 6px;
-            left: 0;
-            font-size: 15px;
-            
-        }
-</style>
 @endsection
 @section('content')
 <div class="row">
@@ -67,10 +46,18 @@
                                     <?php $num = 1 ?>
                                     @foreach ($datas as $dt)
                                     <tr> 
-                                        
                                         <td>{{$num}}.</td>
                                         <td>{{$dt->nama_diklat}}</td>
-                                        <td><a><button type="button" class="btn btn-link lihat_pengajuan" data-bs-toggle="modal" data-bs-target="#full-width-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i><span style="color: blue"> <u>Lihat sertifikat</u></span></button></a></td>
+                                        <td>
+                                            @if ($dt->sertifikat == null && $dt->status != '0')
+                                                <a class="action-icon"><button type="button" class="btn btn-link btn-sm" data-bs-toggle="modal" data-bs-target="#centermodal" data-lihat="{{$dt->id}}" id="upl_sertif_aju" style="display: inline-block; margin-top:8px;"><i class="dripicons-upload"></i><span style="color: blue"> Upload Sertifikat</span></button></a> 
+                                            @elseif ($dt->sertifikat != null && $dt->status != '0')
+                                                <a class="action-icon"><button type="button" class="btn btn-link btn-sm lihat_pengajuan" data-bs-toggle="modal" data-bs-target="#full-width-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i><span style="color: blue"> Lihat Sertifikat</span></button></a>
+                                            @else
+                                                <i><strong>Diklat Sedang Diproses</strong></i>
+                                            @endif
+                                            
+                                        </td>
                                         <td>{{date('d M Y', strtotime($dt->tanggal_daftar))}}</td>
                                         <td>
                                             @php
@@ -121,6 +108,30 @@
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
+<div class="modal fade" id="centermodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myCenterModalLabel">Upload Serifikat</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <form action="#" method="POST" id="form_sertifikat_aju" enctype="multipart/form-data">
+                @csrf
+            <div class="modal-body">
+                    <input type="hidden" id="pengajuan_id">
+                    <div class="mb-3" id="file_sertifikat_aju">
+                        <label for="file_sertifikat_aju" class="form-label">Upload Sertifikat</label>
+                        <input type="file" name="sertifikat" class="form-control" id="file_sertifikat_aju">
+                    </div>
+                    <div class="mb-3 text-left">
+                        <button class="btn btn-primary" type="submit" id="simpan_sertif_aju">Simpan</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                    </div>
+            </div>
+        </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <div id="full-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="fullWidthModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-full-width">
         <div class="modal-content">
@@ -205,6 +216,49 @@ crossorigin="anonymous"
         });
     });
 
+    $(document).on('click', '#upl_sertif_aju', function(e) {
+        e.preventDefault();
+        var id = $(this).attr('data-lihat');
+        $.ajax({
+            url: "{{ url('/get_sertifikat_ajuan') }}/" + id,
+            method: "GET",
+            data: {
+                id: id,
+                _token: '{{ csrf_token() }}'
+            },
+            success:function(response) {
+                $('#pengajuan_id').val(response.data.id);
+            }
+        });
+    }); 
+    $('#form_sertifikat_aju').submit(function(e) {
+        e.preventDefault();
+
+        //define variable
+        let id        = $('#pengajuan_id').val();  
+        let dt_form   = new FormData(this);
+        $('#simpan_sertif_aju').text('Proses...');
+        $.ajax({
+            url: "{{ url('/upload_sertifikat_ajuan') }}/" + id,
+            method: "POST",
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            data: dt_form,
+            success:function(response) {
+            if (response.success === true) { 
+                swal("Done!", response.message, "success");
+            } else {
+                swal("Error!", response.message, "error");
+            }
+                $("#form_sertifikat_aju")[0].reset();
+                $('#centermodal').modal('hide');
+                location.reload();
+            }
+        });
+    });
+
     $(document).on('click', '.lihat_pengajuan', function(e) {
         e.preventDefault();
         var id = $(this).attr('data-lihat');
@@ -213,7 +267,7 @@ crossorigin="anonymous"
             method: "GET",
             success:function(response) {
                 var linkUrl = response.sertifikat;
-                var lihat =  $('.lihat_pengajuann').attr('src', "{{Storage::url('public/dokumen_pengajuan')}}/"+linkUrl);
+                var lihat =  $('.lihat_pengajuann').attr('src', "{{Storage::url('public/sertifikat')}}/"+linkUrl);
 
             }
         })

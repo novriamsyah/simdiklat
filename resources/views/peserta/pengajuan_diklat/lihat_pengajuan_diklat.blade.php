@@ -81,9 +81,9 @@
                         <td data-title="tempat_diklat" id="tempat_diklat" class="formulir-border" style="width: 75%; padding-left:0.8em;">{{$datas->tempat_diklat}}</td>
                       </tr>
                       <tr>
-                        <td data-title="jp" style="width: 25%;">Lama Pembelajaran</td>
+                        <td data-title="jp" style="width: 25%;">Lama Pembelajaran (Hari)</td>
                         <td >&nbsp;:</td>
-                        <td data-title="jp" id="jp" class="formulir-border" style="width: 75%; padding-left:0.8em">{{$datas->jp}}</td>
+                        <td data-title="jp" id="jp" class="formulir-border" style="width: 75%; padding-left:0.8em">{{$datas->jp}} &nbsp;Hari</td>
                       </tr>
                       <tr>
                         <td data-title="jp" style="width: 25%;">Tahun</td>

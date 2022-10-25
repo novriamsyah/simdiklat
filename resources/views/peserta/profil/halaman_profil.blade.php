@@ -122,6 +122,11 @@
                               <td data-title="alamat" class="formulir-border" style="width: 77%; padding-left:0.8em">{{$datas->alamat}}</td>
                             </tr>
                             <tr>
+                                <td data-title="nohp" style="width: 23%;">Nomor HP <i><strong>(WhatsApp)</strong></i></td>
+                                <td >&nbsp;:</td>
+                                <td data-title="nohp" class="formulir-border" style="width: 77%; padding-left:0.8em">{{$datas->nohp}}</td>
+                              </tr>
+                            <tr>
                               <td data-title="opd" style="width: 23%;">OPD</td>
                               <td >&nbsp;:</td>
                               <td data-title="opd" class="formulir-border" style="width: 77%; padding-left:0.8em;">

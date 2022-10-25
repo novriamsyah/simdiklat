@@ -30,6 +30,7 @@ class Peserta extends Authenticatable
         'role',
         'tempat_lahir',
         'tanggal_lahir',
+        'nohp',
         'golongan',
         'jabatan',
         'opd_id',

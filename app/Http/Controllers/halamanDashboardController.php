@@ -26,17 +26,33 @@ class halamanDashboardController extends Controller
             ->orderBy('diklat.created_at','desc')
             ->get();
 
-            $ct_diklat1 = Db::table('daftar_diklat')->count();
-            $ct_diklat2 = Db::table('pengajuan_diklat')->count();
+            $ct_diklat1 = Db::table('daftar_diklat')
+                            ->where('nip_peserta', $cek_nip)
+                            ->count();
+            $ct_diklat2 = Db::table('pengajuan_diklat')
+                            ->where('nip_peserta', $cek_nip)
+                            ->count();
 
-            $ct_sukses_diklat_1 = DaftarDiklat::where('status','=','1')->count();
-            $ct_sukses_diklat_2 = PengajuanDiklat::where('status','=','1')->count();
+            $ct_sukses_diklat_1 = DaftarDiklat::where('status','=','1')
+                                    ->where('nip_peserta', $cek_nip)
+                                    ->count();
+            $ct_sukses_diklat_2 = PengajuanDiklat::where('status','=','1')
+                                    ->where('nip_peserta', $cek_nip)
+                                    ->count();
 
-            $ct_tolak_diklat_1 = DaftarDiklat::where('status','=','2')->count();
-            $ct_tolak_diklat_2 = PengajuanDiklat::where('status','=','2')->count();
+            $ct_tolak_diklat_1 = DaftarDiklat::where('status','=','2')
+                                    ->where('nip_peserta', $cek_nip)
+                                    ->count();
+            $ct_tolak_diklat_2 = PengajuanDiklat::where('status','=','2')
+                                    ->where('nip_peserta', $cek_nip)
+                                    ->count();
 
-            $ct_tunggu_diklat_1 = DaftarDiklat::where('status','=','0')->count();
-            $ct_tunggu_diklat_2 = PengajuanDiklat::where('status','=','0')->count();
+            $ct_tunggu_diklat_1 = DaftarDiklat::where('status','=','0')
+                                    ->where('nip_peserta', $cek_nip)
+                                    ->count();
+            $ct_tunggu_diklat_2 = PengajuanDiklat::where('status','=','0')
+                                    ->where('nip_peserta', $cek_nip)
+                                    ->count();
 
             $ct_total_diklat =  $ct_diklat1 +  $ct_diklat2;
             $ct_total_sukses = $ct_sukses_diklat_1 + $ct_sukses_diklat_2;

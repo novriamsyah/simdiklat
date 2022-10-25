@@ -11,7 +11,6 @@
         .select2-container {
           /* border: 1px solid rgb(161, 161, 161); */
         }
-
         .new-button {
         display: inline-block;
         padding: 8px 12px; 
@@ -90,9 +89,9 @@
                               <td data-title="tempat_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="tempat_diklat" type="text" class="form-control" value="{{$data->tempat_diklat}}" id="tempat_diklat" placeholder="Masukan tempat diklat"></td>
                             </tr>
                             <tr>
-                              <td data-title="jp" style="width: 15%;">Lama Pembelajaran<span class="text-danger">*</span></td>
+                              <td data-title="jp" style="width: 15%;">Lama Pembelajaran <strong>(Hari)</strong><span class="text-danger">*</span></td>
                               <td >&nbsp;:</td>
-                              <td data-title="jp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jp" type="number" class="form-control" id="jp" value="{{$data->jp}}" placeholder="Masukan lama pembelajaran"></td>
+                              <td data-title="jp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jp" type="number" class="form-control" id="jp" value="{{$data->jp}}" placeholder="Masukan lama pembelajaran (Hari)"></td>
                             </tr>
                             <tr>
                               <td data-title="angkatan" style="width: 15%;">Angkatan<span class="text-danger">*</span></td>
@@ -108,21 +107,6 @@
                                     </div>
                                   </td>
                             </tr>
-                              <tr>
-                                  <td data-title="sertifikat" style="width: 15%;">Upload Sertifikat<span class="text-danger">*</span></td>
-                                  <td >&nbsp;:</td>
-                                  <td data-title="sertifikat" class="formulir-border" style="width: 85%; padding-left:0.8em">
-                                      <div style="position: relative">
-                                          <label for="formFile4" class="new-button">Pilih File</label>
-                                          <input class="form-control" value="{{$data->sertifikat}}" type="file" id="formFile4" name="sertifikat" accept=".pdf,.png,.jpg,jpeg">
-                                          <p style="word-break: break-word; border-bottom:1px solid #000"><span id="docKuasa"></span>{{$data->sertifikat}} </p>
-                                      </div>
-                                      @if ($errors->has('sertifikat'))
-                                        <span style='color: red;'>Perhatikan ekstensi file</span>
-                                    @endif
-                                  </td>
-                              </tr>
-                            
                         </tbody>
                   </table>
                     <table>
@@ -155,11 +139,6 @@ crossorigin="anonymous"
 <script src="{{ asset('assets/js/jquery.form-validator.min.js') }}"></script>
 
 <script>
-    $(function(){
-        $('input[name=sertifikat]').change(function(){
-            $('#docKuasa').html($(this).val() );
-        });
-    });
     @if ($message = Session::get('fail'))
     toastr.warning("{{ $message }}","Peringatan !!", {
         timeOut:5e3,

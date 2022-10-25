@@ -67,7 +67,7 @@
                         <td data-title="tempat_diklat" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="tempat_diklat" type="text" class="form-control" id="tempat_diklat" placeholder="Masukan Tempat Diklat"></td>
                       </tr>
                       <tr>
-                        <td data-title="jp" style="width: 15%;">Lama Pembelajaran<span class="text-danger">*</span></td>
+                        <td data-title="jp" style="width: 15%;">Lama Pembelajaran <strong>(Hari)</strong><span class="text-danger">*</span></td>
                         <td >&nbsp;:</td>
                         <td data-title="jp" class="formulir-border" style="width: 85%; padding-left:0.8em"><input name="jp" type="number" class="form-control" id="jp" placeholder="Masukan Lama Pembelajaran"></td>
                       </tr>
@@ -76,7 +76,7 @@
                         <td >&nbsp;:</td>
                         <td data-title="mulai_pendaftaran" class="formulir-border" style="width: 85%; padding-left:0.8em">
                           <div class="position-relative" id="datepicker4">
-                            <input type="text" name="mulai_pendaftaran" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan Mulai Pendaftaran">
+                            <input type="text" name="mulai_pendaftaran" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" autocomplete="off"  placeholder="Masukan Mulai Pendaftaran">
                         </div>
                         </td>
                       </tr>
@@ -85,7 +85,7 @@
                         <td >&nbsp;:</td>
                         <td data-title="selesai_pendaftaran" class="formulir-border" style="width: 85%; padding-left:0.8em">
                           <div class="position-relative" id="datepicker4">
-                            <input type="text" name="selesai_pendaftaran" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" placeholder="Masukan Selesai Pendaftaran">
+                            <input type="text" name="selesai_pendaftaran" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" autocomplete="off" placeholder="Masukan Selesai Pendaftaran">
                         </div>
                         </td>
                       </tr>
@@ -94,7 +94,7 @@
                         <td >&nbsp;:</td>
                         <td data-title="mulai_pelaksanaan" class="formulir-border" style="width: 85%; padding-left:0.8em">
                           <div class="position-relative" id="datepicker4">
-                            <input type="text" name="mulai_pelakasanaan" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4"  placeholder="Masukan Mulai Pelaksanaan">
+                            <input type="text" name="mulai_pelakasanaan" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" autocomplete="off" placeholder="Masukan Mulai Pelaksanaan">
                         </div>
                         </td>
                       </tr>
@@ -103,7 +103,7 @@
                         <td >&nbsp;:</td>
                         <td data-title="selesai_pelaksanaan" class="formulir-border" style="width: 85%; padding-left:0.8em">
                           <div class="position-relative" id="datepicker4">
-                            <input type="text" name="selesai_pelakasanaan" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" placeholder="Masukan Selesai Pelaksanaan">
+                            <input type="text" name="selesai_pelakasanaan" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" autocomplete="off" placeholder="Masukan Selesai Pelaksanaan">
                         </div>
                         </td>
                       </tr>
@@ -112,7 +112,7 @@
                         <td >&nbsp;:</td>
                         <td data-title="batas_upload" class="formulir-border" style="width: 85%; padding-left:0.8em">
                           <div class="position-relative" id="datepicker4">
-                            <input type="text" name="batas_upload" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" placeholder="Masukan Batas Upload">
+                            <input type="text" name="batas_upload" class="form-control" data-provide="datepicker" data-date-autoclose="true" data-date-container="#datepicker4" autocomplete="off" placeholder="Masukan Batas Upload">
                         </div>
                         </td>
                       </tr>

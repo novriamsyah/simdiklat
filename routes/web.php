@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth', 'cekrole:Admin,Operator,Peserta']], funct
 
     //index
     Route::get('/admin', [App\Http\Controllers\halamanAdminController::class, 'admin']);
+    Route::post('/pdf_laporan_diklat', [App\Http\Controllers\halamanAdminController::class, 'pdf_laporan_diklat']);
     //kelola profil
     Route::get('/kelola_profil', [App\Http\Controllers\halamanUserController::class, 'kelola_profil']);
     Route::post('/update_profil', [App\Http\Controllers\halamanUserController::class, 'update_profil']);
@@ -174,6 +175,8 @@ Route::get('/tambah_pengajuan_diklat', [App\Http\Controllers\Peserta\halamanAjuD
 Route::post('/simpan_pengajuan_diklat', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'simpan_pengajuan_diklat']);
 Route::get('/edit_pengajuan_diklat_saya/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'edit_pengajuan_diklat_saya']);
 Route::post('/ubah_pengajuan_diklat_saya/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'ubah_pengajuan_diklat_saya']);
+Route::get('/get_sertifikat_ajuan/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'get_upload_sertifikat']);
+Route::post('/upload_sertifikat_ajuan/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'upload_sertifikat']);
 Route::get('/upl_pengajuan_doc/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'upl_pengajuan_doc']);
 Route::post('/proses/upl_pengajuan_doc/', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'proses_upl_pengajuan_doc'])->name('upl_pengajuan_doc');
 Route::get('/lihat_catatan_pengajuan/{id}', [App\Http\Controllers\Peserta\halamanAjuDiklatController::class, 'lihat_catatan_pengajuan']);

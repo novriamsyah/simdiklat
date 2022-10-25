@@ -51,7 +51,12 @@
                                             {{$dt->nama_diklat}}
                                         </td>
                                         <td>
+                                            @if ($dt->sertifikat == null)
+                                            <strong><i>Peserta Belum Upload</i></strong>
+                                            @else
                                             <a class="action-icon"><button type="button" class="btn btn-link btn-sm lihat_pengajuan_adm" data-bs-toggle="modal" data-bs-target="#full-width-modal" data-lihat="{{$dt->id}}" style="display: inline-block; margin-top:8px"><i class="dripicons-preview"></i><span style="color: blue"> Lihat Sertifikat</span></button></a>
+                                            @endif
+                                            
                                         </td>
                                         <td>{{date('d M Y', strtotime($dt->tanggal_daftar))}}</td>
                                         <td>

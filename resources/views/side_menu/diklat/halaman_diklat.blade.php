@@ -144,7 +144,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -215,7 +215,7 @@ crossorigin="anonymous"
             method: "GET",
             success:function(response) {
                 $('#nama_diklat').html(response.lihat_diklat.nama_diklat);
-                $('#jp').html(response.lihat_diklat.jp);
+                $('#jp').html(response.lihat_diklat.jp + " Hari");
                 $('#tempat_diklat').html(response.lihat_diklat.tempat_diklat);
                 $('#angkatan').html(response.lihat_diklat.angkatan);
                 $('#tahun').html(response.lihat_diklat.tahun);
