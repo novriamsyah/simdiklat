@@ -302,7 +302,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6">
-                                <script>document.write(new Date().getFullYear())</script> © credential
+                                <script>document.write(new Date().getFullYear())</script> © BPKSDMD Kabupaten Bangka Selatan
                             </div>
                            
                         </div>
