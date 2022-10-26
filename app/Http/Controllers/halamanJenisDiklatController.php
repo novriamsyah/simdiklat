@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\JenisDiklat;
 
-class halamanJenisDiklatController extends Controller
+class HalamanJenisDiklatController extends Controller
 {
     public function halaman_jenis_diklat()
     {

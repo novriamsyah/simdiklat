@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\PengajuanDiklat;
 use App\Models\DokumenPengajuan;
 
-class halamanPengajuanDiklatController extends Controller
+class HalamanPengajuanDiklatController extends Controller
 {
     public function halaman_pengajuan_diklat()
     {

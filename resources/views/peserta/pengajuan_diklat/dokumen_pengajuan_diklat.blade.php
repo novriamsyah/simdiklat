@@ -43,17 +43,15 @@
                       <input type="hidden" name="id_pengajuans[]" value="{{$id_aju}}">
                       <input type="hidden" name="nm_dokumens[]" value="{{$item->master_dokumen}}">
                             <tr>
-                                <td data-title="dokumen" style="width: 15%;">{{$item->master_dokumen}}</td>
-                                <td >&nbsp;:</td>
-                                <td data-title="dokumen" class="formulir-border" style="width: 85%; padding-left:0.8em">
+                                <td data-title="dokumen" class="formulir-border" style="width: 100%; padding-left:0.8em">
+                                    {{$item->master_dokumen}}
+                                    <br/>
                                     <input type="file" name="dokumens[]" id="dokumen" class="form-control">
                                 </td>
                             </tr>
                         <input type="hidden" name="ceks[]" value="{{$status}}">
                       @endforeach                     
                       <tr>
-                        <td style="width: 15%;"></td>
-                        <td >&nbsp;</td>
                         <td class="formulir-border" style="width: 85%; padding-left:0.8em"><button type="submit" class="btn btn-success" style="width: 100%">Upload</button></td>
                       </tr>
                     </tbody>

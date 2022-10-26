@@ -15,7 +15,7 @@ use App\Models\Dokumen;
 use App\Models\DokumenDaftar;
 
 
-class halamanDaftarDiklatController extends Controller
+class HalamanDaftarDiklatController extends Controller
 {
     public function halaman_daftar_diklat()
     {

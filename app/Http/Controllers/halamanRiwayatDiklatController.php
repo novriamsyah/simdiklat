@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\DaftarDiklat;
 
 
-class halamanRiwayatDiklatController extends Controller
+class HalamanRiwayatDiklatController extends Controller
 {
     
 

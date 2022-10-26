@@ -11,7 +11,7 @@ use App\Models\Peserta;
 use App\Models\Diklat;
 use App\Models\DaftarDiklat;
 
-class halamanDashboardController extends Controller
+class HalamanDashboardController extends Controller
 {
     public function index()
     {

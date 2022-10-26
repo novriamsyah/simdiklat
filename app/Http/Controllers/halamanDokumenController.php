@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Dokumen;
 
-class halamanDokumenController extends Controller
+class HalamanDokumenController extends Controller
 {
     public function halaman_dokumen()
     {
