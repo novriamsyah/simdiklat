@@ -77,13 +77,13 @@
           
         $(function() {
           $("form[name='form_doc_aju_diklat']").validate({
-            rules: {
-                "dokumens[]": "required",     
-            },
-            messages: {
-                "dokumens[]": "<span style='color: red;'><strong>Semua</strong> file dokumen tidak boleh kosong</span>",
+            // rules: {
+            //     "dokumens[]": "required",     
+            // },
+            // messages: {
+            //     "dokumens[]": "<span style='color: red;'><strong>Semua</strong> file dokumen tidak boleh kosong</span>",
               
-            },
+            // },
             submitHandler: function(form) {
               form.submit();
             }
