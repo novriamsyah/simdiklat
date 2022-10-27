@@ -102,7 +102,7 @@
              <form action="{{ url('/pdf_laporan_diklat') }}" class="filter_form" target="_blank" method="POST">
                 @csrf
                 <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-xl-5">
                         <h5 class="mb-2">Filter Diklat Menurut Jenis Diklat</h5>
                         <select class="form-control select2" name="id_jenis_diklat" id="jenis_diklat" data-toggle="select2" style="border: 1px solid rgb(161, 161, 161);">
                             <option value="0">Semua Jenis Diklat</option>
@@ -111,9 +111,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-xl-12">
+                    <div class="col-xl-5">
                         <h5 class="mb-3">Filter Diklat Menurut Tanggal</h5>
                         <div class="d-flex">
                             <div class="form-check text-center">
@@ -128,9 +126,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mt-4">
                     <div class="col-xl-2">
+                        <h5 class="mb-3">&nbsp;</h5>
                         <button type="button" class="btn btn-danger" id="sub_filter"><i class="mdi mdi-file-pdf me-1"></i> <span>Ekspor PDF</span> </button>
                     </div>
                 </div>

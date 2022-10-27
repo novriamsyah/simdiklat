@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class halamanDashboardPesertaController extends Controller
+class HalamanDashboardPesertaController extends Controller
 {
     
     public function dashboard_peserta()

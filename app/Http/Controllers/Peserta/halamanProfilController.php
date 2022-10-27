@@ -13,7 +13,7 @@ use App\Models\User;
 use App\Models\Peserta;
 
 
-class halamanProfilController extends Controller
+class HalamanProfilController extends Controller
 {
     public function profil_saya()
     {

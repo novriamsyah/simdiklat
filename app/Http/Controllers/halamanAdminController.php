@@ -10,7 +10,7 @@ use App\Models\JenisDiklat;
 use App\Models\PengajuanDiklat;
 use App\Models\DaftarDiklat;
 
-class halamanAdminController extends Controller
+class HalamanAdminController extends Controller
 {
     public function admin()
     {

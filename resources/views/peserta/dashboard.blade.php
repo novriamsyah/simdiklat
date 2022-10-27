@@ -162,7 +162,7 @@
                         <div class="table-responsive-sm">
                             <div class="text-center">
                                 <i class="dripicons-warning h1 text-warning"></i>
-                                <h4 class="mt-2">Perthatian !!!</h4>
+                                <h4 class="mt-2">Perhatian !!!</h4>
                                 <p class="mt-3">Lengkapi profil kamu terlebih dahulu agar kamu bisa melakukan pengajuan dan pendaftaran diklat</p>
                                 <a href="{{url('/halaman_tambah_profil')}}" class="btn btn-warning my-2" role="button"> Lengkapi Profil </a>
                             </div>

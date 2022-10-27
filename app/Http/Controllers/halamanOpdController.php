@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Opd;
 
-class halamanOpdController extends Controller
+class HalamanOpdController extends Controller
 {
     public function halaman_opd()
     {

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Diklat;
 use App\Models\JenisDiklat;
 
-class halamanDiklatController extends Controller
+class HalamanDiklatController extends Controller
 {
     public function halaman_diklat()
     {

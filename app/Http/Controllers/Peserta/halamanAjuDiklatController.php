@@ -15,7 +15,7 @@ use App\Models\DokumenPengajuan;
 use App\Models\JenisDiklat;
 use App\Models\Dokumen;
 
-class halamanAjuDiklatController extends Controller
+class HalamanAjuDiklatController extends Controller
 {
     public function halaman_pengajuan_diklat()
     {
@@ -222,7 +222,7 @@ class halamanAjuDiklatController extends Controller
             // $dokumen = Dokumen::all();
             $dokumen = DB::table('master_dokumen')
                 ->select('master_dokumen.*')
-                ->orderBy('created_at', 'DESC')
+                ->orderBy('created_at', 'ASC')
                 ->get();
             $status = "0";
             $id_aju = $id;

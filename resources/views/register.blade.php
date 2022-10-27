@@ -70,7 +70,7 @@
                                         <span class="alertt" style='color: red;'></span>
                                     </div>
 
-                                    <div class="mb-3 text-center">
+                                    <div class="d-grid gap-2">
                                         <button class="btn btn-primary" type="submit"> Daftar </button>
                                     </div>
 

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 
-class halamanUserController extends Controller
+class HalamanUserController extends Controller
 {
     public function halaman_user()
     {

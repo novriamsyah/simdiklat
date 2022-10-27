@@ -108,7 +108,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="mb-3 mb-0 text-center">
+                                    <div class="d-grid gap-2">
                                         <button class="btn btn-primary" type="submit"> Masuk </button>
                                     </div>
 
