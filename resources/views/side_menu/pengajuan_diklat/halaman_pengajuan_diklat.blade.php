@@ -193,7 +193,7 @@ crossorigin="anonymous"
             method: "GET",
             success:function(response) {
                 var linkUrl = response.sertifikat;
-                var lihat =  $('.lihat_pengajuann_admin').attr('src', "{{Storage::url('public/dokumen_pengajuan')}}/"+linkUrl);
+                var lihat =  $('.lihat_pengajuann_admin').attr('src', "{{Storage::url('public/sertifikat')}}/"+linkUrl);
 
             }
         })
