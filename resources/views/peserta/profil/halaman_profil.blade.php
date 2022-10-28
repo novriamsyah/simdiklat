@@ -177,8 +177,6 @@ crossorigin="anonymous"
 </script>
 <script>
 
-
-    
      @if ($message = Session::get('berhasil'))
     toastr.success("{{ $message }}","Selamat", {
         timeOut:5e3,

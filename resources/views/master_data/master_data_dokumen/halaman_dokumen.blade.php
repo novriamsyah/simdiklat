@@ -148,12 +148,14 @@
         success: function (results) {
             if (results.success === true) { 
                 swal("Done!", results.message, "success");
+                location.reload();
             } else {
                 swal("Error!", results.message, "error");
+                location.reload();
         }
         }
         });
-            location.reload();
+            
         } else {
             e.dismiss;
         }

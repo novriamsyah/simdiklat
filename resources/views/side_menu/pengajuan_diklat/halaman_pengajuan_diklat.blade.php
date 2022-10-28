@@ -194,11 +194,6 @@ crossorigin="anonymous"
             success:function(response) {
                 var linkUrl = response.sertifikat;
                 var lihat =  $('.lihat_pengajuann_admin').attr('src', "{{Storage::url('public/sertifikat')}}/"+linkUrl);
-<<<<<<< HEAD
-=======
-                
->>>>>>> 70c71ed716a300c0b38ad3e82a163076b07399bb
-
             }
         })
     }); 
@@ -298,12 +293,14 @@ crossorigin="anonymous"
         success: function (results) {
             if (results.success === true) { 
                 swal("Done!", results.message, "success");
+                location.reload();
             } else {
                 swal("Error!", results.message, "error");
+                location.reload();
         }
         }
         });
-            location.reload();
+           
         } else {
             e.dismiss;
         }
