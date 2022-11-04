@@ -71,13 +71,12 @@ class HalamanDashboardController extends Controller
         $jenis_diklat = DB::table('jenis_diklat')
         ->where('id', $lihat_diklat->id_jenis_diklat)
         ->first();
-        Carbon::setLocale('id');
-        $st_daftar = Carbon::createFromFormat('Y-m-d',$lihat_diklat->mulai_pendaftaran)->format('d F Y');
-        $sl_daftar = Carbon::createFromFormat('Y-m-d',$lihat_diklat->selesai_pendaftaran)->format('d F Y');
-        $st_laksana = Carbon::createFromFormat('Y-m-d',$lihat_diklat->mulai_pelakasanaan)->format('d F Y');
-        $sl_laksana = Carbon::createFromFormat('Y-m-d',$lihat_diklat->selesai_pelakasanaan)->format('d F Y');
-        $bt_upl = Carbon::createFromFormat('Y-m-d',$lihat_diklat->batas_upload)->format('d F Y');
 
+        $st_daftar = Carbon::parse($lihat_diklat->mulai_pendaftaran)->translatedFormat('d F Y');
+        $sl_daftar = Carbon::parse($lihat_diklat->selesai_pendaftaran)->translatedFormat('d F Y');
+        $st_laksana = Carbon::parse($lihat_diklat->mulai_pelakasanaan)->translatedFormat('d F Y');
+        $sl_laksana = Carbon::parse($lihat_diklat->selesai_pelakasanaan)->translatedFormat('d F Y');
+        $bt_upl = Carbon::parse($lihat_diklat->batas_upload)->translatedFormat('d F Y');
 
         //status
         $now_date = \Carbon\Carbon::now()->format('d-m-Y');

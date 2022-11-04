@@ -93,12 +93,12 @@
                       <tr>
                         <td data-title="mulai_pendaftaran" style="width: 25%;">Tanggal Pendaftaran Diklat</td>
                         <td >&nbsp;:</td>
-                        <td data-title="mulai_pendaftaran" id="mulai_pendaftaran" class="formulir-border" style="width: 75%; padding-left:0.8em">{{date('d F Y', strtotime($datas->tanggal_daftar))}}</td>
+                        <td data-title="mulai_pendaftaran" id="mulai_pendaftaran" class="formulir-border" style="width: 75%; padding-left:0.8em">{{\Carbon\Carbon::parse($datas->tanggal_daftar)->translatedFormat('d M Y')}}</td>
                       </tr>
                       <tr>
                         <td data-title="mulai_pendaftaran" style="width: 25%;">Tanggal Pengajuan Diklat</td>
                         <td >&nbsp;:</td>
-                        <td data-title="mulai_pendaftaran" id="mulai_pendaftaran" class="formulir-border" style="width: 75%; padding-left:0.8em">{{date('d F Y', strtotime($datas->created_at))}}</td>
+                        <td data-title="mulai_pendaftaran" id="mulai_pendaftaran" class="formulir-border" style="width: 75%; padding-left:0.8em">{{\Carbon\Carbon::parse($datas->created_at)->translatedFormat('d M Y')}}</td>
                       </tr>
                     </tbody>
                 </table>

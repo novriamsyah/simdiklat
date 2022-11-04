@@ -58,7 +58,7 @@
                                             @endif
                                             
                                         </td>
-                                        <td>{{date('d M Y', strtotime($dt->tanggal_daftar))}}</td>
+                                        <td>{{\Carbon\Carbon::parse($dt->tanggal_daftar)->translatedFormat('d M Y')}}</td>
                                         <td>
                                             @php
                                             $doc_diklat = \App\Models\dokumenPengajuan::where('id_pengajuan', $dt->id)->count();

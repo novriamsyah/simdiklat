@@ -42,14 +42,14 @@
                                     
                                     <div class="mb-3">
                                         <label for="password" class="form-label" style="color: #000000;">Password Baru</label>
-                                        <input class="form-control" type="password" name="password" id="password" required="" placeholder="Masukan password baru" style="border:1px solid #000000">
+                                        <input class="form-control" type="password" name="password" id="password" required="" placeholder="Masukan Password Baru" style="border:1px solid #000000">
                                         @if ($errors->has('password'))
                                             <span class="text-danger">{{ $errors->first('password') }}</span>
                                         @endif
                                     </div>
                                     <div class="mb-3">
                                         <label for="password-confirm" class="form-label" style="color: #000000;">Konfirmasi Password</label>
-                                        <input class="form-control" type="password" name="password_confirmation" id="password-confirm" required="" placeholder="Konfirmasi password" style="border:1px solid #000000">
+                                        <input class="form-control" type="password" name="password_confirmation" id="password-confirm" required="" placeholder="Konfirmasi Password" style="border:1px solid #000000">
                                         @if ($errors->has('password_confirmation'))
                                             <span class="text-danger"{{ $errors->first('password_confirmation') }}></span>
                                         @endif

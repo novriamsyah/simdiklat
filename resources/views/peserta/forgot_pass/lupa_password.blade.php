@@ -42,7 +42,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label for="emailaddress" class="form-label" style="color: #000000;">Alamat Email</label>
-                                        <input class="form-control" type="email" name="email" id="emailaddress" required="" placeholder="Masukan email" style="border:1px solid #000000">
+                                        <input class="form-control" type="email" name="email" id="emailaddress" required="" placeholder="Masukan Email" style="border:1px solid #000000">
                                         @if ($errors->has('email'))
                                             <span class="text-danger">Masukan Email yang valid</span>
                                         @endif

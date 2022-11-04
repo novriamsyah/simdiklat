@@ -57,7 +57,9 @@
                                             @endif
                                         </td>
                                         
-                                        <td>{{date('d M Y', strtotime($dt->tanggal_daftar))}}</td>
+                                        <td>
+                                            {{\Carbon\Carbon::parse($dt->tanggal_daftar)->translatedFormat('d M Y')}}
+                                        </td>
                                         <td>
                                             {{-- 
                                             <a class="action-icon delete-confirm"><button onclick="deleteConfirmation({{$dt->id}})" type="button" class="btn btn-danger btn-sm" style="display: inline-block; margin-top:8px"><i class="dripicons-trash"></i></button></a>   --}}

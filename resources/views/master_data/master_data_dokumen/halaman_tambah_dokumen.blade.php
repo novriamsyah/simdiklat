@@ -59,7 +59,7 @@
                     @csrf
                     <div class="mb-3" style="margin-top:40px">
                       {{-- <label for="example-email" class="form-label">Email</label> --}}
-                      <h4 class="header-title m-t-0">Nama dokumen<span class="text-danger">*</span></h4>
+                      <h4 class="header-title m-t-0" style="text-transform: capitalize;">Nama Dokumen<span class="text-danger">*</span></h4>
                       <input type="text" id="master_dokumen" name="master_dokumen" class="form-control" placeholder="Nama Dokumen" style="border: 1px solid rgb(161, 161, 161);">
                       <span class="nm_berkas" style='color: red;'></span>
                     </div>

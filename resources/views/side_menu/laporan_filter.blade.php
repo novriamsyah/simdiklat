@@ -14,10 +14,10 @@
 			background-color: #f7f7f7f7;
 			padding-bottom: 50px;
 		}
-		.logo-laundry{
+		.logo-sidisel{
 		    object-fit: cover;
 		    width: 4rem;
-		    height: 4rem;
+		    height: 4.5rem;
 		}
 		.text-right{
 			text-align: right;
@@ -77,7 +77,7 @@
 	<div class="header">
 		<table style="width: 100%;" class="table-header">
 			<tr>
-				<td style="padding-top: 50px; padding-left: 50px;"><img src="{{ asset('https://user-images.githubusercontent.com/52773931/197548618-321dfb96-abaf-421d-b56f-5a951568e134.png') }}" class="logo-laundry"></td>
+				<td style="padding-top: 50px; padding-left: 50px;"><img src="{{ asset('https://user-images.githubusercontent.com/52773931/197548618-321dfb96-abaf-421d-b56f-5a951568e134.png') }}" class="logo-sidisel"></td>
 				<td colspan="2" style=" padding-top: 15px; padding-right: 50px;" class="text-right"><span style="color: #313131;font-size: 28px;">Diklat Si-disel</span> <br> <span>
                     @if($tanggal != '' && $jenis1 != '')
 					Filter Menurut Jenis Diklat : {{$jenis}} <br>
@@ -87,10 +87,15 @@
                     Filter Menurut Tanggal Diklat : {{$tanggal}}
                     @elseif($tanggal == '' && $jenis1 != '')
                     Filter Menurut Jenis Diklat : {{$jenis}} <br>
-                    Filter Menurut Tanggal Diklat : {{ date('d M Y', strtotime($start_date2)) . ' - ' . date('d M Y', strtotime($end_date2)) }}
+                    Filter Menurut Tanggal Diklat : 
+					{{-- {{ date('d M Y', strtotime($start_date2)) . ' - ' . date('d M Y', strtotime($end_date2)) }}  --}}
+
+					{{\Carbon\Carbon::parse($start_date2)->translatedFormat('d M Y'). ' - ' . \Carbon\Carbon::parse($end_date2)->translatedFormat('d M Y')}}
 					@else
 					Filter Menurut Jenis Diklat : {{$jenis}} <br>
-                    Filter Menurut Tanggal Diklat : {{ date('d M Y', strtotime($start_date2)) . ' - ' . date('d M Y', strtotime($end_date2)) }}
+                    Filter Menurut Tanggal Diklat : 
+					{{-- {{ date('d M Y', strtotime($start_date2)) . ' - ' . date('d M Y', strtotime($end_date2)) }} --}}
+					{{\Carbon\Carbon::parse($start_date2)->translatedFormat('d M Y'). ' - ' . \Carbon\Carbon::parse($end_date2)->translatedFormat('d M Y')}}
 					@endif
                     </span>
                 </td>
@@ -99,7 +104,7 @@
 		</table>
 	</div>
 	<div class="body-content">
-        <p style="color: #313131; padding-left: 50px; margin-top: -40px;">1. Table Diklat Peserta </p>
+        <p style="color: #313131; padding-left: 50px; margin-top: -40px;">1. Tabel Diklat Peserta </p>
 		<table style="width: 100%; border-collapse: collapse; padding-right: 50px; padding-left: 50px;" class="table-content">
 			<tr>
 				<th>NO</th>
@@ -119,7 +124,7 @@
 				<td>{{ $dt->nama_lengkap }}</td>
 				<td>{{ $dt->nama_diklat }}</td>
 				<td>{{ $jns_diklat->jenis_diklat }}</td>
-				<td>{{ date('d M Y', strtotime($dt->created_at)) }}</td>
+				<td>{{\Carbon\Carbon::parse($dt->created_at)->translatedFormat('d M Y')}}</td>
 				<td>
                     @if ($dt->status == 0)
                     <span class="badge badge-dark">Menunggu</span>
@@ -132,7 +137,7 @@
 			</tr>
 			@endforeach
 		</table>
-        <p style="color: #313131; padding-left: 50px; margin-top: 60px;">2. Table Diklat Pengajuan Peserta </p>
+        <p style="color: #313131; padding-left: 50px; margin-top: 60px;">2. Tabel Diklat Pengajuan Peserta </p>
 		<table style="width: 100%; border-collapse: collapse; padding-right: 50px; padding-left: 50px;" class="table-content">
 			<tr>
 				<th>NO</th>
@@ -151,7 +156,7 @@
 				<td>{{ $dt1->nama_lengkap }}</td>
 				<td>{{ $dt1->nama_diklat }}</td>
 				<td>{{ $jns_diklat->jenis_diklat }}</td>
-				<td>{{ date('d M Y', strtotime($dt1->created_at)) }}</td>
+				<td>{{\Carbon\Carbon::parse($dt1->created_at)->translatedFormat('d M Y')}}</td>
 				<td>
                     @if ($dt1->status == 0)
                     <span class="badge badge-dark">Menunggu</span>

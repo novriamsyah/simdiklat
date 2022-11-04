@@ -58,7 +58,9 @@
                                             @endif
                                             
                                         </td>
-                                        <td>{{date('d M Y', strtotime($dt->tanggal_daftar))}}</td>
+                                        <td>
+                                            {{\Carbon\Carbon::parse($dt->tanggal_daftar)->translatedFormat('d M Y')}}
+                                        </td>
                                         <td>
                                             @if ($dt->status == 0)
                                             <a href="{{url('/lihat_verifikasi_pengajuan/'.$dt->id)}}" class="action-icon"><button type="button" class="btn btn-primary btn-sm" style="display: inline-block; margin-top:8px">Verifikasi</button></a>

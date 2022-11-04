@@ -85,22 +85,22 @@
                       <tr>
                         <td data-title="mulai_pendaftaran" style="width: 25%;">Mulai Pendaftaran</td>
                         <td >&nbsp;:</td>
-                        <td data-title="mulai_pendaftaran" id="mulai_pendaftaran" class="formulir-border" style="width: 75%; padding-left:0.8em">{{date('d F Y', strtotime($datas->mulai_pendaftaran))}}</td>
+                        <td data-title="mulai_pendaftaran" id="mulai_pendaftaran" class="formulir-border" style="width: 75%; padding-left:0.8em"> {{\Carbon\Carbon::parse($datas->mulai_pendaftaran)->translatedFormat('d M Y')}}</td>
                       </tr>
                       <tr>
                         <td data-title="selesai_pendaftaran" style="width: 25%;">Selesai Pendaftaran</td>
                         <td >&nbsp;:</td>
-                        <td data-title="selesai_pendaftaran" id="selesai_pendaftaran" class="formulir-border" style="width: 75%; padding-left:0.8em">{{date('d F Y', strtotime($datas->selesai_pendaftaran))}}</td>
+                        <td data-title="selesai_pendaftaran" id="selesai_pendaftaran" class="formulir-border" style="width: 75%; padding-left:0.8em">{{\Carbon\Carbon::parse($datas->selesai_pendaftaran)->translatedFormat('d M Y')}}</td>
                       </tr>
                       <tr>
                         <td data-title="mulai_pelaksanaan" style="width: 25%;">Mulai Pelaksanaan</td>
                         <td >&nbsp;:</td>
-                        <td data-title="mulai_pelaksanaan" id="mulai_pelakasanaan" class="formulir-border" style="width: 75%; padding-left:0.8em">{{date('d F Y', strtotime($datas->mulai_pelakasanaan))}}</td>
+                        <td data-title="mulai_pelaksanaan" id="mulai_pelakasanaan" class="formulir-border" style="width: 75%; padding-left:0.8em"> {{\Carbon\Carbon::parse($datas->mulai_pelakasanaan)->translatedFormat('d M Y')}}</td>
                       </tr>
                       <tr>
                         <td data-title="selesai_pelaksanaan" style="width: 25%;">Selesai Pelaksanaan</td>
                         <td >&nbsp;:</td>
-                        <td data-title="selesai_pelaksanaan" id="selesai_pelakasanaan" class="formulir-border" style="width: 75%; padding-left:0.8em">{{date('d F Y', strtotime($datas->selesai_pelakasanaan))}}</td>
+                        <td data-title="selesai_pelaksanaan" id="selesai_pelakasanaan" class="formulir-border" style="width: 75%; padding-left:0.8em"> {{\Carbon\Carbon::parse($datas->selesai_pelakasanaan)->translatedFormat('d M Y')}}</td>
                       </tr>
                     </tbody>
                 </table>

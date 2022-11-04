@@ -55,10 +55,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                  <form name="form_upload_edit" action="{{url('/ubah_dokumen/'.$id)}}" method="post" enctype="multipart/form-data" class="dropzone" id="myAwesomeDropzone" data-plugin="dropzone" data-previews-container="#file-previews" data-upload-preview-template="#uploadPreviewTemplate">
+                  <form name="form_upload_edit" action="{{url('/ubah_dokumen/'.$id)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3" style="margin-top:40px">
-                      <h4 class="header-title m-t-0">Nama dokumen</h4>
+                      <h4 class="header-title m-t-0" style="text-transform: capitalize;">Nama dokumen</h4>
                       <input type="text" id="master_dokumen" value="{{$datas->master_dokumen}}" name="master_dokumen" class="form-control" placeholder="Nama Dokumen" style="border: 1px solid rgb(161, 161, 161);">
                       <span class="nm_berkas" style='color: red;'></span>
                     </div>

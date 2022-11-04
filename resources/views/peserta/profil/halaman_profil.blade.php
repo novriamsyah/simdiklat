@@ -102,7 +102,7 @@
                               <td data-title="tanggal_lahir" style="width: 23%;">Tanggal Lahir</td>
                               <td >&nbsp;:</td>
                               <td data-title="tanggal_lahir" class="formulir-border" style="width: 77%; padding-left:0.8em">
-                                {{date('d M Y', strtotime($datas->tanggal_lahir))}}
+                                {{\Carbon\Carbon::parse($datas->tanggal_lahir)->translatedFormat('d M Y')}}
                               </td>
                           </tr>
                           <tr>

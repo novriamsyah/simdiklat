@@ -48,13 +48,28 @@
                                         <td>{{$num}}.</td>
                                         <td>{{$dt->nama_diklat}}</td>
                                         <td>
-                                            <p>Mulai : <span class="badge bg-success">{{date('d M Y', strtotime($dt->mulai_pendaftaran))}}</span></p>
-                                            <p>Selesai : <span class="badge bg-dark">{{date('d M Y', strtotime($dt->selesai_pendaftaran))}}</span></p>
+                                            <p>Mulai : 
+                                                <span class="badge bg-success">
+                                                {{\Carbon\Carbon::parse($dt->mulai_pendaftaran)->translatedFormat('d M Y')}}
+                                                </span>
+                                            </p>
+                                            <p>Selesai : 
+                                                <span class="badge bg-dark">
+                                                    {{\Carbon\Carbon::parse($dt->selesai_pendaftaran)->translatedFormat('d M Y')}}
+                                                </span>
+                                            </p>
                                         </td>
                                         <td>
-                                            <p>Mulai : <span class="badge bg-success">{{date('d M Y', strtotime($dt->mulai_pelakasanaan))}}</span>
+                                            <p>Mulai : 
+                                                <span class="badge bg-success">
+                                                    {{\Carbon\Carbon::parse($dt->mulai_pelakasanaan)->translatedFormat('d M Y')}}
+                                                </span>
                                             </p>
-                                            <p>Selesai : <span class="badge bg-dark">{{date('d M Y', strtotime($dt->selesai_pelakasanaan))}}</span></p>
+                                            <p>Selesai : 
+                                                <span class="badge bg-dark">
+                                                    {{\Carbon\Carbon::parse($dt->selesai_pelakasanaan)->translatedFormat('d M Y')}}
+                                                </span>
+                                            </p>
                                         </td>
                                         <td>{{$dt->tempat_diklat}}</td>
                                         <td>
