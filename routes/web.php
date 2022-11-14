@@ -53,7 +53,6 @@ Route::group(['middleware' => ['auth', 'cekrole:Admin']], function(){
     Route::post('/ubah_user/{id}', [App\Http\Controllers\HalamanUserController::class, 'ubah_user']);
     Route::post('/hapus_user/{id}', [App\Http\Controllers\HalamanUserController::class, 'hapus_user']);
 
-
 });
 
 Route::group(['middleware' => ['auth', 'cekrole:Admin,Operator,Peserta']], function(){
@@ -122,6 +121,16 @@ Route::group(['middleware' => ['auth', 'cekrole:Admin,Operator,Peserta']], funct
     Route::post('/proses_validasi_dokumen_peserta/{id}', [App\Http\Controllers\HalamanPengajuanDiklatController::class, 'proses_validasi_dokumen_peserta']);
     Route::post('/validasi_pengajuan_diklat', [App\Http\Controllers\HalamanPengajuanDiklatController::class, 'validasi_pengajuan_diklat']);
     Route::post('/hapus_diklat_pengajuann/{id}', [App\Http\Controllers\HalamanPengajuanDiklatController::class, 'hapus_diklat']);
+
+    //kelola peserta
+    Route::get('/halaman_kelola_peserta', [App\Http\Controllers\HalamanPesertaController::class, 'halaman_peserta']);
+    Route::get('/halaman_tambah_peserta', [App\Http\Controllers\HalamanPesertaController::class, 'halaman_tambah_user']);
+    Route::post('/simpan_peserta', [App\Http\Controllers\HalamanPesertaController::class, 'simpan_peserta']);
+    Route::get('/edit_peserta/{id}', [App\Http\Controllers\HalamanPesertaController::class, 'edit_peserta']);
+    Route::get('/lihat_peserta/{id}', [App\Http\Controllers\HalamanPesertaController::class, 'lihat_peserta']);
+    Route::post('/ubah_data_peserta/{id}', [App\Http\Controllers\HalamanPesertaController::class, 'ubah_peserta']);
+    Route::get('/ubah_password_peserta/{nip}', [App\Http\Controllers\HalamanPesertaController::class, 'ubah_password']);
+    Route::post('/hapus_peserta/{id}', [App\Http\Controllers\HalamanPesertaController::class, 'hapus_peserta']);
 });
 
 

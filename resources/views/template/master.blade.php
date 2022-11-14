@@ -80,6 +80,12 @@
                                     <span> DIKLAT RIWAYAT </span>
                                 </a>
                             </li>
+                            <li class="side-nav-item">
+                                <a class="side-nav-link" href="{{url('/halaman_kelola_peserta')}}">
+                                    <i class="uil-user"></i>
+                                    <span> KELOLA PESERTA </span>
+                                </a>
+                            </li>
                             {{-- <li class="side-nav-item">
                                 <a class="side-nav-link" href="{{url('/halaman_diklat')}}">
                                     <i class="uil-files-landscapes-alt"></i>
